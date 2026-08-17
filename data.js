@@ -219,7 +219,7 @@ const portfolioData = {
     provider: "LinkedIn Learning",
     year: "2021",
     category: "computation",
-    image: "assets/images/certificates/LinkedIn Learning - Learning C#.png"
+    image: "assets/images/certificates/linkedin-learning-csharp.png"
   },
   {
     title: "Learning SQL Programming",
