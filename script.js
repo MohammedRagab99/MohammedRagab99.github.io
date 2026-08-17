@@ -1,3 +1,9 @@
+/* =========================================================
+   RAGABVERSE — Consolidated Script
+   Handles all dynamic rendering, navigation, theme, filters,
+   modal, scroll UI, and animations.
+========================================================= */
+
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
@@ -8,15 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCertificates("all");
   renderResearch();
   renderSkills();
-  setupNavigation();
   setupTheme();
+  setupNavigation();
   setupFilters();
   setupModal();
+  setupActiveNav();
   setupReveal();
   setupScrollUI();
+  setupCursorGlow();
   setupYear();
   setupStats();
 });
+
+/* ---------- Data Rendering ---------- */
 
 function renderExperience() {
   const root = $("#experienceList");
@@ -53,7 +63,7 @@ function renderProjects(filter = "all") {
     <article class="project-card reveal">
       <div class="project-image">
         ${item.image
-          ? `<img src="${item.image}" alt="${escapeAttr(item.title)}" loading="lazy" onerror="this.remove(); this.parentElement.insertAdjacentHTML('beforeend','<div class=&quot;placeholder&quot;>Add project image in assets/images/projects/</div>');">`
+          ? `<img src="${item.image}" alt="${escapeAttr(item.title)}" loading="lazy" onerror="handleImageError(this, 'project')">`
           : `<div class="placeholder">Add project image in assets/images/projects/</div>`}
       </div>
       <div class="project-body">
@@ -76,7 +86,7 @@ function renderCertificates(filter = "all") {
     <article class="certificate-card reveal" data-index="${portfolioData.certificates.indexOf(item)}">
       <div class="certificate-thumb">
         <img src="${item.image}" alt="${escapeAttr(item.title)}" loading="lazy"
-             onerror="this.remove(); this.parentElement.insertAdjacentHTML('beforeend','<div class=&quot;placeholder&quot;>Add certificate image:<br>${escapeHtml(item.image)}</div>');">
+             onerror="handleImageError(this, 'certificate', '${escapeAttr(item.image)}')">
       </div>
       <div class="certificate-body">
         <h3>${escapeHtml(item.title)}</h3>
@@ -118,59 +128,117 @@ function renderSkills() {
     .join("");
 }
 
+/* ---------- Theme ---------- */
+
+function setupTheme() {
+  const toggle = $("#themeToggle");
+  const savedTheme = localStorage.getItem("ragabverse-theme");
+  if (savedTheme === "light") {
+    document.documentElement.dataset.theme = "light";
+    toggle?.setAttribute("aria-pressed", "true");
+  }
+  updateThemeIcon();
+
+  toggle?.addEventListener("click", () => {
+    const isLight = document.documentElement.dataset.theme === "light";
+    if (isLight) {
+      delete document.documentElement.dataset.theme;
+      localStorage.setItem("ragabverse-theme", "dark");
+      toggle.setAttribute("aria-pressed", "false");
+    } else {
+      document.documentElement.dataset.theme = "light";
+      localStorage.setItem("ragabverse-theme", "light");
+      toggle.setAttribute("aria-pressed", "true");
+    }
+    updateThemeIcon();
+  });
+
+  function updateThemeIcon() {
+    if (toggle) {
+      toggle.innerHTML = document.documentElement.dataset.theme === "light" ? "☀" : "☾";
+    }
+  }
+}
+
+/* ---------- Mobile Navigation ---------- */
+
+function setupNavigation() {
+  const menuButton = $("#menuButton");
+  const mobileNav = $("#mobileNav");
+
+  menuButton?.addEventListener("click", () => {
+    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    mobileNav.setAttribute("aria-hidden", String(isOpen));
+    document.body.classList.toggle("menu-open", !isOpen);
+  });
+
+  $$("#mobileNav a").forEach(link => {
+    link.addEventListener("click", () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      mobileNav.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("menu-open");
+    });
+  });
+}
+
+/* ---------- Active Navigation Highlighting ---------- */
+
+function setupActiveNav() {
+  const sections = $$("main section[id]");
+  const navLinks = $$(".desktop-nav a");
+  if (!sections.length || !navLinks.length || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach(link => {
+        const active = link.getAttribute("href") === `#${entry.target.id}`;
+        link.classList.toggle("active", active);
+      });
+    });
+  }, { rootMargin: "-35% 0px -55% 0px" });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+/* ---------- Filters ---------- */
+
 function setupFilters() {
+  // Project filters
   $$(".filter[data-filter]").forEach(btn => {
     btn.addEventListener("click", () => {
-      $$(".filter[data-filter]").forEach(b => b.classList.remove("active"));
+      $$(".filter[data-filter]").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       renderProjects(btn.dataset.filter);
     });
   });
 
+  // Certificate filters
   $$(".filter[data-cert-filter]").forEach(btn => {
     btn.addEventListener("click", () => {
-      $$(".filter[data-cert-filter]").forEach(b => b.classList.remove("active"));
+      $$(".filter[data-cert-filter]").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
       renderCertificates(btn.dataset.certFilter);
     });
   });
 }
 
-function setupNavigation() {
-  const menuButton = $("#menuButton");
-  const mobileNav = $("#mobileNav");
-  menuButton.addEventListener("click", () => {
-    const open = mobileNav.classList.toggle("open");
-    menuButton.setAttribute("aria-expanded", String(open));
-  });
-  $$("#mobileNav a").forEach(a => a.addEventListener("click", () => {
-    mobileNav.classList.remove("open");
-    menuButton.setAttribute("aria-expanded", "false");
-  }));
-}
-
-function setupTheme() {
-  const toggle = $("#themeToggle");
-  const stored = localStorage.getItem("mr-theme");
-  if (stored === "light") document.body.classList.add("light-theme");
-  updateThemeIcon();
-
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-theme");
-    localStorage.setItem("mr-theme", document.body.classList.contains("light-theme") ? "light" : "dark");
-    updateThemeIcon();
-  });
-
-  function updateThemeIcon() {
-    toggle.textContent = document.body.classList.contains("light-theme") ? "☀" : "☾";
-  }
-}
+/* ---------- Modal ---------- */
 
 function setupModal() {
   const modal = $("#certificateModal");
   const close = $("#modalClose");
-  close.addEventListener("click", () => modal.close());
-  modal.addEventListener("click", (event) => {
+  close?.addEventListener("click", () => modal.close());
+  modal?.addEventListener("click", (event) => {
     const rect = modal.getBoundingClientRect();
     const inside = event.clientX >= rect.left && event.clientX <= rect.right &&
                    event.clientY >= rect.top && event.clientY <= rect.bottom;
@@ -190,57 +258,92 @@ function openCertificate(index) {
   if (!modal.open) modal.showModal();
 }
 
+/* ---------- Image Fallback ---------- */
+
+window.handleImageError = function(img, type, fallbackText = "") {
+  const parent = img.parentElement;
+  img.remove();
+  if (type === "project") {
+    parent.insertAdjacentHTML("beforeend", '<div class="placeholder">Add project image in assets/images/projects/</div>');
+  } else if (type === "certificate") {
+    parent.insertAdjacentHTML("beforeend", `<div class="placeholder">Add certificate image:<br>${fallbackText}</div>`);
+  }
+};
+
+/* ---------- Reveal Animations ---------- */
+
+let revealObserver;
+
 function setupReveal() {
   observeNewReveals();
 }
 
-let revealObserver;
 function observeNewReveals() {
   if (!revealObserver) {
     revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("show");
+          entry.target.classList.add("is-visible");
           const fills = entry.target.querySelectorAll?.(".skill-fill") || [];
           fills.forEach(fill => fill.style.width = `${fill.dataset.value}%`);
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: .12 });
+    }, { threshold: 0.12 });
   }
-  $$(".reveal:not(.show)").forEach(el => revealObserver.observe(el));
+  $$(".reveal:not(.is-visible)").forEach(el => revealObserver.observe(el));
 
-  // Make all bars visible when their parent is not inside a reveal wrapper.
-  $$(".skill-fill").forEach(fill => {
-    const parent = fill.closest(".skill-row");
-    if (parent && parent.classList.contains("show")) fill.style.width = `${fill.dataset.value}%`;
+  // Ensure already visible skill bars get their width set
+  $$(".skill-row.is-visible .skill-fill").forEach(fill => {
+    fill.style.width = `${fill.dataset.value}%`;
   });
 }
+
+/* ---------- Scroll UI ---------- */
 
 function setupScrollUI() {
   const progress = $("#scrollProgress");
   const header = $("#siteHeader");
   const top = $("#backToTop");
 
-  window.addEventListener("scroll", () => {
+  const onScroll = () => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = `${(window.scrollY / Math.max(max, 1)) * 100}%`;
-    header.classList.toggle("scrolled", window.scrollY > 8);
-    top.classList.toggle("visible", window.scrollY > 650);
-  }, { passive: true });
+    if (progress) progress.style.width = `${(window.scrollY / Math.max(max, 1)) * 100}%`;
+    if (header) header.classList.toggle("scrolled", window.scrollY > 8);
+    if (top) top.classList.toggle("visible", window.scrollY > 650);
+  };
 
-  top.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  window.addEventListener("scroll", onScroll, { passive: true });
+  top?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  onScroll();
 }
+
+/* ---------- Cursor Glow (desktop only) ---------- */
+
+function setupCursorGlow() {
+  const cursorGlow = $("#cursorGlow");
+  if (cursorGlow && window.matchMedia("(pointer: fine)").matches) {
+    window.addEventListener("pointermove", (event) => {
+      cursorGlow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+    }, { passive: true });
+  }
+}
+
+/* ---------- Footer Year ---------- */
 
 function setupYear() {
   $("#currentYear").textContent = new Date().getFullYear();
 }
+
+/* ---------- Stats ---------- */
 
 function setupStats() {
   $("#statYears").textContent = portfolioData.profile.yearsIndustry;
   $("#statProjects").textContent = portfolioData.profile.projects;
   $("#statSkills").textContent = portfolioData.profile.skills;
 }
+
+/* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
   return String(value)
