@@ -1,19 +1,22 @@
 /* =========================================================
    RAGABVERSE — Consolidated Script
    Handles all dynamic rendering, navigation, theme, filters,
-   modal, scroll UI, and animations.
+   modal, scroll UI, animations, and enhanced features.
 ========================================================= */
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Render dynamic content
   renderExperience();
   renderExpertise();
   renderProjects("all");
   renderCertificates("all");
   renderResearch();
   renderSkills();
+
+  // Setup UI features
   setupTheme();
   setupNavigation();
   setupFilters();
@@ -23,7 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
   setupScrollUI();
   setupCursorGlow();
   setupYear();
-  setupStats();
+  setupStats();          // animated counters
+
+  // Setup enhanced features
+  setupToast();
+  setupGlobalSearch();
+  setupContactForm();
+  setupCharts();
+  setupCopyEmail();
+  setupKeyboardShortcuts();
 });
 
 /* ---------- Data Rendering ---------- */
@@ -205,7 +216,6 @@ function setupActiveNav() {
 /* ---------- Filters ---------- */
 
 function setupFilters() {
-  // Project filters
   $$(".filter[data-filter]").forEach(btn => {
     btn.addEventListener("click", () => {
       $$(".filter[data-filter]").forEach(b => {
@@ -218,7 +228,6 @@ function setupFilters() {
     });
   });
 
-  // Certificate filters
   $$(".filter[data-cert-filter]").forEach(btn => {
     btn.addEventListener("click", () => {
       $$(".filter[data-cert-filter]").forEach(b => {
@@ -232,7 +241,7 @@ function setupFilters() {
   });
 }
 
-/* ---------- Modal ---------- */
+/* ---------- Certificate Modal ---------- */
 
 function setupModal() {
   const modal = $("#certificateModal");
@@ -293,7 +302,6 @@ function observeNewReveals() {
   }
   $$(".reveal:not(.is-visible)").forEach(el => revealObserver.observe(el));
 
-  // Ensure already visible skill bars get their width set
   $$(".skill-row.is-visible .skill-fill").forEach(fill => {
     fill.style.width = `${fill.dataset.value}%`;
   });
@@ -335,13 +343,7 @@ function setupYear() {
   $("#currentYear").textContent = new Date().getFullYear();
 }
 
-/* ---------- Stats ---------- */
-
-function setupStats() {
-  $("#statYears").textContent = portfolioData.profile.yearsIndustry;
-  $("#statProjects").textContent = portfolioData.profile.projects;
-  $("#statSkills").textContent = portfolioData.profile.skills;
-}
+/* ---------- Animated Stats ---------- */
 
 function setupStats() {
   const statYears = $("#statYears");
@@ -349,7 +351,6 @@ function setupStats() {
   const statSkills = $("#statSkills");
   if (!statYears || !statProjects || !statSkills) return;
 
-  // Parse target values (remove "+" and parse int)
   const targetValues = [
     parseInt(portfolioData.profile.yearsIndustry) || 3,
     parseInt(portfolioData.profile.projects) || 8,
@@ -388,6 +389,239 @@ function setupStats() {
 
   observer.observe($(".mini-stats"));
 }
+
+/* ---------- Toast System ---------- */
+
+function setupToast() {
+  // The toastWrap element should be present in HTML
+  // No setup needed; functions are global
+}
+
+function toast(message, type = 'ok', duration = 3000) {
+  const wrap = document.getElementById('toastWrap');
+  if (!wrap) return;
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  const icons = { ok:'✓', err:'✕', warn:'⚠' };
+  t.innerHTML = `<span>${icons[type] || '✓'}</span><span>${message}</span>`;
+  wrap.appendChild(t);
+  setTimeout(() => t.remove(), duration);
+}
+
+/* ---------- Copy Email ---------- */
+
+function setupCopyEmail() {
+  // Buttons with onclick="copyEmail()" are already bound; no setup needed
+}
+
+function copyEmail() {
+  const email = 'mohammed.ragab.hamad@outlook.com';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(email).then(() => toast('Email copied to clipboard', 'ok'));
+  } else {
+    const textarea = document.createElement('textarea');
+    textarea.value = email;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+    toast('Email copied', 'ok');
+  }
+}
+
+/* ---------- Global Search Modal ---------- */
+
+function setupGlobalSearch() {
+  const searchBar = document.querySelector('.search-bar');
+  if (searchBar) searchBar.addEventListener('click', openSearchModal);
+}
+
+function openSearchModal() {
+  const modal = document.getElementById('moSearch');
+  if (modal) modal.classList.add('open');
+  setTimeout(() => document.getElementById('globalSearchInput')?.focus(), 100);
+}
+
+function closeSearchModal() {
+  const modal = document.getElementById('moSearch');
+  if (modal) modal.classList.remove('open');
+}
+
+function performGlobalSearch() {
+  const query = document.getElementById('globalSearchInput')?.value.toLowerCase().trim();
+  const resultsContainer = document.getElementById('globalSearchResults');
+  if (!resultsContainer) return;
+  if (!query) {
+    resultsContainer.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px;font-size:.85rem;">Start typing to search...</p>';
+    return;
+  }
+
+  const projectMatches = portfolioData.projects.filter(p =>
+    p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tag.toLowerCase().includes(query)
+  );
+  const certMatches = portfolioData.certificates.filter(c =>
+    c.title.toLowerCase().includes(query) || c.provider.toLowerCase().includes(query) || c.category.toLowerCase().includes(query)
+  );
+  const skillMatches = portfolioData.skills.filter(s => s.name.toLowerCase().includes(query));
+  const toolMatches = portfolioData.tools.filter(t => t.toLowerCase().includes(query));
+
+  let html = '';
+  if (projectMatches.length) {
+    html += `<div class="sr-label">Projects (${projectMatches.length})</div>`;
+    projectMatches.forEach(p => {
+      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('projects').scrollIntoView({behavior:'smooth'});">
+        <div class="ti-body"><div class="ti-title">${p.title}</div>
+        <div class="ti-meta"><span class="project-tag">${p.tag}</span><span>${p.description}</span></div></div>
+      </div>`;
+    });
+  }
+  if (certMatches.length) {
+    html += `<div class="sr-label" style="margin-top:16px;">Certificates (${certMatches.length})</div>`;
+    certMatches.forEach(c => {
+      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('certificates').scrollIntoView({behavior:'smooth'});">
+        <div class="ti-body"><div class="ti-title">${c.title}</div>
+        <div class="ti-meta"><span>${c.provider} · ${c.year}</span></div></div>
+      </div>`;
+    });
+  }
+  if (skillMatches.length || toolMatches.length) {
+    html += `<div class="sr-label" style="margin-top:16px;">Skills & Tools</div>`;
+    skillMatches.forEach(s => {
+      html += `<div class="task-item"><div class="ti-body"><div class="ti-title">${s.name} (${s.value}%)</div></div></div>`;
+    });
+    toolMatches.forEach(t => {
+      html += `<div class="task-item"><div class="ti-body"><div class="ti-title">${t}</div></div></div>`;
+    });
+  }
+
+  if (!html) {
+    html = `<div class="empty-state"><div class="es-icon">🔍</div><h3>No results</h3><p>Nothing found for "${query}"</p></div>`;
+  }
+  resultsContainer.innerHTML = html;
+}
+
+/* ---------- Contact Form Modal ---------- */
+
+function setupContactForm() {
+  // No extra setup; functions are global
+}
+
+function openContactModal() {
+  document.getElementById('moContact').classList.add('open');
+}
+
+function closeContactModal() {
+  document.getElementById('moContact').classList.remove('open');
+}
+
+function submitContactForm() {
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+
+  if (!name || !email || !message) {
+    toast('Please fill in name, email, and message', 'err');
+    return;
+  }
+
+  const mailto = `mailto:mohammed.ragab.hamad@outlook.com?subject=${encodeURIComponent(subject || 'Portfolio Contact')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+  window.location.href = mailto;
+  closeContactModal();
+  toast('Your email client should open now', 'ok');
+}
+
+/* ---------- Chart.js Visualizations ---------- */
+
+function setupCharts() {
+  // Wait for DOM and Chart.js to be ready
+  if (typeof Chart === 'undefined') return;
+  setTimeout(initCharts, 300);
+}
+
+function initCharts() {
+  // Skills Radar Chart
+  const radarCtx = document.getElementById('skillsRadarChart');
+  if (radarCtx && window.Chart && portfolioData.skills) {
+    const labels = portfolioData.skills.map(s => s.name.split('(')[0].trim());
+    const data = portfolioData.skills.map(s => s.value);
+    new Chart(radarCtx, {
+      type: 'radar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Proficiency',
+          data,
+          backgroundColor: 'rgba(16,185,129,0.2)',
+          borderColor: '#10b981',
+          borderWidth: 2,
+          pointBackgroundColor: '#10b981',
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { display: false },
+            grid: { color: 'rgba(0,0,0,0.05)' },
+            angleLines: { color: 'rgba(0,0,0,0.05)' },
+            pointLabels: { color: 'var(--text)', font: { size: 10 } }
+          }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+  }
+
+  // Projects Bar Chart
+  const barCtx = document.getElementById('projectsBarChart');
+  if (barCtx && window.Chart && portfolioData.projects) {
+    const categories = [...new Set(portfolioData.projects.map(p => p.category))];
+    const counts = categories.map(cat => portfolioData.projects.filter(p => p.category === cat).length);
+    const colors = categories.map(cat => {
+      if (cat === 'field') return '#ef4444';
+      if (cat === 'energy') return '#10b981';
+      if (cat === 'computation') return '#3b82f6';
+      if (cat === 'design') return '#a855f7';
+      return '#f59e0b';
+    });
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: categories.map(c => c.charAt(0).toUpperCase() + c.slice(1)),
+        datasets: [{
+          data: counts,
+          backgroundColor: colors,
+          borderWidth: 0,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, ticks: { stepSize: 1 } }
+        }
+      }
+    });
+  }
+}
+
+/* ---------- Keyboard Shortcuts ---------- */
+
+function setupKeyboardShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 'k') {
+      e.preventDefault();
+      openSearchModal();
+    }
+  });
+}
+
 /* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
