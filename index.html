@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mohammed Ragab Al-Attar — Reliability & Rotating Equipment Engineer portfolio." />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Mohammed Ragab Al-Attar | Engineering Portfolio</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="brand-mark">MR</span>
+        <span class="brand-text">Mohammed Ragab</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#research">Research</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme">☾</button>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-glow glow-a"></div>
+      <div class="hero-glow glow-b"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="status-dot"></span> RELIABILITY • ROTATING EQUIPMENT • ENERGY</div>
+          <h1>Mohammed Ragab<br /><span>Al-Attar</span></h1>
+          <h2>Reliability &amp; Rotating Equipment Engineer</h2>
+          <p class="hero-lead">
+            Condition Monitoring · Vibration Analysis · RCA · Predictive Maintenance · Energy Systems · Python · MATLAB
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">Explore Projects</a>
+            <a class="button button-secondary" href="assets/documents/Mohammed_Ragab_CV.pdf" target="_blank" rel="noopener">View CV</a>
+            <a class="button button-ghost" href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+          <div class="hero-meta">
+            <span>📍 Cairo, Egypt</span>
+            <span>⚙️ Refinery Reliability</span>
+            <span>🎓 Ain Shams University</span>
+          </div>
+        </div>
+
+        <div class="hero-card reveal delay-2">
+          <div class="hero-card-top">
+            <span>ENGINEERING PROFILE</span>
+            <span class="pill">Available for Opportunities</span>
+          </div>
+          <div class="hero-orbit">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit orbit-3"></div>
+            <div class="core">MR</div>
+          </div>
+          <div class="mini-stats">
+            <div><strong id="statYears">3+</strong><span>Years Industry</span></div>
+            <div><strong id="statProjects">8+</strong><span>Project Areas</span></div>
+            <div><strong id="statSkills">20+</strong><span>Technical Skills</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="about">
+      <div class="container two-col">
+        <div class="section-heading reveal">
+          <div class="eyebrow">01 / ABOUT</div>
+          <h2>Engineering at the intersection of <span>machines, data and energy.</span></h2>
+        </div>
+        <div class="about-copy reveal delay-1">
+          <p>
+            I am a Mechanical Engineer specializing in <strong>Reliability and Rotating Equipment</strong>,
+            with industrial experience in refinery operations and condition monitoring.
+          </p>
+          <p>
+            My work focuses on <strong>vibration analysis, equipment reliability, root cause analysis,
+            predictive maintenance and maintenance strategy</strong>, while my academic background is in
+            biomass conversion, energy systems, measurements and control engineering.
+          </p>
+          <p>
+            I also use <strong>Python, MATLAB and engineering data analysis</strong> to build practical,
+            repeatable workflows for engineering problems.
+          </p>
+          <div class="quick-links">
+            <a href="mailto:mohammed.ragab.hamad@outlook.com">Email me →</a>
+            <a href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub profile →</a>
+            <a href="assets/documents/Mohammed_Ragab_CV.pdf" target="_blank" rel="noopener">Download CV →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="experience">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">02 / EXPERIENCE</div>
+          <h2>Professional <span>journey</span></h2>
+          <p>Industrial reliability, thermal engineering and maintenance experience.</p>
+        </div>
+        <div class="timeline" id="experienceList"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="expertise">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">03 / EXPERTISE</div>
+          <h2>What I <span>work with</span></h2>
+        </div>
+        <div class="expertise-grid" id="expertiseGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="projects">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">04 / PROJECTS</div>
+          <h2>Selected <span>engineering work</span></h2>
+          <p>Projects are rendered from one data file, so you can add or edit them without touching the layout.</p>
+        </div>
+
+        <div class="filter-row reveal">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="reliability">Reliability</button>
+          <button class="filter" data-filter="energy">Energy</button>
+          <button class="filter" data-filter="programming">Programming</button>
+          <button class="filter" data-filter="design">Design</button>
+          <button class="filter" data-filter="aerospace">Aerospace</button>
+        </div>
+        <div class="card-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="certificates">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">05 / CERTIFICATES</div>
+          <h2>Credentials, <span>organized</span></h2>
+          <p>Filter by category and open a certificate for a larger view.</p>
+        </div>
+
+        <div class="filter-row light reveal" id="certificateFilters">
+          <button class="filter active" data-cert-filter="all">All</button>
+          <button class="filter" data-cert-filter="reliability">Reliability</button>
+          <button class="filter" data-cert-filter="oil-gas">Oil &amp; Gas</button>
+          <button class="filter" data-cert-filter="programming">Programming</button>
+          <button class="filter" data-cert-filter="energy">Energy</button>
+          <button class="filter" data-cert-filter="design">Design</button>
+          <button class="filter" data-cert-filter="aerospace">Aerospace</button>
+        </div>
+        <div class="certificate-grid" id="certificatesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="research">
+      <div class="container two-col research-layout">
+        <div class="section-heading reveal">
+          <div class="eyebrow">06 / RESEARCH</div>
+          <h2>From biomass conversion to <span>data-driven engineering.</span></h2>
+        </div>
+        <div class="research-copy reveal delay-1" id="researchContent"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">07 / SKILLS</div>
+          <h2>Technical <span>toolkit</span></h2>
+        </div>
+        <div class="skills-layout">
+          <div class="skill-bars" id="skillBars"></div>
+          <div class="tool-cloud" id="toolCloud"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section" id="contact">
+      <div class="container cta-inner reveal">
+        <div>
+          <div class="eyebrow">08 / CONTACT</div>
+          <h2>Let's build better <span>engineering systems.</span></h2>
+          <p>For reliability, rotating equipment, energy systems, research or engineering collaboration.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="button button-primary" href="mailto:mohammed.ragab.hamad@outlook.com">Start a conversation</a>
+          <a class="button button-secondary" href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="currentYear"></span> Mohammed Ragab Al-Attar</span>
+      <span>Reliability · Rotating Equipment · Energy Systems</span>
+    </div>
+  </footer>
+
+  <dialog class="modal" id="certificateModal">
+    <div class="modal-inner">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <img id="modalImage" alt="Certificate preview" />
+      <div class="modal-info">
+        <div class="eyebrow" id="modalCategory"></div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalProvider"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

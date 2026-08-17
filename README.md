@@ -1,37 +1,95 @@
-## Welcome to GitHub Pages
+# Mohammed Ragab Al-Attar — Dynamic GitHub Portfolio
 
-You can use the [editor on GitHub](https://github.com/MohammedRagab99/MohammedRagab99.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+A responsive, vanilla HTML/CSS/JavaScript portfolio designed for GitHub Pages.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Why this structure is easy to maintain
 
-### Markdown
+The layout lives in:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- `index.html`
+- `style.css`
+- `script.js`
 
-```markdown
-Syntax highlighted code block
+Your editable portfolio content lives almost entirely in:
 
-# Header 1
-## Header 2
-### Header 3
+- `data.js`
 
-- Bulleted
-- List
+To add a certificate, add one object to `portfolioData.certificates`.
+To add a project, add one object to `portfolioData.projects`.
+To add experience, edit `portfolioData.experience`.
+To change skills/tools, edit `portfolioData.skills` and `portfolioData.tools`.
 
-1. Numbered
-2. List
+No framework, build step, npm install or backend is required.
 
-**Bold** and _Italic_ and `Code` text
+## Recommended repository
 
-[Link](url) and ![Image](src)
+Because the GitHub account in the provided screenshot is `MohammedRagab99`, the user site can be published from:
+
+`MohammedRagab99/MohammedRagab99.github.io`
+
+## GitHub Pages setup
+
+1. Upload the contents of this folder into the repository.
+2. Put your real CV PDF at:
+   `assets/documents/Mohammed_Ragab_CV.pdf`
+3. Put certificate images in:
+   `assets/images/certificates/`
+4. Put project images in:
+   `assets/images/projects/`
+5. Open repository **Settings → Pages**.
+6. Choose GitHub Actions or the branch/folder source shown by GitHub for your repository.
+7. Visit the published GitHub Pages URL.
+
+## Adding a certificate
+
+Edit `data.js`:
+
+```js
+{
+  title: "My Certificate",
+  provider: "Provider Name",
+  year: "2026",
+  category: "reliability",
+  image: "assets/images/certificates/my-certificate.jpg"
+}
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Valid certificate categories used by the filters:
 
-### Jekyll Themes
+- `reliability`
+- `oil-gas`
+- `programming`
+- `energy`
+- `design`
+- `aerospace`
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/MohammedRagab99/MohammedRagab99.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Adding a project
 
-### Support or Contact
+```js
+{
+  title: "My Engineering Project",
+  category: "programming",
+  tag: "PYTHON",
+  description: "One paragraph explaining the engineering problem and result.",
+  image: "assets/images/projects/project.jpg",
+  repo: "https://github.com/MohammedRagab99/my-project"
+}
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Valid project categories:
+
+- `reliability`
+- `energy`
+- `programming`
+- `design`
+- `aerospace`
+
+## Important
+
+Do not upload confidential refinery drawings, proprietary machine data, internal reports, passwords, API keys, or company-sensitive photographs.
+
+## Local preview
+
+Double-clicking `index.html` should work for most features.
+
+For best results, use a local static server or GitHub Pages so all paths behave exactly as they will online.
