@@ -159,7 +159,7 @@ const portfolioData = {
     provider: "EPROM",
     year: "2023",
     category: "oil-gas",
-    image: "assets/images/certificates/eprom-refinery-fundamentals.png"
+    image: "assets/images/certificates/Refinery Fundamentals Program for Postgraduates.png"
   },
 
   // Aerospace
