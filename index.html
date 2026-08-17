@@ -41,12 +41,18 @@
     rel="stylesheet"
   />
 
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
   <link rel="stylesheet" href="style.css" />
 
   <title>Mohammed Ragab Al-Attar | RagabVerse</title>
 </head>
 
 <body>
+  <!-- Toast notifications -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
   <!-- Accessibility skip link -->
   <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -80,6 +86,18 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Search button opens search modal -->
+        <button
+          class="icon-button"
+          id="searchButton"
+          type="button"
+          aria-label="Search portfolio"
+          onclick="openSearchModal()"
+          style="font-size:1.1rem;"
+        >
+          🔍
+        </button>
+
         <button
           class="icon-button"
           id="themeToggle"
@@ -247,7 +265,7 @@
             </div>
           </div>
 
-          <!-- Stats -->
+          <!-- Stats (animated) -->
           <div class="mini-stats">
             <div>
               <strong id="statYears">3+</strong>
@@ -415,20 +433,28 @@
 
         <div class="filter-row reveal" role="group" aria-label="Filter projects">
           <button class="filter active" data-filter="all" type="button" aria-pressed="true">All</button>
-          <button class="filter" data-filter="reliability" type="button" aria-pressed="false">
-            <span class="filter-rgb red"></span> Reliability
+          <button class="filter" data-filter="field" type="button" aria-pressed="false">
+            <span class="filter-rgb red"></span> Field Engineering (R)
           </button>
           <button class="filter" data-filter="energy" type="button" aria-pressed="false">
-            <span class="filter-rgb green"></span> Energy
+            <span class="filter-rgb green"></span> Energy (G)
           </button>
-          <button class="filter" data-filter="programming" type="button" aria-pressed="false">
-            <span class="filter-rgb blue"></span> Computation
+          <button class="filter" data-filter="computation" type="button" aria-pressed="false">
+            <span class="filter-rgb blue"></span> Computation &amp; AI (B)
           </button>
           <button class="filter" data-filter="design" type="button" aria-pressed="false">Design</button>
           <button class="filter" data-filter="aerospace" type="button" aria-pressed="false">Aerospace</button>
         </div>
 
         <div class="card-grid" id="projectsGrid"></div>
+
+        <!-- Project category bar chart -->
+        <div class="card chart-card" style="margin-top:40px;">
+          <h4 style="font-weight:700;font-size:.9rem;margin-bottom:16px;">📁 Projects by Domain</h4>
+          <div class="chart-wrap" style="height:250px;">
+            <canvas id="projectsBarChart"></canvas>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -443,12 +469,12 @@
 
         <div class="filter-row light reveal" id="certificateFilters" role="group" aria-label="Filter certificates">
           <button class="filter active" data-cert-filter="all" type="button" aria-pressed="true">All</button>
-          <button class="filter" data-cert-filter="reliability" type="button" aria-pressed="false">Reliability</button>
+          <button class="filter" data-cert-filter="field" type="button" aria-pressed="false">Field (R)</button>
+          <button class="filter" data-cert-filter="energy" type="button" aria-pressed="false">Energy (G)</button>
+          <button class="filter" data-cert-filter="computation" type="button" aria-pressed="false">Computation (B)</button>
           <button class="filter" data-cert-filter="oil-gas" type="button" aria-pressed="false">Oil &amp; Gas</button>
-          <button class="filter" data-cert-filter="programming" type="button" aria-pressed="false">Programming</button>
-          <button class="filter" data-cert-filter="energy" type="button" aria-pressed="false">Energy</button>
-          <button class="filter" data-cert-filter="design" type="button" aria-pressed="false">Design</button>
           <button class="filter" data-cert-filter="aerospace" type="button" aria-pressed="false">Aerospace</button>
+          <button class="filter" data-cert-filter="design" type="button" aria-pressed="false">Design</button>
         </div>
 
         <div class="certificate-grid" id="certificatesGrid"></div>
@@ -481,6 +507,14 @@
               <span class="toolkit-status">ACTIVE</span>
             </div>
             <div class="tool-cloud" id="toolCloud"></div>
+          </div>
+        </div>
+
+        <!-- Skills radar chart -->
+        <div class="card chart-card" style="margin-top:40px;">
+          <h4 style="font-weight:700;font-size:.9rem;margin-bottom:16px;">📊 Domain Proficiency</h4>
+          <div class="chart-wrap" style="height:300px;">
+            <canvas id="skillsRadarChart"></canvas>
           </div>
         </div>
       </div>
@@ -545,7 +579,10 @@
           <a class="button button-primary" href="mailto:mohammed.ragab.hamad@outlook.com">
             Start a conversation <span aria-hidden="true">→</span>
           </a>
-          <a class="button button-secondary" href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub ↗</a>
+          <button class="button button-secondary" onclick="copyEmail()">
+            📋 Copy Email
+          </button>
+          <a class="button button-ghost" href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub ↗</a>
           <a class="button button-ghost" href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
       </div>
@@ -591,6 +628,54 @@
       </div>
     </div>
   </dialog>
+
+  <!-- Global Search Modal -->
+  <div class="modal-ov" id="moSearch" onclick="if(event.target===this)closeSearchModal()">
+    <div class="modal wide">
+      <div class="modal-hd" style="padding:12px 16px;">
+        <div class="search-bar" style="flex:1;">
+          <span class="s-icon">🔍</span>
+          <input id="globalSearchInput" placeholder="Search projects, certificates, skills..." oninput="performGlobalSearch()" autofocus>
+        </div>
+        <button class="modal-close" onclick="closeSearchModal()">✕</button>
+      </div>
+      <div class="modal-body" id="globalSearchResults" style="min-height:200px;max-height:60vh;overflow-y:auto;">
+        <p style="text-align:center;color:var(--muted);padding:24px;font-size:.85rem;">Start typing to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="modal-ov" id="moContact" onclick="if(event.target===this)closeContactModal()">
+    <div class="modal">
+      <div class="modal-hd">
+        <h3>📬 Start a Conversation</h3>
+        <button class="modal-close" onclick="closeContactModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="fi">
+          <label>Your Name *</label>
+          <input id="contactName" placeholder="Your full name" required>
+        </div>
+        <div class="fi">
+          <label>Email *</label>
+          <input id="contactEmail" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="fi">
+          <label>Subject</label>
+          <input id="contactSubject" placeholder="Opportunity, question, collaboration...">
+        </div>
+        <div class="fi">
+          <label>Message *</label>
+          <textarea id="contactMessage" rows="4" placeholder="Tell me about your project or opportunity..." required></textarea>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-ghost" onclick="closeContactModal()">Cancel</button>
+        <button class="btn btn-acc" onclick="submitContactForm()">Send Message</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Back to top -->
   <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
