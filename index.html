@@ -2,75 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta
     name="description"
     content="Mohammed Ragab Al-Attar — Reliability & Rotating Equipment Engineer working across reliability engineering, energy systems, research, MATLAB, Python and data-driven engineering."
   />
-
   <meta
     name="keywords"
     content="Mohammed Ragab, Reliability Engineer, Rotating Equipment Engineer, Condition Monitoring, Vibration Analysis, RCA, Predictive Maintenance, Energy Systems, MATLAB, Python, Engineering"
   />
-
   <meta name="author" content="Mohammed Ragab Al-Attar" />
   <meta name="theme-color" content="#080b12" />
   <meta name="color-scheme" content="dark light" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta
-    property="og:title"
-    content="Mohammed Ragab Al-Attar | RagabVerse"
-  />
-  <meta
-    property="og:description"
-    content="Reliability • Rotating Equipment • Energy • Computation"
-  />
-  <meta
-    property="og:image"
-    content="assets/images/og-cover.png"
-  />
+  <meta property="og:title" content="Mohammed Ragab Al-Attar | RagabVerse" />
+  <meta property="og:description" content="Reliability • Rotating Equipment • Energy • Computation" />
+  <meta property="og:image" content="assets/images/og-cover.png" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta
-    name="twitter:title"
-    content="Mohammed Ragab Al-Attar | RagabVerse"
-  />
-  <meta
-    name="twitter:description"
-    content="Reliability • Rotating Equipment • Energy • Computation"
-  />
-  <meta
-    name="twitter:image"
-    content="assets/images/og-cover.png"
-  />
+  <meta name="twitter:title" content="Mohammed Ragab Al-Attar | RagabVerse" />
+  <meta name="twitter:description" content="Reliability • Rotating Equipment • Energy • Computation" />
+  <meta name="twitter:image" content="assets/images/og-cover.png" />
 
   <link rel="canonical" href="https://MohammedRagab99.github.io/" />
 
-  <link
-    rel="icon"
-    href="assets/images/favicon.svg"
-    type="image/svg+xml"
-  />
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  />
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  />
-
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet"
@@ -78,117 +43,43 @@
 
   <link rel="stylesheet" href="style.css" />
 
-  <title>
-    Mohammed Ragab Al-Attar | RagabVerse
-  </title>
+  <title>Mohammed Ragab Al-Attar | RagabVerse</title>
 </head>
 
 <body>
+  <!-- Accessibility skip link -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- =========================================================
-       ACCESSIBILITY
-  ========================================================== -->
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <a class="skip-link" href="#main-content">
-    Skip to content
-  </a>
+  <!-- Background noise overlay -->
+  <div class="page-noise" aria-hidden="true"></div>
 
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-  <!-- =========================================================
-       PAGE SYSTEM
-  ========================================================== -->
-
-  <div
-    class="scroll-progress"
-    id="scrollProgress"
-    aria-hidden="true"
-  ></div>
-
-  <div
-    class="page-noise"
-    aria-hidden="true"
-  ></div>
-
-  <div
-    class="cursor-glow"
-    id="cursorGlow"
-    aria-hidden="true"
-  ></div>
-
-
-  <!-- =========================================================
-       HEADER
-  ========================================================== -->
-
-  <header
-    class="site-header"
-    id="siteHeader"
-  >
-
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
-
-      <a
-        class="brand"
-        href="#home"
-        aria-label="RagabVerse home"
-      >
-
-        <span
-          class="brand-mark"
-          aria-hidden="true"
-        >
-          MR
-        </span>
-
+      <a class="brand" href="#home" aria-label="RagabVerse home">
+        <span class="brand-mark" aria-hidden="true">MR</span>
         <span class="brand-content">
-
-          <span class="brand-text">
-            Mohammed Ragab
-          </span>
-
-          <span class="brand-subtitle">
-            RAGABVERSE
-          </span>
-
+          <span class="brand-text">Mohammed Ragab</span>
+          <span class="brand-subtitle">RAGABVERSE</span>
         </span>
-
       </a>
 
-
-      <nav
-        class="desktop-nav"
-        aria-label="Primary navigation"
-      >
-
-        <a href="#about">
-          About
-        </a>
-
-        <a href="#experience">
-          Experience
-        </a>
-
-        <a href="#expertise">
-          Expertise
-        </a>
-
-        <a href="#projects">
-          Projects
-        </a>
-
-        <a href="#research">
-          Research
-        </a>
-
-        <a href="#contact">
-          Contact
-        </a>
-
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
       </nav>
 
-
       <div class="nav-actions">
-
         <button
           class="icon-button"
           id="themeToggle"
@@ -196,11 +87,8 @@
           aria-label="Toggle color theme"
           aria-pressed="false"
         >
-          <span aria-hidden="true">
-            ☾
-          </span>
+          <span aria-hidden="true">☾</span>
         </button>
-
 
         <button
           class="menu-button"
@@ -210,268 +98,106 @@
           aria-controls="mobileNav"
           aria-expanded="false"
         >
-
           <span></span>
           <span></span>
           <span></span>
-
         </button>
-
       </div>
-
     </div>
 
-
-    <!-- MOBILE NAV -->
-
+    <!-- Mobile navigation -->
     <nav
       class="mobile-nav"
       id="mobileNav"
       aria-label="Mobile navigation"
       aria-hidden="true"
     >
-
       <div class="mobile-nav-inner">
-
-        <a href="#home">
-          <span>00</span>
-          Home
-        </a>
-
-        <a href="#about">
-          <span>01</span>
-          About
-        </a>
-
-        <a href="#experience">
-          <span>02</span>
-          Experience
-        </a>
-
-        <a href="#expertise">
-          <span>03</span>
-          Expertise
-        </a>
-
-        <a href="#projects">
-          <span>04</span>
-          Projects
-        </a>
-
-        <a href="#research">
-          <span>05</span>
-          Research
-        </a>
-
-        <a href="#contact">
-          <span>06</span>
-          Contact
-        </a>
-
+        <a href="#home"><span>00</span> Home</a>
+        <a href="#about"><span>01</span> About</a>
+        <a href="#experience"><span>02</span> Experience</a>
+        <a href="#expertise"><span>03</span> Expertise</a>
+        <a href="#projects"><span>04</span> Projects</a>
+        <a href="#research"><span>05</span> Research</a>
+        <a href="#contact"><span>06</span> Contact</a>
       </div>
-
     </nav>
-
   </header>
 
-
-  <!-- =========================================================
-       MAIN
-  ========================================================== -->
-
+  <!-- Main content -->
   <main id="main-content">
-
-
-    <!-- =======================================================
-         HERO
-    ======================================================== -->
-
-    <section
-      class="hero section"
-      id="home"
-      aria-labelledby="hero-title"
-    >
-
-      <!-- Background system -->
-
-      <div
-        class="hero-grid-background"
-        aria-hidden="true"
-      ></div>
-
-      <div
-        class="hero-glow glow-red"
-        aria-hidden="true"
-      ></div>
-
-      <div
-        class="hero-glow glow-green"
-        aria-hidden="true"
-      ></div>
-
-      <div
-        class="hero-glow glow-blue"
-        aria-hidden="true"
-      ></div>
-
+    <!-- Hero -->
+    <section class="hero section" id="home" aria-labelledby="hero-title">
+      <div class="hero-grid-background" aria-hidden="true"></div>
+      <div class="hero-glow glow-red" aria-hidden="true"></div>
+      <div class="hero-glow glow-green" aria-hidden="true"></div>
+      <div class="hero-glow glow-blue" aria-hidden="true"></div>
 
       <div class="container hero-grid">
-
-
-        <!-- HERO COPY -->
-
         <div class="hero-copy reveal">
-
           <div class="eyebrow hero-eyebrow">
-
-            <span
-              class="status-dot"
-              aria-hidden="true"
-            ></span>
-
+            <span class="status-dot" aria-hidden="true"></span>
             ENGINEERING • ENERGY • COMPUTATION
-
           </div>
 
-
-          <div
-            class="hero-kicker"
-            aria-label="RagabVerse identity"
-          >
-
+          <div class="hero-kicker" aria-label="RagabVerse identity">
             <span class="rgb-letter red">R</span>
             <span class="rgb-letter green">G</span>
             <span class="rgb-letter blue">B</span>
-
-            <span class="hero-kicker-text">
-              RAGABVERSE
-            </span>
-
+            <span class="hero-kicker-text">RAGABVERSE</span>
           </div>
 
-
           <h1 id="hero-title">
-
             Mohammed
-
             <span class="rgb-name">
-              <span class="red">R</span>
-              a
-              <span class="green">g</span>
-              a
-              <span class="blue">b</span>
+              <span class="red">R</span>a<span class="green">g</span>a<span class="blue">b</span>
             </span>
-
-            <span class="surname">
-              Al-Attar
-            </span>
-
+            <span class="surname">Al-Attar</span>
           </h1>
 
-
-          <h2>
-            Reliability &amp; Rotating Equipment Engineer
-          </h2>
-
+          <h2>Reliability &amp; Rotating Equipment Engineer</h2>
 
           <p class="hero-lead">
-
             Engineering at the intersection of
-
-            <strong>
-              machines, data and energy.
-            </strong>
-
+            <strong>machines, data and energy.</strong>
             Building reliable systems through condition monitoring,
             vibration analysis, predictive maintenance,
             modeling and engineering computation.
-
           </p>
 
-
           <!-- RGB identity -->
-
-          <div
-            class="rgb-system"
-            aria-label="RagabVerse engineering domains"
-          >
-
+          <div class="rgb-system" aria-label="RagabVerse engineering domains">
             <div class="rgb-item rgb-red">
-
-              <span class="rgb-symbol">
-                R
-              </span>
-
+              <span class="rgb-symbol">R</span>
               <div>
-                <strong>
-                  Reliability
-                </strong>
-
-                <span>
-                  Machines &amp; Maintenance
-                </span>
+                <strong>Reliability</strong>
+                <span>Machines &amp; Maintenance</span>
               </div>
-
             </div>
-
 
             <div class="rgb-item rgb-green">
-
-              <span class="rgb-symbol">
-                G
-              </span>
-
+              <span class="rgb-symbol">G</span>
               <div>
-                <strong>
-                  Energy
-                </strong>
-
-                <span>
-                  Research &amp; Systems
-                </span>
+                <strong>Energy</strong>
+                <span>Research &amp; Systems</span>
               </div>
-
             </div>
-
 
             <div class="rgb-item rgb-blue">
-
-              <span class="rgb-symbol">
-                B
-              </span>
-
+              <span class="rgb-symbol">B</span>
               <div>
-                <strong>
-                  Computation
-                </strong>
-
-                <span>
-                  MATLAB &amp; Python
-                </span>
+                <strong>Computation</strong>
+                <span>MATLAB &amp; Python</span>
               </div>
-
             </div>
-
           </div>
 
-
-          <!-- ACTIONS -->
-
+          <!-- Actions -->
           <div class="hero-actions">
-
-            <a
-              class="button button-primary"
-              href="#projects"
-            >
-              <span>
-                Explore My Work
-              </span>
-              <span aria-hidden="true">
-                →
-              </span>
+            <a class="button button-primary" href="#projects">
+              <span>Explore My Work</span>
+              <span aria-hidden="true">→</span>
             </a>
-
-
             <a
               class="button button-secondary"
               href="assets/documents/Mohammed_Ragab_CV.pdf"
@@ -480,8 +206,6 @@
             >
               View CV
             </a>
-
-
             <a
               class="button button-ghost"
               href="https://github.com/MohammedRagab99"
@@ -491,1787 +215,388 @@
             >
               GitHub ↗
             </a>
-
           </div>
 
-
-          <!-- META -->
-
+          <!-- Meta -->
           <div class="hero-meta">
-
-            <span>
-              <span aria-hidden="true">📍</span>
-              Cairo, Egypt
-            </span>
-
-            <span>
-              <span aria-hidden="true">⚙</span>
-              Refinery Reliability
-            </span>
-
-            <span>
-              <span aria-hidden="true">🎓</span>
-              Ain Shams University
-            </span>
-
+            <span><span aria-hidden="true">📍</span> Cairo, Egypt</span>
+            <span><span aria-hidden="true">⚙</span> Refinery Reliability</span>
+            <span><span aria-hidden="true">🎓</span> Ain Shams University</span>
           </div>
-
         </div>
 
-
-        <!-- HERO VISUAL -->
-
-        <div
-          class="hero-card reveal delay-2"
-          aria-label="Engineering profile overview"
-        >
-
+        <!-- Hero visual -->
+        <div class="hero-card reveal delay-2" aria-label="Engineering profile overview">
           <div class="hero-card-top">
-
-            <span>
-              ENGINEERING PROFILE
-            </span>
-
-            <span class="pill">
-              Reliability Focus
-            </span>
-
+            <span>ENGINEERING PROFILE</span>
+            <span class="pill">Reliability Focus</span>
           </div>
-
 
           <!-- Orbital visualization -->
-
           <div class="hero-orbit">
-
-            <div
-              class="orbit orbit-1"
-              aria-hidden="true"
-            ></div>
-
-            <div
-              class="orbit orbit-2"
-              aria-hidden="true"
-            ></div>
-
-            <div
-              class="orbit orbit-3"
-              aria-hidden="true"
-            ></div>
-
-
-            <div
-              class="orbit-node node-r"
-              aria-hidden="true"
-            >
-              R
-            </div>
-
-            <div
-              class="orbit-node node-g"
-              aria-hidden="true"
-            >
-              G
-            </div>
-
-            <div
-              class="orbit-node node-b"
-              aria-hidden="true"
-            >
-              B
-            </div>
-
+            <div class="orbit orbit-1" aria-hidden="true"></div>
+            <div class="orbit orbit-2" aria-hidden="true"></div>
+            <div class="orbit orbit-3" aria-hidden="true"></div>
+            <div class="orbit-node node-r" aria-hidden="true">R</div>
+            <div class="orbit-node node-g" aria-hidden="true">G</div>
+            <div class="orbit-node node-b" aria-hidden="true">B</div>
 
             <div class="core">
-
-              <span>
-                MR
-              </span>
-
-              <small>
-                ENGINEER
-              </small>
-
+              <span>MR</span>
+              <small>ENGINEER</small>
             </div>
-
           </div>
-
 
           <!-- Stats -->
-
           <div class="mini-stats">
-
             <div>
-
-              <strong id="statYears">
-                3+
-              </strong>
-
-              <span>
-                Years Industry
-              </span>
-
+              <strong id="statYears">3+</strong>
+              <span>Years Industry</span>
             </div>
-
-
             <div>
-
-              <strong id="statProjects">
-                8+
-              </strong>
-
-              <span>
-                Project Areas
-              </span>
-
+              <strong id="statProjects">8+</strong>
+              <span>Project Areas</span>
             </div>
-
-
             <div>
-
-              <strong id="statSkills">
-                20+
-              </strong>
-
-              <span>
-                Technical Skills
-              </span>
-
+              <strong id="statSkills">20+</strong>
+              <span>Technical Skills</span>
             </div>
-
           </div>
-
 
           <!-- Engineering status -->
-
           <div class="engineering-status">
-
             <span class="status-line"></span>
-
-            <span>
-              SYSTEM STATUS
-            </span>
-
-            <strong>
-              ENGINEERING MODE: ACTIVE
-            </strong>
-
+            <span>SYSTEM STATUS</span>
+            <strong>ENGINEERING MODE: ACTIVE</strong>
           </div>
-
         </div>
-
       </div>
-
 
       <!-- Scroll indicator -->
-
-      <a
-        class="scroll-indicator"
-        href="#about"
-        aria-label="Scroll to About section"
-      >
-
-        <span>
-          Scroll to explore
-        </span>
-
-        <span
-          class="scroll-line"
-          aria-hidden="true"
-        ></span>
-
+      <a class="scroll-indicator" href="#about" aria-label="Scroll to About section">
+        <span>Scroll to explore</span>
+        <span class="scroll-line" aria-hidden="true"></span>
       </a>
-
     </section>
 
-
-    <!-- =======================================================
-         ENGINEERING MINDSET
-    ======================================================== -->
-
-    <section
-      class="section mindset-section section-light"
-      id="mindset"
-      aria-labelledby="mindset-title"
-    >
-
+    <!-- Engineering mindset -->
+    <section class="section mindset-section section-light" id="mindset" aria-labelledby="mindset-title">
       <div class="container">
-
         <div class="mindset-grid">
-
-
           <div class="section-heading reveal">
-
-            <div class="eyebrow">
-              ENGINEERING MINDSET
-            </div>
-
+            <div class="eyebrow">ENGINEERING MINDSET</div>
             <h2 id="mindset-title">
-
-              Observe.
-              Understand.
-              <span>
-                Improve.
-              </span>
-
+              Observe. Understand. <span>Improve.</span>
             </h2>
-
           </div>
-
 
           <div class="mindset-content reveal delay-1">
-
             <p class="mindset-statement">
-
               Turning engineering problems into
-              <strong>
-                measurable, reliable systems.
-              </strong>
-
+              <strong>measurable, reliable systems.</strong>
             </p>
-
 
             <div class="process-flow">
-
               <div class="process-step">
-
-                <span>
-                  01
-                </span>
-
-                <strong>
-                  Observe
-                </strong>
-
-                <small>
-                  Data &amp; condition
-                </small>
-
+                <span>01</span>
+                <strong>Observe</strong>
+                <small>Data &amp; condition</small>
               </div>
-
-
-              <div
-                class="process-arrow"
-                aria-hidden="true"
-              >
-                →
-              </div>
-
-
+              <div class="process-arrow" aria-hidden="true">→</div>
               <div class="process-step">
-
-                <span>
-                  02
-                </span>
-
-                <strong>
-                  Understand
-                </strong>
-
-                <small>
-                  Analysis &amp; RCA
-                </small>
-
+                <span>02</span>
+                <strong>Understand</strong>
+                <small>Analysis &amp; RCA</small>
               </div>
-
-
-              <div
-                class="process-arrow"
-                aria-hidden="true"
-              >
-                →
-              </div>
-
-
+              <div class="process-arrow" aria-hidden="true">→</div>
               <div class="process-step">
-
-                <span>
-                  03
-                </span>
-
-                <strong>
-                  Model
-                </strong>
-
-                <small>
-                  Engineering tools
-                </small>
-
+                <span>03</span>
+                <strong>Model</strong>
+                <small>Engineering tools</small>
               </div>
-
-
-              <div
-                class="process-arrow"
-                aria-hidden="true"
-              >
-                →
-              </div>
-
-
+              <div class="process-arrow" aria-hidden="true">→</div>
               <div class="process-step">
-
-                <span>
-                  04
-                </span>
-
-                <strong>
-                  Improve
-                </strong>
-
-                <small>
-                  Reliability &amp; impact
-                </small>
-
+                <span>04</span>
+                <strong>Improve</strong>
+                <small>Reliability &amp; impact</small>
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         ABOUT
-    ======================================================== -->
-
-    <section
-      class="section section-light"
-      id="about"
-      aria-labelledby="about-title"
-    >
-
+    <!-- About -->
+    <section class="section section-light" id="about" aria-labelledby="about-title">
       <div class="container two-col">
-
         <div class="section-heading reveal">
-
-          <div class="eyebrow">
-            01 / ABOUT
-          </div>
-
+          <div class="eyebrow">01 / ABOUT</div>
           <h2 id="about-title">
-
             Engineering at the intersection of
-
-            <span>
-              machines, data and energy.
-            </span>
-
+            <span>machines, data and energy.</span>
           </h2>
-
         </div>
-
 
         <div class="about-copy reveal delay-1">
-
           <p>
-
             I am a Mechanical Engineer specializing in
-
-            <strong>
-              Reliability and Rotating Equipment
-            </strong>,
-
-            with industrial experience in refinery operations
-            and condition monitoring.
-
+            <strong>Reliability and Rotating Equipment</strong>,
+            with industrial experience in refinery operations and condition monitoring.
           </p>
-
-
           <p>
-
             My work focuses on
-
-            <strong>
-              vibration analysis, equipment reliability,
-              root cause analysis, predictive maintenance
-              and maintenance strategy
-            </strong>,
-
-            while my academic background is connected to
-            biomass conversion, energy systems,
+            <strong>vibration analysis, equipment reliability, root cause analysis, predictive maintenance and maintenance strategy</strong>,
+            while my academic background is connected to biomass conversion, energy systems,
             measurements and control engineering.
-
           </p>
-
-
           <p>
-
-            I also use
-
-            <strong>
-              Python, MATLAB and engineering data analysis
-            </strong>
-
-            to develop practical and repeatable workflows
-            for engineering problems.
-
+            I also use <strong>Python, MATLAB and engineering data analysis</strong>
+            to develop practical and repeatable workflows for engineering problems.
           </p>
-
 
           <div class="about-highlights">
-
             <div>
-
-              <span class="highlight-number">
-                01
-              </span>
-
-              <strong>
-                Reliability
-              </strong>
-
-              <span>
-                Condition monitoring &amp; asset health
-              </span>
-
+              <span class="highlight-number">01</span>
+              <strong>Reliability</strong>
+              <span>Condition monitoring &amp; asset health</span>
             </div>
-
-
             <div>
-
-              <span class="highlight-number">
-                02
-              </span>
-
-              <strong>
-                Energy
-              </strong>
-
-              <span>
-                Thermal systems &amp; biomass research
-              </span>
-
+              <span class="highlight-number">02</span>
+              <strong>Energy</strong>
+              <span>Thermal systems &amp; biomass research</span>
             </div>
-
-
             <div>
-
-              <span class="highlight-number">
-                03
-              </span>
-
-              <strong>
-                Computation
-              </strong>
-
-              <span>
-                MATLAB, Python &amp; data analysis
-              </span>
-
+              <span class="highlight-number">03</span>
+              <strong>Computation</strong>
+              <span>MATLAB, Python &amp; data analysis</span>
             </div>
-
           </div>
-
 
           <div class="quick-links">
-
-            <a
-              href="mailto:mohammed.ragab.hamad@outlook.com"
-            >
-              Email me →
-            </a>
-
-            <a
-              href="https://github.com/MohammedRagab99"
-              target="_blank"
-              rel="noopener"
-            >
-              GitHub profile →
-            </a>
-
-            <a
-              href="assets/documents/Mohammed_Ragab_CV.pdf"
-              target="_blank"
-              rel="noopener"
-            >
-              Download CV →
-            </a>
-
+            <a href="mailto:mohammed.ragab.hamad@outlook.com">Email me →</a>
+            <a href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub profile →</a>
+            <a href="assets/documents/Mohammed_Ragab_CV.pdf" target="_blank" rel="noopener">Download CV →</a>
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         EXPERIENCE
-    ======================================================== -->
-
-    <section
-      class="section section-dark"
-      id="experience"
-      aria-labelledby="experience-title"
-    >
-
+    <!-- Experience -->
+    <section class="section section-dark" id="experience" aria-labelledby="experience-title">
       <div class="container">
-
         <div class="section-heading centered reveal">
-
-          <div class="eyebrow">
-            02 / EXPERIENCE
-          </div>
-
-          <h2 id="experience-title">
-            Professional
-            <span>
-              journey
-            </span>
-          </h2>
-
-          <p>
-            Industrial reliability, thermal engineering
-            and maintenance experience.
-          </p>
-
+          <div class="eyebrow">02 / EXPERIENCE</div>
+          <h2 id="experience-title">Professional <span>journey</span></h2>
+          <p>Industrial reliability, thermal engineering and maintenance experience.</p>
         </div>
-
-
-        <div
-          class="timeline"
-          id="experienceList"
-        ></div>
-
+        <div class="timeline" id="experienceList"></div>
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         EXPERTISE
-    ======================================================== -->
-
-    <section
-      class="section section-light"
-      id="expertise"
-      aria-labelledby="expertise-title"
-    >
-
+    <!-- Expertise -->
+    <section class="section section-light" id="expertise" aria-labelledby="expertise-title">
       <div class="container">
-
         <div class="section-heading reveal">
-
-          <div class="eyebrow">
-            03 / EXPERTISE
-          </div>
-
-          <h2 id="expertise-title">
-
-            What I
-
-            <span>
-              work with
-            </span>
-
-          </h2>
-
+          <div class="eyebrow">03 / EXPERTISE</div>
+          <h2 id="expertise-title">What I <span>work with</span></h2>
         </div>
-
-
-        <div
-          class="expertise-grid"
-          id="expertiseGrid"
-        ></div>
-
+        <div class="expertise-grid" id="expertiseGrid"></div>
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         PROJECTS
-    ======================================================== -->
-
-    <section
-      class="section section-dark projects-section"
-      id="projects"
-      aria-labelledby="projects-title"
-    >
-
+    <!-- Projects -->
+    <section class="section section-dark projects-section" id="projects" aria-labelledby="projects-title">
       <div class="container">
-
         <div class="section-heading centered reveal">
-
-          <div class="eyebrow">
-            04 / PROJECTS
-          </div>
-
-          <h2 id="projects-title">
-
-            Selected
-
-            <span>
-              engineering work
-            </span>
-
-          </h2>
-
-          <p>
-            Engineering projects across reliability,
-            energy, programming and applied design.
-          </p>
-
+          <div class="eyebrow">04 / PROJECTS</div>
+          <h2 id="projects-title">Selected <span>engineering work</span></h2>
+          <p>Engineering projects across reliability, energy, programming and applied design.</p>
         </div>
 
-
-        <!-- Project filters -->
-
-        <div
-          class="filter-row reveal"
-          role="group"
-          aria-label="Filter projects"
-        >
-
-          <button
-            class="filter active"
-            data-filter="all"
-            type="button"
-            aria-pressed="true"
-          >
-            All
+        <div class="filter-row reveal" role="group" aria-label="Filter projects">
+          <button class="filter active" data-filter="all" type="button" aria-pressed="true">All</button>
+          <button class="filter" data-filter="reliability" type="button" aria-pressed="false">
+            <span class="filter-rgb red"></span> Reliability
           </button>
-
-          <button
-            class="filter"
-            data-filter="reliability"
-            type="button"
-            aria-pressed="false"
-          >
-            <span class="filter-rgb red"></span>
-            Reliability
+          <button class="filter" data-filter="energy" type="button" aria-pressed="false">
+            <span class="filter-rgb green"></span> Energy
           </button>
-
-          <button
-            class="filter"
-            data-filter="energy"
-            type="button"
-            aria-pressed="false"
-          >
-            <span class="filter-rgb green"></span>
-            Energy
+          <button class="filter" data-filter="programming" type="button" aria-pressed="false">
+            <span class="filter-rgb blue"></span> Computation
           </button>
-
-          <button
-            class="filter"
-            data-filter="programming"
-            type="button"
-            aria-pressed="false"
-          >
-            <span class="filter-rgb blue"></span>
-            Computation
-          </button>
-
-          <button
-            class="filter"
-            data-filter="design"
-            type="button"
-            aria-pressed="false"
-          >
-            Design
-          </button>
-
-          <button
-            class="filter"
-            data-filter="aerospace"
-            type="button"
-            aria-pressed="false"
-          >
-            Aerospace
-          </button>
-
+          <button class="filter" data-filter="design" type="button" aria-pressed="false">Design</button>
+          <button class="filter" data-filter="aerospace" type="button" aria-pressed="false">Aerospace</button>
         </div>
 
-
-        <div
-          class="card-grid"
-          id="projectsGrid"
-        ></div>
-
+        <div class="card-grid" id="projectsGrid"></div>
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         CERTIFICATES
-    ======================================================== -->
-
-    <section
-      class="section section-light"
-      id="certificates"
-      aria-labelledby="certificates-title"
-    >
-
+    <!-- Certificates -->
+    <section class="section section-light" id="certificates" aria-labelledby="certificates-title">
       <div class="container">
-
         <div class="section-heading centered reveal">
-
-          <div class="eyebrow">
-            05 / CERTIFICATES
-          </div>
-
-          <h2 id="certificates-title">
-
-            Credentials,
-
-            <span>
-              organized
-            </span>
-
-          </h2>
-
-          <p>
-            Professional learning and technical development,
-            organized by engineering domain.
-          </p>
-
+          <div class="eyebrow">05 / CERTIFICATES</div>
+          <h2 id="certificates-title">Credentials, <span>organized</span></h2>
+          <p>Professional learning and technical development, organized by engineering domain.</p>
         </div>
 
-
-        <div
-          class="filter-row light reveal"
-          id="certificateFilters"
-          role="group"
-          aria-label="Filter certificates"
-        >
-
-          <button
-            class="filter active"
-            data-cert-filter="all"
-            type="button"
-            aria-pressed="true"
-          >
-            All
-          </button>
-
-          <button
-            class="filter"
-            data-cert-filter="reliability"
-            type="button"
-            aria-pressed="false"
-          >
-            Reliability
-          </button>
-
-          <button
-            class="filter"
-            data-cert-filter="oil-gas"
-            type="button"
-            aria-pressed="false"
-          >
-            Oil &amp; Gas
-          </button>
-
-          <button
-            class="filter"
-            data-cert-filter="programming"
-            type="button"
-            aria-pressed="false"
-          >
-            Programming
-          </button>
-
-          <button
-            class="filter"
-            data-cert-filter="energy"
-            type="button"
-            aria-pressed="false"
-          >
-            Energy
-          </button>
-
-          <button
-            class="filter"
-            data-cert-filter="design"
-            type="button"
-            aria-pressed="false"
-          >
-            Design
-          </button>
-
-          <button
-            class="filter"
-            data-cert-filter="aerospace"
-            type="button"
-            aria-pressed="false"
-          >
-            Aerospace
-          </button>
-
+        <div class="filter-row light reveal" id="certificateFilters" role="group" aria-label="Filter certificates">
+          <button class="filter active" data-cert-filter="all" type="button" aria-pressed="true">All</button>
+          <button class="filter" data-cert-filter="reliability" type="button" aria-pressed="false">Reliability</button>
+          <button class="filter" data-cert-filter="oil-gas" type="button" aria-pressed="false">Oil &amp; Gas</button>
+          <button class="filter" data-cert-filter="programming" type="button" aria-pressed="false">Programming</button>
+          <button class="filter" data-cert-filter="energy" type="button" aria-pressed="false">Energy</button>
+          <button class="filter" data-cert-filter="design" type="button" aria-pressed="false">Design</button>
+          <button class="filter" data-cert-filter="aerospace" type="button" aria-pressed="false">Aerospace</button>
         </div>
 
-
-        <div
-          class="certificate-grid"
-          id="certificatesGrid"
-        ></div>
-
+        <div class="certificate-grid" id="certificatesGrid"></div>
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         RESEARCH
-    ======================================================== -->
-
-    <section
-      class="section section-dark"
-      id="research"
-      aria-labelledby="research-title"
-    >
-
+    <!-- Research -->
+    <section class="section section-dark" id="research" aria-labelledby="research-title">
       <div class="container two-col research-layout">
-
         <div class="section-heading reveal">
-
-          <div class="eyebrow">
-            06 / RESEARCH
-          </div>
-
-          <h2 id="research-title">
-
-            From biomass conversion to
-
-            <span>
-              data-driven engineering.
-            </span>
-
-          </h2>
-
+          <div class="eyebrow">06 / RESEARCH</div>
+          <h2 id="research-title">From biomass conversion to <span>data-driven engineering.</span></h2>
         </div>
-
-
-        <div
-          class="research-copy reveal delay-1"
-          id="researchContent"
-        ></div>
-
+        <div class="research-copy reveal delay-1" id="researchContent"></div>
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         SKILLS
-    ======================================================== -->
-
-    <section
-      class="section section-light"
-      id="skills"
-      aria-labelledby="skills-title"
-    >
-
+    <!-- Skills -->
+    <section class="section section-light" id="skills" aria-labelledby="skills-title">
       <div class="container">
-
         <div class="section-heading reveal">
-
-          <div class="eyebrow">
-            07 / SKILLS
-          </div>
-
-          <h2 id="skills-title">
-
-            Technical
-
-            <span>
-              toolkit
-            </span>
-
-          </h2>
-
+          <div class="eyebrow">07 / SKILLS</div>
+          <h2 id="skills-title">Technical <span>toolkit</span></h2>
         </div>
-
-
         <div class="skills-layout">
-
-          <div
-            class="skill-bars"
-            id="skillBars"
-          ></div>
-
-
+          <div class="skill-bars" id="skillBars"></div>
           <div class="toolkit-panel">
-
             <div class="toolkit-header">
-
-              <span>
-                TOOLS &amp; TECHNOLOGIES
-              </span>
-
-              <span class="toolkit-status">
-                ACTIVE
-              </span>
-
+              <span>TOOLS &amp; TECHNOLOGIES</span>
+              <span class="toolkit-status">ACTIVE</span>
             </div>
-
-
-            <div
-              class="tool-cloud"
-              id="toolCloud"
-            ></div>
-
+            <div class="tool-cloud" id="toolCloud"></div>
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         ENGINEERING SNAPSHOT
-    ======================================================== -->
-
-    <section
-      class="section section-dark snapshot-section"
-      aria-labelledby="snapshot-title"
-    >
-
+    <!-- Engineering snapshot -->
+    <section class="section section-dark snapshot-section" aria-labelledby="snapshot-title">
       <div class="container">
-
         <div class="section-heading centered reveal">
-
-          <div class="eyebrow">
-            ENGINEERING SNAPSHOT
-          </div>
-
-          <h2 id="snapshot-title">
-
-            Three domains.
-            <span>
-              One engineer.
-            </span>
-
-          </h2>
-
+          <div class="eyebrow">ENGINEERING SNAPSHOT</div>
+          <h2 id="snapshot-title">Three domains. <span>One engineer.</span></h2>
         </div>
-
 
         <div class="snapshot-grid">
-
-
-          <article
-            class="snapshot-card snapshot-red reveal"
-          >
-
+          <article class="snapshot-card snapshot-red reveal">
             <div class="snapshot-top">
-
-              <span class="snapshot-letter">
-                R
-              </span>
-
-              <span>
-                01
-              </span>
-
+              <span class="snapshot-letter">R</span>
+              <span>01</span>
             </div>
-
-            <h3>
-              Reliability
-            </h3>
-
-            <p>
-              Reliability engineering, rotating equipment,
-              condition monitoring, vibration analysis,
-              RCA and predictive maintenance.
-            </p>
-
+            <h3>Reliability</h3>
+            <p>Reliability engineering, rotating equipment, condition monitoring, vibration analysis, RCA and predictive maintenance.</p>
             <span class="snapshot-line"></span>
-
           </article>
 
-
-          <article
-            class="snapshot-card snapshot-green reveal delay-1"
-          >
-
+          <article class="snapshot-card snapshot-green reveal delay-1">
             <div class="snapshot-top">
-
-              <span class="snapshot-letter">
-                G
-              </span>
-
-              <span>
-                02
-              </span>
-
+              <span class="snapshot-letter">G</span>
+              <span>02</span>
             </div>
-
-            <h3>
-              Energy
-            </h3>
-
-            <p>
-              Energy systems, biomass conversion,
-              torrefaction, thermal engineering,
-              measurements and control.
-            </p>
-
+            <h3>Energy</h3>
+            <p>Energy systems, biomass conversion, torrefaction, thermal engineering, measurements and control.</p>
             <span class="snapshot-line"></span>
-
           </article>
 
-
-          <article
-            class="snapshot-card snapshot-blue reveal delay-2"
-          >
-
+          <article class="snapshot-card snapshot-blue reveal delay-2">
             <div class="snapshot-top">
-
-              <span class="snapshot-letter">
-                B
-              </span>
-
-              <span>
-                03
-              </span>
-
+              <span class="snapshot-letter">B</span>
+              <span>03</span>
             </div>
-
-            <h3>
-              Computation
-            </h3>
-
-            <p>
-              MATLAB, Python, engineering data analysis,
-              modeling, automation and computational workflows.
-            </p>
-
+            <h3>Computation</h3>
+            <p>MATLAB, Python, engineering data analysis, modeling, automation and computational workflows.</p>
             <span class="snapshot-line"></span>
-
           </article>
-
-
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =======================================================
-         CONTACT
-    ======================================================== -->
-
-    <section
-      class="section cta-section"
-      id="contact"
-      aria-labelledby="contact-title"
-    >
-
+    <!-- Contact CTA -->
+    <section class="section cta-section" id="contact" aria-labelledby="contact-title">
       <div class="container cta-inner reveal">
-
-
         <div class="cta-copy">
-
-          <div class="eyebrow">
-            08 / CONTACT
-          </div>
-
-
-          <h2 id="contact-title">
-
-            Let's build better
-
-            <span>
-              engineering systems.
-            </span>
-
-          </h2>
-
-
-          <p>
-
-            For reliability, rotating equipment,
-            energy systems, research or engineering collaboration.
-
-          </p>
-
-
+          <div class="eyebrow">08 / CONTACT</div>
+          <h2 id="contact-title">Let's build better <span>engineering systems.</span></h2>
+          <p>For reliability, rotating equipment, energy systems, research or engineering collaboration.</p>
           <div class="cta-signature">
-
             <span class="signature-line"></span>
-
-            <span>
-              Mohammed Ragab Al-Attar
-            </span>
-
+            <span>Mohammed Ragab Al-Attar</span>
           </div>
-
         </div>
-
 
         <div class="cta-actions">
-
-          <a
-            class="button button-primary"
-            href="mailto:mohammed.ragab.hamad@outlook.com"
-          >
-            Start a conversation
-            <span aria-hidden="true">
-              →
-            </span>
+          <a class="button button-primary" href="mailto:mohammed.ragab.hamad@outlook.com">
+            Start a conversation <span aria-hidden="true">→</span>
           </a>
-
-
-          <a
-            class="button button-secondary"
-            href="https://github.com/MohammedRagab99"
-            target="_blank"
-            rel="noopener"
-          >
-            GitHub ↗
-          </a>
-
-
-          <a
-            class="button button-ghost"
-            href="https://www.linkedin.com/in/mohamed-ragab-hamad"
-            target="_blank"
-            rel="noopener"
-          >
-            LinkedIn ↗
-          </a>
-
+          <a class="button button-secondary" href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="button button-ghost" href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
-
       </div>
-
     </section>
-
   </main>
 
-
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
-
+  <!-- Footer -->
   <footer class="site-footer">
-
     <div class="container footer-inner">
-
-
       <div class="footer-brand">
-
-        <span class="footer-mark">
-          MR
-        </span>
-
+        <span class="footer-mark">MR</span>
         <div>
-
-          <strong>
-            Mohammed Ragab Al-Attar
-          </strong>
-
-          <span>
-            Reliability • Rotating Equipment • Energy
-          </span>
-
+          <strong>Mohammed Ragab Al-Attar</strong>
+          <span>Reliability • Rotating Equipment • Energy</span>
         </div>
-
       </div>
-
 
       <div class="footer-rgb">
-
-        <span class="red">
-          R
-        </span>
-
-        <span class="green">
-          G
-        </span>
-
-        <span class="blue">
-          B
-        </span>
-
-        <span>
-          RAGABVERSE
-        </span>
-
+        <span class="red">R</span>
+        <span class="green">G</span>
+        <span class="blue">B</span>
+        <span>RAGABVERSE</span>
       </div>
-
 
       <div class="footer-meta">
-
-        <span>
-          © <span id="currentYear"></span>
-          Mohammed Ragab Al-Attar
-        </span>
-
-        <a href="#home">
-          Back to top ↑
-        </a>
-
+        <span>© <span id="currentYear"></span> Mohammed Ragab Al-Attar</span>
+        <a href="#home">Back to top ↑</a>
       </div>
-
     </div>
-
   </footer>
 
-
-  <!-- =========================================================
-       CERTIFICATE MODAL
-  ========================================================== -->
-
-  <dialog
-    class="modal"
-    id="certificateModal"
-    aria-labelledby="modalTitle"
-  >
-
+  <!-- Certificate modal -->
+  <dialog class="modal" id="certificateModal" aria-labelledby="modalTitle">
     <div class="modal-inner">
-
-      <button
-        class="modal-close"
-        id="modalClose"
-        type="button"
-        aria-label="Close certificate preview"
-      >
-        ×
-      </button>
-
-
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close certificate preview">×</button>
       <div class="modal-image-wrap">
-
-        <img
-          id="modalImage"
-          src=""
-          alt="Certificate preview"
-          loading="lazy"
-        />
-
+        <img id="modalImage" src="" alt="Certificate preview" loading="lazy" />
       </div>
-
-
       <div class="modal-info">
-
-        <div
-          class="eyebrow"
-          id="modalCategory"
-        ></div>
-
+        <div class="eyebrow" id="modalCategory"></div>
         <h3 id="modalTitle"></h3>
-
         <p id="modalProvider"></p>
-
       </div>
-
     </div>
-
   </dialog>
 
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
 
-  <!-- =========================================================
-       BACK TO TOP
-  ========================================================== -->
-
-  <button
-    class="back-to-top"
-    id="backToTop"
-    type="button"
-    aria-label="Back to top"
-  >
-    ↑
-  </button>
-
-
-  <!-- =========================================================
-       JAVASCRIPT DATA + APP
-  ========================================================== -->
-
+  <!-- Data & scripts -->
   <script src="data.js"></script>
-
   <script src="script.js"></script>
-
-
-  <!-- =========================================================
-       SMALL GLOBAL ENHANCEMENTS
-  ========================================================== -->
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-
-      /* Current year */
-      const year = document.getElementById("currentYear");
-
-      if (year) {
-        year.textContent = new Date().getFullYear();
-      }
-
-
-      /* Theme persistence */
-      const themeToggle = document.getElementById("themeToggle");
-
-      const savedTheme =
-        localStorage.getItem("ragabverse-theme");
-
-      if (savedTheme === "light") {
-        document.documentElement.dataset.theme = "light";
-
-        if (themeToggle) {
-          themeToggle.setAttribute(
-            "aria-pressed",
-            "true"
-          );
-        }
-      }
-
-
-      if (themeToggle) {
-
-        themeToggle.addEventListener(
-          "click",
-          () => {
-
-            const isLight =
-              document.documentElement.dataset.theme === "light";
-
-            if (isLight) {
-
-              delete document.documentElement.dataset.theme;
-
-              localStorage.setItem(
-                "ragabverse-theme",
-                "dark"
-              );
-
-              themeToggle.setAttribute(
-                "aria-pressed",
-                "false"
-              );
-
-            } else {
-
-              document.documentElement.dataset.theme =
-                "light";
-
-              localStorage.setItem(
-                "ragabverse-theme",
-                "light"
-              );
-
-              themeToggle.setAttribute(
-                "aria-pressed",
-                "true"
-              );
-
-            }
-
-          }
-        );
-
-      }
-
-
-      /* Cursor glow — desktop only */
-      const cursorGlow =
-        document.getElementById("cursorGlow");
-
-      if (
-        cursorGlow &&
-        window.matchMedia("(pointer: fine)").matches
-      ) {
-
-        window.addEventListener(
-          "pointermove",
-          (event) => {
-
-            cursorGlow.style.transform =
-              `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-
-          },
-          { passive: true }
-        );
-
-      }
-
-
-      /* Mobile navigation */
-      const menuButton =
-        document.getElementById("menuButton");
-
-      const mobileNav =
-        document.getElementById("mobileNav");
-
-      if (menuButton && mobileNav) {
-
-        menuButton.addEventListener(
-          "click",
-          () => {
-
-            const isOpen =
-              menuButton.getAttribute(
-                "aria-expanded"
-              ) === "true";
-
-            menuButton.setAttribute(
-              "aria-expanded",
-              String(!isOpen)
-            );
-
-            mobileNav.setAttribute(
-              "aria-hidden",
-              String(isOpen)
-            );
-
-            document.body.classList.toggle(
-              "menu-open",
-              !isOpen
-            );
-
-          }
-        );
-
-
-        mobileNav
-          .querySelectorAll("a")
-          .forEach((link) => {
-
-            link.addEventListener(
-              "click",
-              () => {
-
-                menuButton.setAttribute(
-                  "aria-expanded",
-                  "false"
-                );
-
-                mobileNav.setAttribute(
-                  "aria-hidden",
-                  "true"
-                );
-
-                document.body.classList.remove(
-                  "menu-open"
-                );
-
-              }
-            );
-
-          });
-
-      }
-
-
-      /* Active navigation section */
-      const sections =
-        document.querySelectorAll(
-          "main section[id]"
-        );
-
-      const navLinks =
-        document.querySelectorAll(
-          ".desktop-nav a"
-        );
-
-      if (
-        sections.length &&
-        navLinks.length &&
-        "IntersectionObserver" in window
-      ) {
-
-        const observer =
-          new IntersectionObserver(
-            (entries) => {
-
-              entries.forEach((entry) => {
-
-                if (!entry.isIntersecting) {
-                  return;
-                }
-
-                navLinks.forEach((link) => {
-
-                  const active =
-                    link.getAttribute("href") ===
-                    `#${entry.target.id}`;
-
-                  link.classList.toggle(
-                    "active",
-                    active
-                  );
-
-                });
-
-              });
-
-            },
-            {
-              rootMargin:
-                "-35% 0px -55% 0px"
-            }
-          );
-
-
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
-
-      }
-
-
-      /* Scroll progress */
-      const progress =
-        document.getElementById(
-          "scrollProgress"
-        );
-
-      if (progress) {
-
-        const updateProgress = () => {
-
-          const scrollTop =
-            window.scrollY;
-
-          const documentHeight =
-            document.documentElement.scrollHeight -
-            window.innerHeight;
-
-          const percentage =
-            documentHeight > 0
-              ? (scrollTop / documentHeight) * 100
-              : 0;
-
-          progress.style.width =
-            `${percentage}%`;
-
-        };
-
-        window.addEventListener(
-          "scroll",
-          updateProgress,
-          { passive: true }
-        );
-
-        updateProgress();
-
-      }
-
-
-      /* Back to top */
-      const backToTop =
-        document.getElementById(
-          "backToTop"
-        );
-
-      if (backToTop) {
-
-        const updateBackToTop =
-          () => {
-
-            backToTop.classList.toggle(
-              "visible",
-              window.scrollY > 600
-            );
-
-          };
-
-        window.addEventListener(
-          "scroll",
-          updateBackToTop,
-          { passive: true }
-        );
-
-        backToTop.addEventListener(
-          "click",
-          () => {
-
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth"
-            });
-
-          }
-        );
-
-        updateBackToTop();
-
-      }
-
-
-      /* Reveal animations */
-      const revealElements =
-        document.querySelectorAll(
-          ".reveal"
-        );
-
-      if (
-        revealElements.length &&
-        "IntersectionObserver" in window
-      ) {
-
-        const revealObserver =
-          new IntersectionObserver(
-            (entries, observer) => {
-
-              entries.forEach((entry) => {
-
-                if (!entry.isIntersecting) {
-                  return;
-                }
-
-                entry.target.classList.add(
-                  "is-visible"
-                );
-
-                observer.unobserve(
-                  entry.target
-                );
-
-              });
-
-            },
-            {
-              threshold: 0.12
-            }
-          );
-
-
-        revealElements.forEach((element) => {
-
-          revealObserver.observe(
-            element
-          );
-
-        });
-
-      } else {
-
-        revealElements.forEach(
-          (element) => {
-            element.classList.add(
-              "is-visible"
-            );
-          }
-        );
-
-      }
-
-
-      /* Project filters accessibility */
-      document
-        .querySelectorAll(
-          "[data-filter]"
-        )
-        .forEach((button) => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              document
-                .querySelectorAll(
-                  "[data-filter]"
-                )
-                .forEach((item) => {
-
-                  item.setAttribute(
-                    "aria-pressed",
-                    String(
-                      item === button
-                    )
-                  );
-
-                });
-
-            }
-          );
-
-        });
-
-
-      /* Certificate filters accessibility */
-      document
-        .querySelectorAll(
-          "[data-cert-filter]"
-        )
-        .forEach((button) => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              document
-                .querySelectorAll(
-                  "[data-cert-filter]"
-                )
-                .forEach((item) => {
-
-                  item.setAttribute(
-                    "aria-pressed",
-                    String(
-                      item === button
-                    )
-                  );
-
-                });
-
-            }
-          );
-
-        });
-
-
-      /* Close dialog when clicking outside */
-      const modal =
-        document.getElementById(
-          "certificateModal"
-        );
-
-      const modalClose =
-        document.getElementById(
-          "modalClose"
-        );
-
-      if (modal && modalClose) {
-
-        modalClose.addEventListener(
-          "click",
-          () => modal.close()
-        );
-
-        modal.addEventListener(
-          "click",
-          (event) => {
-
-            const rect =
-              modal
-                .querySelector(
-                  ".modal-inner"
-                )
-                ?.getBoundingClientRect();
-
-            if (!rect) {
-              return;
-            }
-
-            const inside =
-              event.clientX >= rect.left &&
-              event.clientX <= rect.right &&
-              event.clientY >= rect.top &&
-              event.clientY <= rect.bottom;
-
-            if (!inside) {
-              modal.close();
-            }
-
-          }
-        );
-
-      }
-
-    });
-  </script>
-
 </body>
 </html>
