@@ -343,6 +343,51 @@ function setupStats() {
   $("#statSkills").textContent = portfolioData.profile.skills;
 }
 
+function setupStats() {
+  const statYears = $("#statYears");
+  const statProjects = $("#statProjects");
+  const statSkills = $("#statSkills");
+  if (!statYears || !statProjects || !statSkills) return;
+
+  // Parse target values (remove "+" and parse int)
+  const targetValues = [
+    parseInt(portfolioData.profile.yearsIndustry) || 3,
+    parseInt(portfolioData.profile.projects) || 8,
+    parseInt(portfolioData.profile.skills) || 20
+  ];
+  const elements = [statYears, statProjects, statSkills];
+  elements.forEach((el, i) => {
+    el.textContent = "0";
+    el.dataset.target = targetValues[i];
+    el.dataset.suffix = portfolioData.profile[["yearsIndustry","projects","skills"][i]].includes("+") ? "+" : "";
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        elements.forEach(el => {
+          const target = parseInt(el.dataset.target);
+          const suffix = el.dataset.suffix || "";
+          let current = 0;
+          const step = Math.max(1, Math.round(target / 30));
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(interval);
+              el.textContent = current + suffix;
+            } else {
+              el.textContent = current + suffix;
+            }
+          }, 30);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe($(".mini-stats"));
+}
 /* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
