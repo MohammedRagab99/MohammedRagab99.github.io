@@ -102,37 +102,169 @@ const portfolioData = {
   ],
 
   certificates: [
-    // --- R: Field Engineering / Reliability ---
-    { title: "Vibration Analysis Category VCAT II", provider: "Mobius Institute", year: "2026", category: "field", image: "assets/images/certificates/vcat-ii-mohamed-ragab.png" },
-    { title: "Between Bearing Pump Repair and API Plans", provider: "Flowserve", year: "2026", category: "field", image: "assets/images/certificates/flowserve-pump.png" },
-    { title: "Reliability Centered Maintenance (RCM)", provider: "Enppi", year: "2026", category: "field", image: "assets/images/certificates/rcm.png" },
-    { title: "Reliability Centered Maintenance (RCM) - Part 1", provider: "Enppi", year: "2025", category: "field", image: "assets/images/certificates/rcm-part1.png" },
-    { title: "Compressors Operation and Maintenance", provider: "RES Global", year: "2025", category: "field", image: "assets/images/certificates/compressors-res-global-2025.png" },
-    { title: "RECIP Technical Certificate", provider: "EPROM & HOERBIGER", year: "2025", category: "field", image: "assets/images/certificates/recip-compressor.png" },
-    { title: "Bearing Technology And Service", provider: "NSK", year: "2024", category: "field", image: "assets/images/certificates/nsk-bearing.png" },
-    
+    // --- Field Engineering / Reliability ---
+    {
+      title: "Vibration Analysis Category VCAT II",
+      provider: "Mobius Institute",
+      year: "2026",
+      category: "field",
+      image: "assets/images/certificates/vcat-ii-mohamed-ragab.png"
+    },
+    {
+      title: "Between Bearing Pump Repair and API Plans",
+      provider: "Flowserve",
+      year: "2026",
+      category: "field",
+      image: "assets/images/certificates/flowserve-pump.png"
+    },
+    {
+      title: "Reliability Centered Maintenance (RCM)",
+      provider: "Enppi",
+      year: "2026",
+      category: "field",
+      image: "assets/images/certificates/rcm.png"
+    },
+    {
+      title: "Reliability Centered Maintenance (RCM) - Part 1",
+      provider: "Enppi",
+      year: "2025",
+      category: "field",
+      image: "assets/images/certificates/RCM_Part1.png"
+    },
+    {
+      title: "Compressors Operation and Maintenance",
+      provider: "RES Global",
+      year: "2025",
+      category: "field",
+      image: "assets/images/certificates/compressors-res-global-2025.png"
+    },
+    {
+      title: "RECIP Technical Certificate",
+      provider: "EPROM & HOERBIGER",
+      year: "2025",
+      category: "field",
+      image: "assets/images/certificates/recip-compressor.png"
+    },
+    {
+      title: "Bearing Technology And Service",
+      provider: "NSK",
+      year: "2024",
+      category: "field",
+      image: "assets/images/certificates/nsk-bearing.png"
+    },
+
     // --- Oil & Gas ---
-    { title: "Refinery Fundamentals Program for Postgraduates", provider: "EPROM", year: "2023", category: "oil-gas", image: "assets/images/certificates/eprom-refinery-fundamentals.png" },
-    
+    {
+      title: "Refinery Fundamentals Program for Postgraduates",
+      provider: "EPROM",
+      year: "2023",
+      category: "oil-gas",
+      image: "assets/images/certificates/eprom-refinery-fundamentals.png"
+    },
+
     // --- Aerospace ---
-    { title: "Satellite Structure Subsystem", provider: "Egyptian Space Agency", year: "2021", category: "aerospace", image: "assets/images/certificates/esa-satellite-structure.png" },
-    { title: "First Rank: Mechanics Teams", provider: "Egyptian Space Agency", year: "2021", category: "aerospace", image: "assets/images/certificates/esa-first-rank-mechanics.png" },
-    { title: "Best Member Powertrain: Formula Student UK'21", provider: "ASU Racing Team", year: "2021", category: "aerospace", image: "assets/images/certificates/asu-racing-best-member.png" },
-    
-    // --- B: Computation & AI ---
-    { title: "CS50x: Introduction to Computer Science", provider: "Harvard University", year: "2020", category: "computation", image: "assets/images/certificates/cs50x.png" },
-    { title: "CS50's Introduction to Artificial Intelligence with Python", provider: "Harvard University", year: "2020", category: "computation", image: "assets/images/certificates/cs50-ai-python.png" },
-    { title: "Become a Software Developer", provider: "LinkedIn Learning", year: "2021", category: "computation", image: "assets/images/certificates/linkedin-software-dev.png" },
-    { title: "Learning Python", provider: "LinkedIn Learning", year: "2021", category: "computation", image: "assets/images/certificates/linkedin-python.png" },
-    { title: "Learning C#", provider: "LinkedIn Learning", year: "2021", category: "computation", image: "assets/images/certificates/linkedin-csharp.png" },
-    { title: "Learning SQL Programming", provider: "LinkedIn Learning", year: "2021", category: "computation", image: "assets/images/certificates/linkedin-sql.png" },
-    { title: "Programming Foundations: Databases", provider: "LinkedIn Learning", year: "2021", category: "computation", image: "assets/images/certificates/linkedin-databases.png" },
-    
+    {
+      title: "Satellite Structure Subsystem",
+      provider: "Egyptian Space Agency",
+      year: "2021",
+      category: "aerospace",
+      image: "assets/images/certificates/esa-satellite-structure.png"
+    },
+    {
+      title: "First Rank: Mechanics Teams",
+      provider: "Egyptian Space Agency",
+      year: "2021",
+      category: "aerospace",
+      image: "assets/images/certificates/Egyptian Space Agency - First Rank Mechanics Team.png"
+    },
+    {
+      title: "Best Member Powertrain: Formula Student UK'21",
+      provider: "ASU Racing Team",
+      year: "2021",
+      category: "aerospace",
+      image: "assets/images/certificates/ASU Racing Team - Formula Student UK 2021 Best Member.png"
+    },
+
+    // --- Computation & AI ---
+    {
+      title: "CS50x: Introduction to Computer Science",
+      provider: "Harvard University",
+      year: "2020",
+      category: "computation",
+      image: "assets/images/certificates/CS50 Harvard - CS50x Introduction to Computer Science.png"
+    },
+    {
+      title: "CS50's Introduction to Artificial Intelligence with Python",
+      provider: "Harvard University",
+      year: "2020",
+      category: "computation",
+      image: "assets/images/certificates/CS50 Harvard - Introduction to Artificial Intelligence with Python.png"
+    },
+    {
+      title: "Become a Software Developer",
+      provider: "LinkedIn Learning",
+      year: "2021",
+      category: "computation",
+      image: "assets/images/certificates/LinkedIn Learning - Become a Software Developer.png"
+    },
+    {
+      title: "Learning Python",
+      provider: "LinkedIn Learning",
+      year: "2021",
+      category: "computation",
+      image: "assets/images/certificates/LinkedIn Learning - Learning Python.png"
+    },
+    {
+      title: "Learning C#",
+      provider: "LinkedIn Learning",
+      year: "2021",
+      category: "computation",
+      image: "assets/images/certificates/LinkedIn Learning - Learning C#.png"
+    },
+    {
+      title: "Learning SQL Programming",
+      provider: "LinkedIn Learning",
+      year: "2021",
+      category: "computation",
+      image: "assets/images/certificates/LinkedIn Learning - Learning SQL Programming (2017).png"
+    },
+    {
+      title: "Programming Foundations: Databases",
+      provider: "LinkedIn Learning",
+      year: "2021",
+      category: "computation",
+      image: "assets/images/certificates/LinkedIn Learning - Programming Foundations Databases.png"
+    },
+
     // --- Design & Management ---
-    { title: "Project Management Foundations: Teams", provider: "LinkedIn Learning", year: "2021", category: "design", image: "assets/images/certificates/linkedin-pm-teams.png" },
-    { title: "Become a Graphic Designer", provider: "LinkedIn Learning", year: "2021", category: "design", image: "assets/images/certificates/linkedin-graphic-designer.png" },
-    { title: "innovegypt Program", provider: "ITIDA & TIEC", year: "2021", category: "design", image: "assets/images/certificates/itida-innovegypt.png" },
-    { title: "Reimagining the Future of Learning", provider: "Aspire Learning Space", year: "2021", category: "design", image: "assets/images/certificates/aspire-learning.png" }
+    {
+      title: "Project Management Foundations: Teams",
+      provider: "LinkedIn Learning",
+      year: "2021",
+      category: "design",
+      image: "assets/images/certificates/LinkedIn Learning - Project Management Foundations Teams.png"
+    },
+    {
+      title: "Become a Graphic Designer",
+      provider: "LinkedIn Learning",
+      year: "2021",
+      category: "design",
+      image: "assets/images/certificates/LinkedIn Learning - Become a Graphic Designer.png"
+    },
+    {
+      title: "innovegypt Program",
+      provider: "ITIDA & TIEC",
+      year: "2021",
+      category: "design",
+      image: "assets/images/certificates/ITIDA TIEC innovegypt - Innovation Training Course.png"
+    },
+    {
+      title: "Reimagining the Future of Learning",
+      provider: "Aspire Learning Space",
+      year: "2021",
+      category: "design",
+      image: "assets/images/certificates/Aspire Learning Space - Reimagining the Future of Learning.png"
+    }
   ],
 
   research: {
@@ -161,9 +293,9 @@ const portfolioData = {
   ],
 
   tools: [
-    "Python","MATLAB","Octave","C++ / Java","VBA","AI / Machine Learning",
-    "ANSYS","SolidWorks","AutoCAD","Revit MEP","Inventor",
-    "Aspen Plus","HOMER Pro","EnergyPLAN","WANDA",
-    "LabVIEW","PLC / Ladder Logic","Primavera P6","Excel"
+    "Python", "MATLAB", "Octave", "C++ / Java", "VBA", "AI / Machine Learning",
+    "ANSYS", "SolidWorks", "AutoCAD", "Revit MEP", "Inventor",
+    "Aspen Plus", "HOMER Pro", "EnergyPLAN", "WANDA",
+    "LabVIEW", "PLC / Ladder Logic", "Primavera P6", "Excel"
   ]
 };
