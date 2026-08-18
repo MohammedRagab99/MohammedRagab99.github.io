@@ -19,13 +19,13 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Mohammed Ragab Al-Attar | RagabVerse" />
-  <meta property="og:description" content="Reliability • Rotating Equipment • Energy • Computation" />
+  <meta property="og:description" content="Field Engineering • Energy & Research • Computation & AI" />
   <meta property="og:image" content="assets/images/og-cover.png" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mohammed Ragab Al-Attar | RagabVerse" />
-  <meta name="twitter:description" content="Reliability • Rotating Equipment • Energy • Computation" />
+  <meta name="twitter:description" content="Field Engineering • Energy & Research • Computation & AI" />
   <meta name="twitter:image" content="assets/images/og-cover.png" />
 
   <link rel="canonical" href="https://MohammedRagab99.github.io/" />
@@ -80,6 +80,8 @@
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#expertise">Expertise</a>
+        <a href="#machinery">Machinery</a>
+        <a href="#overhaul">Overhaul</a>
         <a href="#projects">Projects</a>
         <a href="#research">Research</a>
         <a href="#contact">Contact</a>
@@ -93,9 +95,8 @@
           type="button"
           aria-label="Search portfolio"
           onclick="openSearchModal()"
-          style="font-size:1.1rem;"
         >
-          🔍
+          <span aria-hidden="true">🔍</span>
         </button>
 
         <button
@@ -135,9 +136,11 @@
         <a href="#about"><span>01</span> About</a>
         <a href="#experience"><span>02</span> Experience</a>
         <a href="#expertise"><span>03</span> Expertise</a>
-        <a href="#projects"><span>04</span> Projects</a>
-        <a href="#research"><span>05</span> Research</a>
-        <a href="#contact"><span>06</span> Contact</a>
+        <a href="#machinery"><span>04</span> Machinery</a>
+        <a href="#overhaul"><span>05</span> Overhaul</a>
+        <a href="#projects"><span>06</span> Projects</a>
+        <a href="#research"><span>07</span> Research</a>
+        <a href="#contact"><span>08</span> Contact</a>
       </div>
     </nav>
   </header>
@@ -422,11 +425,47 @@
       </div>
     </section>
 
+    <!-- Rotating Machinery -->
+    <section class="section section-light" id="machinery" aria-labelledby="machinery-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">04 / MACHINERY</div>
+          <h2 id="machinery-title">Rotating <span>equipment</span></h2>
+          <p>Hands‑on experience with critical rotating and auxiliary equipment families.</p>
+        </div>
+
+        <!-- Filter buttons -->
+        <div class="filter-row reveal" id="machineryFilters" role="group" aria-label="Filter machinery">
+          <button class="filter active" data-machinery-filter="all" type="button" aria-pressed="true">All</button>
+          <button class="filter" data-machinery-filter="pumps" type="button" aria-pressed="false">Pumps</button>
+          <button class="filter" data-machinery-filter="compressors" type="button" aria-pressed="false">Compressors</button>
+          <button class="filter" data-machinery-filter="fans-blowers" type="button" aria-pressed="false">Fans &amp; Blowers</button>
+          <button class="filter" data-machinery-filter="turbines-drivers" type="button" aria-pressed="false">Turbines &amp; Drivers</button>
+          <button class="filter" data-machinery-filter="specialty-auxiliary" type="button" aria-pressed="false">Specialty / Auxiliary</button>
+        </div>
+
+        <div class="machinery-grid" id="machineryGrid"></div>
+      </div>
+    </section>
+
+    <!-- Major Overhaul / Turnaround -->
+    <section class="section section-dark" id="overhaul" aria-labelledby="overhaul-title">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">05 / MAJOR OVERHAUL</div>
+          <h2 id="overhaul-title">Overhaul &amp; <span>turnaround</span></h2>
+          <p>Structured approach to major equipment overhaul and return‑to‑service.</p>
+        </div>
+
+        <div class="overhaul-timeline" id="overhaulTimeline"></div>
+      </div>
+    </section>
+
     <!-- Projects -->
     <section class="section section-dark projects-section" id="projects" aria-labelledby="projects-title">
       <div class="container">
         <div class="section-heading centered reveal">
-          <div class="eyebrow">04 / PROJECTS</div>
+          <div class="eyebrow">06 / PROJECTS</div>
           <h2 id="projects-title">Selected <span>engineering work</span></h2>
           <p>Engineering projects across reliability, energy, programming and applied design.</p>
         </div>
@@ -457,48 +496,12 @@
         </div>
       </div>
     </section>
-   
-    <!-- Rotating Machinery -->
-  <section class="section section-light" id="machinery" aria-labelledby="machinery-title">
-    <div class="container">
-      <div class="section-heading reveal">
-        <div class="eyebrow">03 / MACHINERY</div>
-        <h2 id="machinery-title">Rotating <span>equipment</span></h2>
-        <p>Hands‑on experience with critical rotating and auxiliary equipment families.</p>
-      </div>
-  
-      <!-- Filter buttons -->
-      <div class="filter-row reveal" id="machineryFilters" role="group" aria-label="Filter machinery">
-        <button class="filter active" data-machinery-filter="all" type="button" aria-pressed="true">All</button>
-        <button class="filter" data-machinery-filter="pumps" type="button" aria-pressed="false">Pumps</button>
-        <button class="filter" data-machinery-filter="compressors" type="button" aria-pressed="false">Compressors</button>
-        <button class="filter" data-machinery-filter="fans-blowers" type="button" aria-pressed="false">Fans &amp; Blowers</button>
-        <button class="filter" data-machinery-filter="turbines-drivers" type="button" aria-pressed="false">Turbines &amp; Drivers</button>
-        <button class="filter" data-machinery-filter="specialty-auxiliary" type="button" aria-pressed="false">Specialty / Auxiliary</button>
-      </div>
-  
-      <div class="machinery-grid" id="machineryGrid"></div>
-    </div>
-  </section>
-
-    <!-- Major Overhaul / Turnaround -->
-  <section class="section section-dark" id="overhaul" aria-labelledby="overhaul-title">
-    <div class="container">
-      <div class="section-heading centered reveal">
-        <div class="eyebrow">04 / MAJOR OVERHAUL</div>
-        <h2 id="overhaul-title">Overhaul &amp; <span>turnaround</span></h2>
-        <p>Structured approach to major equipment overhaul and return‑to‑service.</p>
-      </div>
-  
-      <div class="overhaul-timeline" id="overhaulTimeline"></div>
-    </div>
-  </section>
 
     <!-- Certificates -->
     <section class="section section-light" id="certificates" aria-labelledby="certificates-title">
       <div class="container">
         <div class="section-heading centered reveal">
-          <div class="eyebrow">05 / CERTIFICATES</div>
+          <div class="eyebrow">07 / CERTIFICATES</div>
           <h2 id="certificates-title">Credentials, <span>organized</span></h2>
           <p>Professional learning and technical development, organized by engineering domain.</p>
         </div>
@@ -521,7 +524,7 @@
     <section class="section section-dark" id="research" aria-labelledby="research-title">
       <div class="container two-col research-layout">
         <div class="section-heading reveal">
-          <div class="eyebrow">06 / RESEARCH</div>
+          <div class="eyebrow">08 / RESEARCH</div>
           <h2 id="research-title">From biomass conversion to <span>data-driven engineering.</span></h2>
         </div>
         <div class="research-copy reveal delay-1" id="researchContent"></div>
@@ -532,7 +535,7 @@
     <section class="section section-light" id="skills" aria-labelledby="skills-title">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="eyebrow">07 / SKILLS</div>
+          <div class="eyebrow">09 / SKILLS</div>
           <h2 id="skills-title">Technical <span>toolkit</span></h2>
         </div>
         <div class="skills-layout">
@@ -602,7 +605,7 @@
     <section class="section cta-section" id="contact" aria-labelledby="contact-title">
       <div class="container cta-inner reveal">
         <div class="cta-copy">
-          <div class="eyebrow">08 / CONTACT</div>
+          <div class="eyebrow">10 / CONTACT</div>
           <h2 id="contact-title">Let's build better <span>engineering systems.</span></h2>
           <p>For reliability, rotating equipment, energy systems, research or engineering collaboration.</p>
           <div class="cta-signature">
