@@ -434,21 +434,19 @@ function setupYear() {
 /* ---------- Animated Stats ---------- */
 
 function setupStats() {
-  const statYears = $("#statYears");
-  const statProjects = $("#statProjects");
-  const statSkills = $("#statSkills");
-  if (!statYears || !statProjects || !statSkills) return;
+  const statAssets = $("#statAssets");
+  const statAvailability = $("#statAvailability");
+  const statTools = $("#statTools");
+  if (!statAssets || !statAvailability || !statTools) return;
 
-  const targetValues = [
-    parseInt(portfolioData.profile.yearsIndustry) || 3,
-    parseInt(portfolioData.profile.projects) || 8,
-    parseInt(portfolioData.profile.skills) || 20
-  ];
-  const elements = [statYears, statProjects, statSkills];
+  const targets = [15, 95, 20];
+  const elements = [statAssets, statAvailability, statTools];
+  const suffixes = ["+", "%+", "+"];
+
   elements.forEach((el, i) => {
     el.textContent = "0";
-    el.dataset.target = targetValues[i];
-    el.dataset.suffix = portfolioData.profile[["yearsIndustry","projects","skills"][i]].includes("+") ? "+" : "";
+    el.dataset.target = targets[i];
+    el.dataset.suffix = suffixes[i];
   });
 
   const observer = new IntersectionObserver((entries) => {
@@ -1252,6 +1250,108 @@ function initSchematicDashboard() {
       p.draw();
     });
 
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
+
+/* ─── Intelligence-Driven Reliability Dashboard ─── */
+function initIntelligenceDashboard() {
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const nodes = {
+    top:    { x: 260, y: 90,  color: 'rgb(16, 185, 129)' },
+    left:   { x: 120, y: 240, color: 'rgb(239, 68, 68)' },
+    right:  { x: 400, y: 240, color: 'rgb(59, 130, 246)' },
+    bottom: { x: 260, y: 390, color: 'rgb(248, 250, 252)' }
+  };
+
+  let frame = 0;
+
+  class StreamParticle {
+    constructor(startNode, colorHex) {
+      this.start = startNode;
+      this.end = nodes.bottom;
+      this.color = colorHex;
+      this.progress = Math.random();
+      this.speed = 0.005 + Math.random() * 0.005;
+      this.amplitude = (Math.random() - 0.5) * 12;
+      this.offset = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.progress += this.speed;
+      if (this.progress >= 1) this.progress = 0;
+    }
+    draw() {
+      const t = this.progress;
+      const x = this.start.x + (this.end.x - this.start.x) * t;
+      const y = this.start.y + (this.end.y - this.start.y) * t;
+      const dx = this.end.x - this.start.x;
+      const dy = this.end.y - this.start.y;
+      const len = Math.sqrt(dx*dx + dy*dy);
+      const normX = -dy / len;
+      const normY = dx / len;
+      const wave = Math.sin(t * Math.PI * 4 + this.offset + frame * 0.1) * this.amplitude * Math.sin(t * Math.PI);
+
+      ctx.beginPath();
+      ctx.arc(x + normX * wave, y + normY * wave, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  const particles = [
+    ...Array.from({ length: 12 }, () => new StreamParticle(nodes.top, nodes.top.color)),
+    ...Array.from({ length: 12 }, () => new StreamParticle(nodes.left, nodes.left.color)),
+    ...Array.from({ length: 12 }, () => new StreamParticle(nodes.right, nodes.right.color))
+  ];
+
+  function drawStreamWave(start, end, colorHex, frequency, amplitude, speed, width) {
+    ctx.beginPath();
+    ctx.strokeStyle = colorHex;
+    ctx.lineWidth = width;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = colorHex;
+
+    const points = 60;
+    for (let i = 0; i <= points; i++) {
+      const t = i / points;
+      const x = start.x + (end.x - start.x) * t;
+      const y = start.y + (end.y - start.y) * t;
+      const dx = end.x - start.x;
+      const dy = end.y - start.y;
+      const len = Math.sqrt(dx*dx + dy*dy);
+      const normX = -dy / len;
+      const normY = dx / len;
+      const envelope = Math.sin(t * Math.PI);
+      const wave = Math.sin(t * Math.PI * frequency + frame * speed) * amplitude * envelope;
+      const px = x + normX * wave;
+      const py = y + normY * wave;
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frame += 0.05;
+
+    drawStreamWave(nodes.top, nodes.bottom, nodes.top.color, 4, 10, 1.2, 2.5);
+    drawStreamWave(nodes.top, nodes.bottom, 'rgba(52, 211, 153, 0.4)', 6, -1.5, 0.8, 1.5);
+    drawStreamWave(nodes.left, nodes.bottom, nodes.left.color, 3.5, 12, 1.4, 2.5);
+    drawStreamWave(nodes.left, nodes.bottom, 'rgba(248, 113, 113, 0.4)', 5, -1.1, 0.9, 1.5);
+    drawStreamWave(nodes.right, nodes.bottom, nodes.right.color, 3.5, 12, 1.3, 2.5);
+    drawStreamWave(nodes.right, nodes.bottom, 'rgba(96, 165, 250, 0.4)', 5.5, -1.2, 0.8, 1.5);
+
+    particles.forEach(p => { p.update(); p.draw(); });
     requestAnimationFrame(animate);
   }
 
