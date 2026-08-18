@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohammed Ragab — CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Print-optimised CV styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 40px;
+      color: #1a1f35;
+      line-height: 1.6;
+      background: #fff;
+    }
+    .cv-header { text-align: center; margin-bottom: 30px; }
+    .cv-header h1 { margin: 0; font-size: 28px; }
+    .cv-header p { margin: 5px 0; color: #4a5270; }
+    .cv-section { margin-bottom: 25px; }
+    .cv-section h2 { border-bottom: 2px solid #10b981; padding-bottom: 5px; font-size: 18px; color: #0f172a; }
+    .cv-item { margin-bottom: 15px; }
+    .cv-item h3 { margin: 0; font-size: 16px; }
+    .cv-item .sub { color: #4a5270; font-size: 14px; }
+    .cv-item ul { margin: 5px 0 0 20px; padding: 0; }
+    @media print {
+      body { margin: 0; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- This button will not appear in printed PDF -->
+  <div class="no-print" style="margin-bottom:20px;">
+    <button onclick="window.print()">Print / Save as PDF</button>
+    <button onclick="exportWord()">Export Word</button>
+    <a href="index.html">← Back to Portfolio</a>
+  </div>
+
+  <div id="cvContent"></div>
+
+  <script src="data.js"></script>
+  <script src="cv.js"></script>
+</body>
+</html>
