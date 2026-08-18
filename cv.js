@@ -1,10 +1,17 @@
 function renderCV() {
   const d = portfolioData;
+  const profile = d.profile || {};
+  const name = profile.name || "Mohammed Ragab Al‑Attar";
+  const title = profile.title || "Reliability & Rotating Equipment Engineer";
+  const email = profile.email || "mohammed.ragab.hamad@outlook.com";
+  const phone = profile.phone || "+20 109 359 7338";
+  const location = profile.location || "Cairo, Egypt";
+
   let html = `
     <div class="cv-header">
-      <h1>${d.profile?.name || "Mohammed Ragab Al‑Attar"}</h1>
-      <p>${d.profile?.title || "Reliability & Rotating Equipment Engineer"}</p>
-      <p>${d.profile?.email || "mohammed.ragab.hamad@outlook.com"} | ${d.profile?.phone || "+20 109 359 7338"} | ${d.profile?.location || "Cairo, Egypt"}</p>
+      <h1>${name}</h1>
+      <p>${title}</p>
+      <p>${email} &nbsp;|&nbsp; ${phone} &nbsp;|&nbsp; ${location}</p>
     </div>
   `;
 
@@ -21,13 +28,13 @@ function renderCV() {
   html += `</div>`;
 
   // Education
-  if (d.education) {
+  if (d.education && d.education.length) {
     html += `<div class="cv-section"><h2>Education</h2>`;
     d.education.forEach(edu => {
       html += `
         <div class="cv-item">
           <h3>${edu.degree}</h3>
-          <div class="sub">${edu.institution} | ${edu.start} – ${edu.end} | ${edu.location || ''}</div>
+          <div class="sub">${edu.institution} | ${edu.start} – ${edu.end}${edu.location ? ' | ' + edu.location : ''}</div>
           ${edu.description ? `<p>${edu.description}</p>` : ''}
         </div>`;
     });
@@ -55,9 +62,8 @@ function renderCV() {
   html += `</div>`;
 
   // Certifications
-  if (d.certificates) {
-    html += `<div class="cv-section"><h2>Certifications</h2>`;
-    html += `<ul>`;
+  if (d.certificates && d.certificates.length) {
+    html += `<div class="cv-section"><h2>Certifications</h2><ul>`;
     d.certificates.forEach(c => {
       html += `<li><strong>${c.title}</strong> — ${c.provider} (${c.year})</li>`;
     });
@@ -70,8 +76,8 @@ function renderCV() {
     <p><strong>Tools & Technologies:</strong> ${d.tools.join(', ')}</p>
   </div>`;
 
-  // Awards
-  if (d.awards) {
+  // Awards & Honors
+  if (d.awards && d.awards.length) {
     html += `<div class="cv-section"><h2>Awards & Honors</h2><ul>`;
     d.awards.forEach(a => {
       html += `<li><strong>${a.title}</strong> — ${a.issuer} (${a.year})</li>`;
@@ -80,7 +86,7 @@ function renderCV() {
   }
 
   // Languages
-  if (d.languages) {
+  if (d.languages && d.languages.length) {
     html += `<div class="cv-section"><h2>Languages</h2><ul>`;
     d.languages.forEach(l => {
       html += `<li>${l.language}: ${l.proficiency}</li>`;
@@ -88,7 +94,7 @@ function renderCV() {
     html += `</ul></div>`;
   }
 
-  // Publications (if any)
+  // Publications
   if (d.publications && d.publications.length) {
     html += `<div class="cv-section"><h2>Publications</h2><ul>`;
     d.publications.forEach(pub => {
