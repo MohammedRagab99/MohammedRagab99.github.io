@@ -271,75 +271,67 @@
           <!-- Orbital visualization -->
           <!-- Interactive RagabVerse Logo -->
         <div class="ragabverse-radar" id="ragabverseRadar">
-          <canvas id="energyCanvas" class="energy-canvas" width="420" height="520"></canvas>
+          <canvas id="energyCanvas" class="energy-canvas" width="424" height="420"></canvas>
           
-          <svg class="logo-svg" viewBox="0 0 420 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="redGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#ff3b30" stop-opacity="1"/>
-                <stop offset="100%" stop-color="#ff3b30" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="greenGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#34c759" stop-opacity="1"/>
-                <stop offset="100%" stop-color="#34c759" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="blueGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#007aff" stop-opacity="1"/>
-                <stop offset="100%" stop-color="#007aff" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="whiteGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-        
-            <!-- Tech/Compass Background Elements -->
-            <g opacity="0.25">
-              <circle class="tech-ring" cx="210" cy="260" r="110" stroke="#ffffff" stroke-width="1" stroke-dasharray="4 6" />
-              <circle class="tech-ring-reverse" cx="210" cy="260" r="130" stroke="#ffffff" stroke-width="1" stroke-dasharray="2 10 8 4" />
-              <circle cx="210" cy="260" r="150" stroke="#ffffff" stroke-width="0.5" stroke-dasharray="1 5" />
-              <line x1="210" y1="70" x2="210" y2="450" stroke="#ffffff" stroke-width="0.5" stroke-dasharray="2 4" />
-              <line x1="80" y1="260" x2="340" y2="260" stroke="#ffffff" stroke-width="0.5" stroke-dasharray="2 4" />
-            </g>
-        
-            <!-- Outer Frame Diamond Lines -->
-            <path d="M 210 120 L 100 240 L 210 380 L 320 240 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+            <svg class="logo-svg" viewBox="0 0 424 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="glowRed" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <filter id="glowBlue" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <filter id="glowWhite" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
             
-            <!-- Top Arrow Pointer -->
-            <g class="glow-green">
-              <path d="M 210 50 L 222 80 L 210 72 L 198 80 Z" fill="var(--color-green)" />
-            </g>
-        
-            <!-- Bottom Arrow Pointer -->
-            <g class="glow-white">
-              <path d="M 210 460 L 222 430 L 210 438 L 198 430 Z" fill="var(--color-white)" />
-            </g>
-        
-            <!-- Node Circles & Rings -->
-            <!-- Top Node (Green) -->
-            <g class="node glow-green" id="node-green" data-domain="energy" onclick="activateDomain('energy')">
-              <circle cx="210" cy="120" r="28" fill="rgba(8, 9, 12, 0.9)" stroke="var(--color-green)" stroke-width="4" />
-              <circle cx="210" cy="120" r="14" fill="var(--color-green)" opacity="0.2" />
-            </g>
-        
-            <!-- Left Node (Red) -->
-            <g class="node glow-red" id="node-red" data-domain="reliability" onclick="activateDomain('reliability')">
-              <circle cx="100" cy="240" r="28" fill="rgba(8, 9, 12, 0.9)" stroke="var(--color-red)" stroke-width="4" />
-              <circle cx="100" cy="240" r="14" fill="var(--color-red)" opacity="0.2" />
-            </g>
-        
-            <!-- Right Node (Blue) -->
-            <g class="node glow-blue" id="node-blue" data-domain="computation" onclick="activateDomain('computation')">
-              <circle cx="320" cy="240" r="28" fill="rgba(8, 9, 12, 0.9)" stroke="var(--color-blue)" stroke-width="4" />
-              <circle cx="320" cy="240" r="14" fill="var(--color-blue)" opacity="0.2" />
-            </g>
-        
-            <!-- Bottom Source Node (White Origin) -->
-            <g class="node glow-white" id="node-white">
-              <circle cx="210" cy="380" r="26" fill="rgba(8, 9, 12, 0.9)" stroke="var(--color-white)" stroke-width="4" />
-              <circle cx="210" cy="380" r="12" fill="var(--color-white)" opacity="0.3" />
-            </g>
-          </svg>
+              <!-- Background Technical Grid -->
+              <g opacity="0.18">
+                <circle cx="212" cy="210" r="105" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6" />
+                <circle cx="212" cy="210" r="130" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 8" />
+                <line x1="212" y1="30" x2="212" y2="390" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.5" />
+                <line x1="60" y1="210" x2="364" y2="210" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.5" />
+              </g>
+            
+              <!-- Outer Frame -->
+              <path d="M 212 90 L 102 210 L 212 330 L 322 210 Z" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+            
+              <!-- Arrow Pointers -->
+              <path d="M 212 35 L 222 62 L 212 55 L 202 62 Z" fill="var(--color-green)" filter="url(#glowGreen)" />
+              <path d="M 212 385 L 222 358 L 212 365 L 202 358 Z" fill="var(--color-white)" filter="url(#glowWhite)" />
+            
+              <!-- Node: Green (Energy) -->
+              <g class="node glow-green" id="node-green" data-domain="energy" data-stream="green" filter="url(#glowGreen)" onclick="activateDomain('energy')">
+                <circle cx="212" cy="90" r="22" fill="var(--surface)" stroke="var(--color-green)" stroke-width="3.5" />
+                <circle cx="212" cy="90" r="10" fill="var(--color-green)" opacity="0.4" />
+              </g>
+            
+              <!-- Node: Red (Reliability) -->
+              <g class="node glow-red" id="node-red" data-domain="reliability" data-stream="red" filter="url(#glowRed)" onclick="activateDomain('reliability')">
+                <circle cx="102" cy="210" r="22" fill="var(--surface)" stroke="var(--color-red)" stroke-width="3.5" />
+                <circle cx="102" cy="210" r="10" fill="var(--color-red)" opacity="0.4" />
+              </g>
+            
+              <!-- Node: Blue (Computation) -->
+              <g class="node glow-blue" id="node-blue" data-domain="computation" data-stream="blue" filter="url(#glowBlue)" onclick="activateDomain('computation')">
+                <circle cx="322" cy="210" r="22" fill="var(--surface)" stroke="var(--color-blue)" stroke-width="3.5" />
+                <circle cx="322" cy="210" r="10" fill="var(--color-blue)" opacity="0.4" />
+              </g>
+            
+              <!-- Node: White (Origin) -->
+              <g class="node glow-white" id="node-white" data-stream="white" filter="url(#glowWhite)">
+                <circle cx="212" cy="330" r="20" fill="var(--surface)" stroke="#ffffff" stroke-width="3.5" />
+                <circle cx="212" cy="330" r="9" fill="#ffffff" opacity="0.6" />
+              </g>
+            </svg>
         </div>
 
           <!-- Stats (animated) -->
