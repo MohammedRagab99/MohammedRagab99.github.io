@@ -263,101 +263,119 @@
 
         <!-- Hero visual -->
         <div class="hero-card reveal delay-2" aria-label="Engineering profile overview">
-          <div class="hero-card-top">
-            <span>ENGINEERING PROFILE</span>
-            <span class="pill">Reliability Focus</span>
-          </div>
+  <div class="hero-card-top">
+    <span>ENGINEERING PROFILE</span>
+    <span class="pill">Reliability Focus</span>
+  </div>
 
-          <!-- Orbital visualization -->
-          <!-- Interactive RagabVerse Logo -->
-        <div class="ragabverse-radar" id="ragabverseRadar">
-          <canvas id="energyCanvas" class="energy-canvas" width="424" height="420"></canvas>
-          
-            <svg class="logo-svg" viewBox="0 0 424 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <filter id="glowRed" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <filter id="glowBlue" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <filter id="glowWhite" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="8" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-            
-              <!-- Background Technical Grid -->
-              <g opacity="0.18">
-                <circle cx="212" cy="210" r="105" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6" />
-                <circle cx="212" cy="210" r="130" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 8" />
-                <line x1="212" y1="30" x2="212" y2="390" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.5" />
-                <line x1="60" y1="210" x2="364" y2="210" stroke="currentColor" stroke-dasharray="2 4" stroke-width="0.5" />
-              </g>
-            
-              <!-- Outer Frame -->
-              <path d="M 212 90 L 102 210 L 212 330 L 322 210 Z" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-            
-              <!-- Arrow Pointers -->
-              <path d="M 212 35 L 222 62 L 212 55 L 202 62 Z" fill="var(--color-green)" filter="url(#glowGreen)" />
-              <path d="M 212 385 L 222 358 L 212 365 L 202 358 Z" fill="var(--color-white)" filter="url(#glowWhite)" />
-            
-              <!-- Node: Green (Energy) -->
-              <g class="node glow-green" id="node-green" data-domain="energy" data-stream="green" filter="url(#glowGreen)" onclick="activateDomain('energy')">
-                <circle cx="212" cy="90" r="22" fill="var(--surface)" stroke="var(--color-green)" stroke-width="3.5" />
-                <circle cx="212" cy="90" r="10" fill="var(--color-green)" opacity="0.4" />
-              </g>
-            
-              <!-- Node: Red (Reliability) -->
-              <g class="node glow-red" id="node-red" data-domain="reliability" data-stream="red" filter="url(#glowRed)" onclick="activateDomain('reliability')">
-                <circle cx="102" cy="210" r="22" fill="var(--surface)" stroke="var(--color-red)" stroke-width="3.5" />
-                <circle cx="102" cy="210" r="10" fill="var(--color-red)" opacity="0.4" />
-              </g>
-            
-              <!-- Node: Blue (Computation) -->
-              <g class="node glow-blue" id="node-blue" data-domain="computation" data-stream="blue" filter="url(#glowBlue)" onclick="activateDomain('computation')">
-                <circle cx="322" cy="210" r="22" fill="var(--surface)" stroke="var(--color-blue)" stroke-width="3.5" />
-                <circle cx="322" cy="210" r="10" fill="var(--color-blue)" opacity="0.4" />
-              </g>
-            
-              <!-- Node: White (Origin) -->
-              <g class="node glow-white" id="node-white" data-stream="white" filter="url(#glowWhite)">
-                <circle cx="212" cy="330" r="20" fill="var(--surface)" stroke="#ffffff" stroke-width="3.5" />
-                <circle cx="212" cy="330" r="9" fill="#ffffff" opacity="0.6" />
-              </g>
-            </svg>
-        </div>
+  <!-- Interactive Schematic Dashboard -->
+  <div class="schematic-dashboard">
+    <div class="grid-bg"></div>
 
-          <!-- Stats (animated) -->
-          <div class="mini-stats">
-            <div>
-              <strong id="statYears">3+</strong>
-              <span>Years Industry</span>
-            </div>
-            <div>
-              <strong id="statProjects">8+</strong>
-              <span>Project Areas</span>
-            </div>
-            <div>
-              <strong id="statSkills">20+</strong>
-              <span>Technical Skills</span>
-            </div>
-          </div>
+    <div class="diagram-container">
+      <canvas id="streamCanvas" width="464" height="440"></canvas>
 
-          <!-- Engineering status -->
-          <div class="engineering-status">
-            <span class="status-line"></span>
-            <span>SYSTEM STATUS</span>
-            <strong>ENGINEERING MODE: ACTIVE</strong>
-          </div>
-        </div>
+      <svg class="overlay-svg" viewBox="0 0 464 440" fill="none">
+        <!-- defs for glow filters -->
+        <defs>
+          <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="glow-white" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+
+        <!-- Technical Grid & Compass Lines -->
+        <g opacity="0.4">
+          <circle cx="232" cy="210" r="110" stroke="#cbd5e1" stroke-dasharray="3 5" stroke-width="1" />
+          <circle cx="232" cy="210" r="135" stroke="#cbd5e1" stroke-dasharray="2 8" stroke-width="0.8" />
+          <line x1="232" y1="30" x2="232" y2="390" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
+          <line x1="80" y1="210" x2="384" y2="210" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
+          <path d="M 232 90 L 112 210 L 232 330 L 352 210 Z" stroke="#cbd5e1" stroke-width="1.2" opacity="0.6" />
+        </g>
+
+        <!-- Arrows -->
+        <path d="M 232 30 L 242 55 L 232 48 L 222 55 Z" fill="var(--color-green)" filter="url(#glow-green)" />
+        <path d="M 232 390 L 242 365 L 232 372 L 222 365 Z" fill="var(--color-white)" filter="url(#glow-white)" />
+
+        <!-- Technical Callout Text -->
+        <text x="300" y="115" class="schematic-text">SIGNAL FLOW SCHEMATIC rev. 3</text>
+        <text x="300" y="315" class="schematic-text">INTELLIGENCE LAYER rev. 1</text>
+
+        <!-- Top Node (Green) -->
+        <g class="node-group" data-node="green" filter="url(#glow-green)">
+          <circle cx="232" cy="90" r="24" fill="#ffffff" stroke="var(--color-green)" stroke-width="4" />
+          <circle cx="232" cy="90" r="12" fill="var(--color-green)" opacity="0.8" />
+        </g>
+        <text x="268" y="86" class="annotation">PRIMARY INPUT:</text>
+        <text x="268" y="98" class="annotation-sub">Reliability Protocol V4.2</text>
+
+        <!-- Left Node (Red) -->
+        <g class="node-group" data-node="red" filter="url(#glow-red)">
+          <circle cx="112" cy="210" r="24" fill="#ffffff" stroke="var(--color-red)" stroke-width="4" />
+          <circle cx="112" cy="210" r="12" fill="var(--color-red)" opacity="0.8" />
+        </g>
+        <text x="18" y="206" class="annotation" text-anchor="start">DATA ACQUISITION</text>
+        <text x="18" y="218" class="annotation-sub" text-anchor="start">(RED STREAM)</text>
+
+        <!-- Right Node (Blue) -->
+        <g class="node-group" data-node="blue" filter="url(#glow-blue)">
+          <circle cx="352" cy="210" r="24" fill="#ffffff" stroke="var(--color-blue)" stroke-width="4" />
+          <circle cx="352" cy="210" r="12" fill="var(--color-blue)" opacity="0.8" />
+        </g>
+        <text x="388" y="206" class="annotation">ANALYSIS</text>
+        <text x="388" y="218" class="annotation-sub">(BLUE STREAM)</text>
+
+        <!-- Center Synthesis Node -->
+        <circle cx="232" cy="210" r="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+        <circle cx="232" cy="210" r="6" fill="#64748b" />
+        <text x="232" y="184" class="annotation" text-anchor="middle">SYNTHESIS HUB</text>
+
+        <!-- Bottom Output Node (White/Silver) -->
+        <g class="node-group" data-node="white" filter="url(#glow-white)">
+          <circle cx="232" cy="330" r="22" fill="#ffffff" stroke="var(--color-white)" stroke-width="4" />
+          <circle cx="232" cy="330" r="10" fill="var(--color-white)" opacity="0.8" />
+        </g>
+        <text x="268" y="326" class="annotation">SYSTEM OUTPUT:</text>
+        <text x="268" y="338" class="annotation-sub">Optimized Operations</text>
+      </svg>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="mini-stats">
+      <div>
+        <strong id="statYears">3+</strong>
+        <span>Years Industry</span>
       </div>
+      <div>
+        <strong id="statProjects">8+</strong>
+        <span>Project Areas</span>
+      </div>
+      <div>
+        <strong id="statSkills">20+</strong>
+        <span>Technical Skills</span>
+      </div>
+    </div>
+
+    <!-- Engineering status -->
+    <div class="engineering-status">
+      <span class="status-line"></span>
+      <span>SYSTEM STATUS</span>
+      <strong>ENGINEERING MODE: ACTIVE</strong>
+    </div>
+  </div>
+</div>
 
       <!-- Scroll indicator -->
       <a class="scroll-indicator" href="#about" aria-label="Scroll to About section">
