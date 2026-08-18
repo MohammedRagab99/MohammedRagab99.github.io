@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
      // Initialise the interactive radar and activate default domain
   initEnergyStream();
   activateDomain('reliability');
+  initSchematicDashboard();
 });
 
 /* ---------- Data Rendering ---------- */
@@ -1147,7 +1148,133 @@ function activateDomain(domain) {
   const activeCard = document.querySelector(`.domain-card[data-target="${domain}"]`);
   if (activeCard) activeCard.style.borderColor = info.color;
 }
+/* ─── Interactive Schematic Dashboard ─── */
+function initSchematicDashboard() {
+  const canvas = document.getElementById('streamCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
 
+  const nodes = {
+    top:    { x: 232, y: 90,  color: 'rgb(16, 185, 129)' },
+    left:   { x: 112, y: 210, color: 'rgb(239, 68, 68)' },
+    right:  { x: 352, y: 210, color: 'rgb(59, 130, 246)' },
+    bottom: { x: 232, y: 330, color: 'rgb(71, 85, 105)' }
+  };
+
+  let frame = 0;
+  let activeNode = null;
+
+  // Particle class
+  class Particle {
+    constructor(startNode, color) {
+      this.start = startNode;
+      this.end = nodes.bottom;
+      this.color = color;
+      this.progress = Math.random();
+      this.speed = 0.006 + Math.random() * 0.01;
+      this.amplitude = (Math.random() - 0.5) * 16;
+    }
+    update() {
+      this.progress += this.speed;
+      if (this.progress >= 1) this.progress = 0;
+    }
+    draw() {
+      const t = this.progress;
+      const x = this.start.x + (this.end.x - this.start.x) * t;
+      const y = this.start.y + (this.end.y - this.start.y) * t;
+      const dx = this.end.x - this.start.x;
+      const dy = this.end.y - this.start.y;
+      const len = Math.sqrt(dx * dx + dy * dy) || 1;
+      const normX = -dy / len;
+      const normY = dx / len;
+      const wave = Math.sin(t * Math.PI * 3 + frame * 0.1) * this.amplitude * Math.sin(t * Math.PI);
+
+      ctx.beginPath();
+      ctx.arc(x + normX * wave, y + normY * wave, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  const particles = [
+    ...Array.from({ length: 15 }, () => new Particle(nodes.top, nodes.top.color)),
+    ...Array.from({ length: 15 }, () => new Particle(nodes.left, nodes.left.color)),
+    ...Array.from({ length: 15 }, () => new Particle(nodes.right, nodes.right.color))
+  ];
+
+  function drawStream(start, end, colorHex, opacity, waveFreq, speed, amp) {
+    ctx.beginPath();
+    ctx.strokeStyle = colorHex;
+    ctx.globalAlpha = opacity;
+    ctx.lineWidth = 2.5;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = colorHex;
+
+    const steps = 60;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = start.x + (end.x - start.x) * t;
+      const y = start.y + (end.y - start.y) * t;
+      const dx = end.x - start.x;
+      const dy = end.y - start.y;
+      const len = Math.sqrt(dx * dx + dy * dy);
+      const normX = -dy / len;
+      const normY = dx / len;
+      const envelope = Math.sin(t * Math.PI);
+      const wave = Math.sin(t * Math.PI * waveFreq + frame * speed) * amp * envelope;
+      const px = x + normX * wave;
+      const py = y + normY * wave;
+
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1.0;
+    ctx.shadowBlur = 0;
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frame += 0.04;
+
+    // Green Stream (Top -> Bottom)
+    const gAlpha = (!activeNode || activeNode === 'green') ? 0.9 : 0.2;
+    drawStream(nodes.top, nodes.bottom, nodes.top.color, gAlpha, 4, 1.2, 8);
+    drawStream(nodes.top, nodes.bottom, 'rgba(52, 211, 153, 0.8)', gAlpha * 0.7, 6, -1.5, 12);
+
+    // Red Stream (Left -> Bottom)
+    const rAlpha = (!activeNode || activeNode === 'red') ? 0.9 : 0.2;
+    drawStream(nodes.left, nodes.bottom, nodes.left.color, rAlpha, 3.5, 1.4, 10);
+    drawStream(nodes.left, nodes.bottom, 'rgba(248, 113, 113, 0.8)', rAlpha * 0.7, 5, -1.1, 14);
+
+    // Blue Stream (Right -> Bottom)
+    const bAlpha = (!activeNode || activeNode === 'blue') ? 0.9 : 0.2;
+    drawStream(nodes.right, nodes.bottom, nodes.right.color, bAlpha, 3.5, 1.3, 10);
+    drawStream(nodes.right, nodes.bottom, 'rgba(96, 165, 250, 0.8)', bAlpha * 0.7, 5.5, -1.2, 14);
+
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  // Node hover interactions
+  document.querySelectorAll('.node-group').forEach(node => {
+    node.addEventListener('mouseenter', () => {
+      activeNode = node.getAttribute('data-node');
+    });
+    node.addEventListener('mouseleave', () => {
+      activeNode = null;
+    });
+  });
+
+  animate();
+}
 /* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
