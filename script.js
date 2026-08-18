@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCharts();
   setupCopyEmail();
   setupKeyboardShortcuts();
+     // Initialise the interactive radar and activate default domain
+  initEnergyStream();
+  activateDomain('reliability');
 });
 
 /* ---------- Data Rendering ---------- */
