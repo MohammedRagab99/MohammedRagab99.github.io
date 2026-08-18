@@ -2068,3 +2068,93 @@ a {
   background: var(--surface);
   z-index: 2;
 }
+/* ─── MACHINERY GRID ─── */
+.machinery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 40px;
+}
+.machinery-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 20px 16px;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.machinery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+.machinery-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+.machinery-name {
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.machinery-family {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+/* ─── OVERHAUL TIMELINE ─── */
+.overhaul-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 50px;
+}
+.overhaul-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.overhaul-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+}
+.overhaul-phase {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.phase-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.overhaul-phase h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+.overhaul-activities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.overhaul-activities li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: .9rem;
+  color: var(--muted);
+}
+.overhaul-activities li::before {
+  content: "↳";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
