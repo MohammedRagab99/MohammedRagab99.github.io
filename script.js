@@ -644,6 +644,229 @@ function submitContactForm() {
   toast('Your email client should open now', 'ok');
 }
 
+/* ---------- Export Word (.docx) ---------- */
+
+async function exportWord() {
+  if (typeof docx === 'undefined') {
+    toast('Word export library not loaded', 'err');
+    return;
+  }
+
+  const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } = docx;
+  const d = portfolioData;
+
+  // Helper to create a paragraph
+  function p(text, options = {}) {
+    return new Paragraph({
+      children: [new TextRun({ text, ...options })],
+      ...options.paragraph
+    });
+  }
+
+  // Helper to create a heading
+  function h(text, level = HeadingLevel.HEADING_1) {
+    return new Paragraph({
+      text,
+      heading: level,
+      spacing: { before: 200, after: 100 }
+    });
+  }
+
+  const children = [];
+
+  // Header
+  children.push(new Paragraph({
+    children: [new TextRun({ text: d.profile?.name || "Mohammed Ragab Al‑Attar", bold: true, size: 56 })],
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 50 }
+  }));
+  children.push(new Paragraph({
+    children: [new TextRun({ text: d.profile?.title || "Reliability & Rotating Equipment Engineer", size: 36, color: "4A5270" })],
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 100 }
+  }));
+  children.push(new Paragraph({
+    children: [
+      new TextRun({ text: d.profile?.email || "mohammed.ragab.hamad@outlook.com", size: 22, color: "4A5270" }),
+      new TextRun({ text: "  |  ", size: 22 }),
+      new TextRun({ text: d.profile?.phone || "+20 109 359 7338", size: 22, color: "4A5270" }),
+      new TextRun({ text: "  |  ", size: 22 }),
+      new TextRun({ text: d.profile?.location || "Cairo, Egypt", size: 22, color: "4A5270" })
+    ],
+    alignment: AlignmentType.CENTER,
+    spacing: { after: 200 }
+  }));
+
+  // Experience
+  children.push(h("Experience"));
+  d.experience.forEach(exp => {
+    children.push(new Paragraph({
+      children: [
+        new TextRun({ text: exp.role, bold: true, size: 24 }),
+        new TextRun({ text: "  —  ", size: 24 }),
+        new TextRun({ text: exp.company, bold: true, size: 24 })
+      ],
+      spacing: { before: 120, after: 60 }
+    }));
+    children.push(new Paragraph({
+      children: [new TextRun({ text: exp.date, size: 20, color: "4A5270" })],
+      spacing: { after: 80 }
+    }));
+    exp.bullets.forEach(b => {
+      children.push(new Paragraph({
+        children: [new TextRun({ text: `• ${b}`, size: 22 })],
+        indent: { left: 400 },
+        spacing: { after: 40 }
+      }));
+    });
+  });
+
+  // Education
+  if (d.education && d.education.length) {
+    children.push(h("Education"));
+    d.education.forEach(edu => {
+      children.push(new Paragraph({
+        children: [
+          new TextRun({ text: edu.degree, bold: true, size: 24 }),
+          new TextRun({ text: "  —  ", size: 24 }),
+          new TextRun({ text: edu.institution, size: 24 })
+        ],
+        spacing: { before: 100, after: 40 }
+      }));
+      children.push(new Paragraph({
+        children: [new TextRun({ text: `${edu.start} – ${edu.end}${edu.location ? ' | ' + edu.location : ''}`, size: 20, color: "4A5270" })],
+        spacing: { after: 60 }
+      }));
+      if (edu.description) {
+        children.push(new Paragraph({
+          children: [new TextRun({ text: edu.description, size: 22 })],
+          indent: { left: 200 },
+          spacing: { after: 60 }
+        }));
+      }
+    });
+  }
+
+  // Research
+  children.push(h("Research"));
+  children.push(new Paragraph({
+    children: [new TextRun({ text: d.research.title, bold: true, size: 24 })],
+    spacing: { after: 40 }
+  }));
+  children.push(new Paragraph({
+    children: [new TextRun({ text: d.research.intro, size: 22 })],
+    spacing: { after: 80 }
+  }));
+  d.research.bullets.forEach(b => {
+    children.push(new Paragraph({
+      children: [new TextRun({ text: `• ${b}`, size: 22 })],
+      indent: { left: 400 },
+      spacing: { after: 40 }
+    }));
+  });
+
+  // Projects (selected)
+  children.push(h("Selected Projects"));
+  d.projects.forEach(proj => {
+    children.push(new Paragraph({
+      children: [
+        new TextRun({ text: proj.title, bold: true, size: 24 }),
+        new TextRun({ text: `  (${proj.tag})`, size: 20, color: "4A5270" })
+      ],
+      spacing: { before: 100, after: 40 }
+    }));
+    children.push(new Paragraph({
+      children: [new TextRun({ text: proj.description, size: 22 })],
+      spacing: { after: 80 }
+    }));
+  });
+
+  // Certifications
+  if (d.certificates && d.certificates.length) {
+    children.push(h("Certifications"));
+    d.certificates.forEach(c => {
+      children.push(new Paragraph({
+        children: [
+          new TextRun({ text: "• ", size: 22 }),
+          new TextRun({ text: c.title, bold: true, size: 22 }),
+          new TextRun({ text: ` — ${c.provider} (${c.year})`, size: 22 })
+        ],
+        indent: { left: 200 },
+        spacing: { after: 40 }
+      }));
+    });
+  }
+
+  // Skills
+  children.push(h("Skills"));
+  children.push(new Paragraph({
+    children: [new TextRun({ text: "Core Competencies: ", bold: true, size: 22 }), new TextRun({ text: d.skills.map(s => s.name).join(' • '), size: 22 })],
+    spacing: { after: 60 }
+  }));
+  children.push(new Paragraph({
+    children: [new TextRun({ text: "Tools & Technologies: ", bold: true, size: 22 }), new TextRun({ text: d.tools.join(', '), size: 22 })],
+    spacing: { after: 100 }
+  }));
+
+  // Awards
+  if (d.awards && d.awards.length) {
+    children.push(h("Awards & Honors"));
+    d.awards.forEach(a => {
+      children.push(new Paragraph({
+        children: [
+          new TextRun({ text: "• ", size: 22 }),
+          new TextRun({ text: a.title, bold: true, size: 22 }),
+          new TextRun({ text: ` — ${a.issuer} (${a.year})`, size: 22 })
+        ],
+        indent: { left: 200 },
+        spacing: { after: 40 }
+      }));
+    });
+  }
+
+  // Languages
+  if (d.languages && d.languages.length) {
+    children.push(h("Languages"));
+    d.languages.forEach(l => {
+      children.push(new Paragraph({
+        children: [new TextRun({ text: `• ${l.language}: ${l.proficiency}`, size: 22 })],
+        indent: { left: 200 },
+        spacing: { after: 40 }
+      }));
+    });
+  }
+
+  // Publications (if any)
+  if (d.publications && d.publications.length) {
+    children.push(h("Publications"));
+    d.publications.forEach(pub => {
+      children.push(new Paragraph({
+        children: [new TextRun({ text: `• ${pub.title} — ${pub.journal} (${pub.year})`, size: 22 })],
+        indent: { left: 200 },
+        spacing: { after: 40 }
+      }));
+    });
+  }
+
+  // Build and download
+  const doc = new Document({
+    sections: [{ properties: {}, children }]
+  });
+
+  try {
+    const blob = await Packer.toBlob(doc);
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Mohammed-Ragab-CV.docx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast('Word document downloaded', 'ok');
+  } catch (err) {
+    toast('Failed to generate DOCX', 'err');
+  }
+}
+
 /* ---------- Chart.js Visualizations ---------- */
 
 function setupCharts() {
