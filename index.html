@@ -727,7 +727,13 @@
   </div>
 
   <!-- Back to top -->
-  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg class="progress-ring" width="36" height="36">
+    <circle class="progress-ring__bg" cx="18" cy="18" r="16"/>
+    <circle class="progress-ring__fg" cx="18" cy="18" r="16"/>
+  </svg>
+  <span class="back-to-top__arrow">↑</span>
+</button>
  
   <!-- DOCX export library -->
   <script src="https://cdn.jsdelivr.net/npm/docx@7.8.0/build/index.min.js"></script>
