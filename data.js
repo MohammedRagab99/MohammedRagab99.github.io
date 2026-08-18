@@ -442,5 +442,53 @@ const portfolioData = {
     "ANSYS", "SolidWorks", "AutoCAD", "Revit MEP", "Inventor",
     "Aspen Plus", "HOMER Pro", "EnergyPLAN", "WANDA",
     "LabVIEW", "PLC / Ladder Logic", "Primavera P6", "Excel"
-  ]
+  ],
+
+  // Add to portfolioData object
+education: [
+  {
+    degree: "Master of Engineering (MEng), Mechanical Engineering",
+    institution: "Ain Shams University",
+    start: "2022",
+    end: "2024",
+    location: "Cairo, Egypt",
+    description: "Thesis: Development of a decentralized agricultural waste to solid fuel conversion system."
+  },
+  {
+    degree: "Bachelor of Engineering (BEng), Mechanical Engineering",
+    institution: "Ain Shams University",
+    start: "2017",
+    end: "2022",
+    location: "Cairo, Egypt"
+  }
+],
+
+publications: [
+  {
+    title: "",
+    journal: "",
+    year: "",
+    link: ""
+  }
+],
+
+awards: [
+  {
+    title: "First Rank: Mechanics Teams",
+    issuer: "Egyptian Space Agency",
+    year: "2021"
+  },
+  {
+    title: "Best Member Powertrain: Formula Student UK'21",
+    issuer: "ASU Racing Team",
+    year: "2021"
+  }
+],
+
+languages: [
+  { language: "Arabic", proficiency: "Native" },
+  { language: "English", proficiency: "Fluent" },
+  { language: "French", proficiency: "Basic" }
+]
 };
+
