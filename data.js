@@ -100,7 +100,116 @@ const portfolioData = {
       repo: "https://github.com/MohammedRagab99"
     }
   ],
+  
+// ─── ROTATING MACHINERY ───
+machinery: [
+  // Pumps
+  { name: "Centrifugal Pump", family: "Pumps", category: "pumps" },
+  { name: "Diaphragm Pump (AODD)", family: "Pumps", category: "pumps" },
+  { name: "Gear / Lube Oil Pump", family: "Pumps", category: "pumps" },
+  { name: "Liquid Ring Vacuum Pump", family: "Pumps", category: "pumps" },
+  { name: "Metering / Dosing Pump", family: "Pumps", category: "pumps" },
+  { name: "Reciprocating Pump", family: "Pumps", category: "pumps" },
+  { name: "Screw / Rotary Pumps", family: "Pumps", category: "pumps" },
+  { name: "General Pump", family: "Pumps", category: "pumps" },
 
+  // Compressors
+  { name: "Centrifugal Compressor", family: "Compressors", category: "compressors" },
+  { name: "Reciprocating Compressor", family: "Compressors", category: "compressors" },
+  { name: "General Compressor", family: "Compressors", category: "compressors" },
+  { name: "Positive Displacement Blower", family: "Compressors", category: "compressors" },
+  { name: "Gas Booster", family: "Compressors", category: "compressors" },
+
+  // Fans & Blowers
+  { name: "Axial Fan", family: "Fans & Blowers", category: "fans-blowers" },
+  { name: "Centrifugal Fan", family: "Fans & Blowers", category: "fans-blowers" },
+  { name: "Forced Draft Fan", family: "Fans & Blowers", category: "fans-blowers" },
+  { name: "Exhaust Fan", family: "Fans & Blowers", category: "fans-blowers" },
+  { name: "General Fan", family: "Fans & Blowers", category: "fans-blowers" },
+  { name: "Fan Air Intake Device", family: "Fans & Blowers", category: "fans-blowers" },
+  { name: "Silencer / Acoustic Enclosure", family: "Fans & Blowers", category: "fans-blowers" },
+
+  // Turbines & Drivers
+  { name: "Steam Turbine", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Diesel Engine", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Emergency Generator", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Gearbox", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Hydraulic Motor", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Hydraulic Governor", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Mechanical Governor", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Overspeed Device", family: "Turbines & Drivers", category: "turbines-drivers" },
+  { name: "Hydraulic Power Unit", family: "Turbines & Drivers", category: "turbines-drivers" },
+
+  // Specialty / Auxiliary
+  { name: "Accumulator", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Agitator / Mixer", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Dampeners", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Filters", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Ignition Chamber", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Mist Eliminator", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Oil Skimmer", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Rotary Slide Valve", family: "Specialty / Auxiliary", category: "specialty-auxiliary" },
+  { name: "Steam Ejector", family: "Specialty / Auxiliary", category: "specialty-auxiliary" }
+],
+
+// ─── MAJOR OVERHAUL / TURNAROUND ───
+majorOverhaul: [
+  {
+    phase: "Planning",
+    activities: [
+      "Scope definition & resource planning",
+      "Criticality assessment",
+      "Spare parts procurement",
+      "Tooling & rigging preparation"
+    ]
+  },
+  {
+    phase: "Inspection & Disassembly",
+    activities: [
+      "Pre-overhaul baseline measurements",
+      "Dimensional & visual inspection",
+      "Component tagging & documentation",
+      "Non-destructive testing (NDT) coordination"
+    ]
+  },
+  {
+    phase: "Repair & Replacement",
+    activities: [
+      "Bearing replacement & fitting",
+      "Seal & gasket renewal",
+      "Shaft alignment checks",
+      "Component machining / refurbishment"
+    ]
+  },
+  {
+    phase: "Reliability Assessment",
+    activities: [
+      "Root cause analysis of failures",
+      "Clearance verification",
+      "Material condition review",
+      "Upgrade opportunities identification"
+    ]
+  },
+  {
+    phase: "Reassembly & Alignment",
+    activities: [
+      "Step-by-step reassembly per OEM specs",
+      "Laser alignment & soft foot correction",
+      "Torque verification",
+      "Lubrication system flush"
+    ]
+  },
+  {
+    phase: "Return to Service",
+    activities: [
+      "Pre-startup safety review (PSSR)",
+      "Performance testing & baseline data",
+      "Vibration / temperature trending",
+      "Handover documentation"
+    ]
+  }
+],
+  
   certificates: [
     // --- Field / Reliability ---
     {
@@ -181,15 +290,23 @@ const portfolioData = {
       category: "field",
       image: "assets/images/certificates/mrhamed@eprom.ercegypt.com-Final-Exam-Vibration-Training-Category-1-Istec-Vibration-Training-Category-1-Istec-Sphere.png"
     },
+    
+    {
+    title: "International Conference on Energy Systems (ICES 2025)",
+    provider: "Ain Shams University",
+    year: "2025",
+    category: "energy",
+    image: "assets/images/certificates/ices-2025-energy-systems-conference.png"
+    },
 
     // --- Oil & Gas ---
-    {
-      title: "Refinery Fundamentals Program for Postgraduates",
-      provider: "EPROM",
-      year: "2023",
-      category: "oil-gas",
-      image: "assets/images/certificates/Refinery Fundamentals Program for Postgraduates.png"
-    },
+  {
+    title: "Refinery Fundamentals Program for Postgraduates",
+    provider: "EPROM",
+    year: "2023",
+    category: "oil-gas",
+    image: "assets/images/certificates/Refinery Fundamentals Program.png"
+  }
 
     // --- Aerospace ---
     {
