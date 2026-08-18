@@ -985,31 +985,33 @@ function setupKeyboardShortcuts() {
 
 
 
-/* ---------- Interactive RagabVerse Radar ---------- */
+/* ---------- Interactive RagabVerse Radar (Digital Twin) ---------- */
 
 function initEnergyStream() {
   const canvas = document.getElementById('energyCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Anchor Coordinates for Nodes
+  // Anchor Coordinates for Nodes — match the 424x420 SVG
   const nodes = {
-    top: { x: 210, y: 120, color: '#34c759' },
-    left: { x: 100, y: 240, color: '#ff3b30' },
-    right: { x: 320, y: 240, color: '#007aff' },
-    bottom: { x: 210, y: 380, color: '#ffffff' }
+    top:    { x: 212, y: 90,  color: '#34c759' },
+    left:   { x: 102, y: 210, color: '#ff3b30' },
+    right:  { x: 322, y: 210, color: '#007aff' },
+    bottom: { x: 212, y: 330, color: '#ffffff' }
   };
 
   let step = 0;
+  let activeStream = null;
 
+  // Draw dynamic sine wave streams
   function drawStream(start, end, color, waveOffset, speed, amplitude) {
     ctx.beginPath();
     ctx.strokeStyle = color;
-    ctx.lineWidth = 2.5;
+    ctx.lineWidth = 2.2;
     ctx.shadowColor = color;
     ctx.shadowBlur = 12;
 
-    const points = 50;
+    const points = 60;
     for (let i = 0; i <= points; i++) {
       const t = i / points;
       const x = start.x + (end.x - start.x) * t;
@@ -1032,45 +1034,102 @@ function initEnergyStream() {
     ctx.stroke();
   }
 
+  // Particle system
+  const particles = [];
+  class Particle {
+    constructor(startNode, color) {
+      this.start = startNode;
+      this.end = nodes.bottom;
+      this.color = color;
+      this.progress = Math.random();
+      this.speed = 0.008 + Math.random() * 0.012;
+      this.amplitude = (Math.random() - 0.5) * 14;
+    }
+    update() {
+      this.progress += this.speed;
+      if (this.progress >= 1) this.progress = 0;
+    }
+    draw() {
+      const t = this.progress;
+      const x = this.start.x + (this.end.x - this.start.x) * t;
+      const y = this.start.y + (this.end.y - this.start.y) * t;
+
+      const dx = this.end.x - this.start.x;
+      const dy = this.end.y - this.start.y;
+      const len = Math.sqrt(dx*dx + dy*dy) || 1;
+      const normX = -dy / len;
+      const normY = dx / len;
+
+      const wave = Math.sin(t * Math.PI * 3 + step * 0.1) * this.amplitude * Math.sin(t * Math.PI);
+
+      ctx.beginPath();
+      ctx.arc(x + normX * wave, y + normY * wave, 2, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+    }
+  }
+
+  // Initialise particles
+  for (let i = 0; i < 20; i++) particles.push(new Particle(nodes.top, nodes.top.color));
+  for (let i = 0; i < 20; i++) particles.push(new Particle(nodes.left, nodes.left.color));
+  for (let i = 0; i < 20; i++) particles.push(new Particle(nodes.right, nodes.right.color));
+
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    step += 0.05;
+    step += 0.04;
 
+    // Green Stream (Top -> Bottom)
+    const gAlpha = (activeStream && activeStream !== 'green') ? 0.2 : 0.85;
     drawStream(nodes.top, nodes.bottom, 'rgba(52, 199, 89, 0.85)', 0, 1.2, 8);
-    drawStream(nodes.top, nodes.bottom, 'rgba(52, 199, 89, 0.4)', Math.PI, 0.8, 14);
+    drawStream(nodes.top, nodes.bottom, 'rgba(150, 255, 180, 0.6)', Math.PI, 0.8, 14);
 
+    // Red Stream (Left -> Bottom)
+    const rAlpha = (activeStream && activeStream !== 'red') ? 0.2 : 0.85;
     drawStream(nodes.left, nodes.bottom, 'rgba(255, 59, 48, 0.85)', 1, 1.5, 10);
-    drawStream(nodes.left, nodes.bottom, 'rgba(255, 59, 48, 0.4)', Math.PI + 1, 1.0, 16);
+    drawStream(nodes.left, nodes.bottom, 'rgba(255, 150, 150, 0.6)', Math.PI + 1, 1.0, 16);
 
+    // Blue Stream (Right -> Bottom)
+    const bAlpha = (activeStream && activeStream !== 'blue') ? 0.2 : 0.85;
     drawStream(nodes.right, nodes.bottom, 'rgba(0, 122, 255, 0.85)', 2, 1.3, 10);
-    drawStream(nodes.right, nodes.bottom, 'rgba(0, 122, 255, 0.4)', Math.PI + 2, 0.9, 16);
+    drawStream(nodes.right, nodes.bottom, 'rgba(150, 200, 255, 0.6)', Math.PI + 2, 0.9, 16);
+
+    // Draw particles
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
 
     requestAnimationFrame(animate);
   }
+
+  // Hover interactivity
+  document.querySelectorAll('.node').forEach(node => {
+    node.addEventListener('mouseenter', () => {
+      activeStream = node.getAttribute('data-stream');
+    });
+    node.addEventListener('mouseleave', () => {
+      activeStream = null;
+    });
+  });
 
   animate();
 }
 
 function activateDomain(domain) {
   const domainInfo = {
-    reliability: { title: 'Reliability', short: 'R', metrics: 'Vibration • RCA • CBM', color: 'var(--rgb-red)' },
-    energy: { title: 'Energy', short: 'G', metrics: 'Thermal • Biomass • Systems', color: 'var(--rgb-green)' },
-    computation: { title: 'Computation', short: 'B', metrics: 'Python • MATLAB • AI', color: 'var(--rgb-blue)' }
+    reliability:  { title: 'Reliability', short: 'R', metrics: 'Vibration • RCA • CBM', color: 'var(--rgb-red)' },
+    energy:       { title: 'Energy', short: 'G', metrics: 'Thermal • Biomass • Systems', color: 'var(--rgb-green)' },
+    computation:  { title: 'Computation', short: 'B', metrics: 'Python • MATLAB • AI', color: 'var(--rgb-blue)' }
   };
 
   const info = domainInfo[domain];
   if (!info) return;
 
-  // Update core text
-  const core = document.querySelector('.hero-card .core');
-  if (core) {
-    core.querySelector('span').textContent = info.short;
-    core.querySelector('small').textContent = info.title.toUpperCase();
-  }
-
   // Update status line
   const statusEl = document.querySelector('.engineering-status strong');
-  if (statusEl) statusEl.textContent = info.metrics;
+  if (statusEl) statusEl.textContent = `${info.title.toUpperCase()} MODE: ACTIVE`;
 
   // Highlight active node
   document.querySelectorAll('.node[data-domain]').forEach(n => n.classList.remove('active'));
@@ -1080,18 +1139,11 @@ function activateDomain(domain) {
     activeNode.style.color = info.color;
   }
 
-  // Highlight active domain card
+  // Highlight active domain card (if feature cards exist)
   document.querySelectorAll('.domain-card').forEach(c => c.style.borderColor = '');
   const activeCard = document.querySelector(`.domain-card[data-target="${domain}"]`);
   if (activeCard) activeCard.style.borderColor = info.color;
 }
-
-// Call this after DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-  initEnergyStream();
-  // Optionally activate reliability by default
-  activateDomain('reliability');
-});
 
 /* ---------- Utility: Escape HTML ---------- */
 
