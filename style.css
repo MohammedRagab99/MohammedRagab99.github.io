@@ -2417,3 +2417,49 @@ dialog.modal .modal-close:hover {
   --shadow-md: 0 8px 40px rgba(0,0,0,0.6);
   --shadow-lg: 0 20px 60px rgba(0,0,0,0.7);
 }
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  border-color: var(--accent);
+}
+.progress-ring__bg,
+.progress-ring__fg {
+  fill: none;
+  stroke-width: 3;
+}
+.progress-ring__bg { stroke: var(--bg-4); }
+.progress-ring__fg {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: 100.53; /* 2*pi*16 */
+  stroke-dashoffset: 100.53;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.1s linear;
+}
+.back-to-top__arrow {
+  position: absolute;
+  font-size: 16px;
+  color: var(--text);
+}
