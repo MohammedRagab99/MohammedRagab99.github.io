@@ -2,6 +2,7 @@
    RAGABVERSE — Consolidated Script
    Handles all dynamic rendering, navigation, theme, filters,
    modal, scroll UI, animations, and enhanced features.
+   Fully corrected & improved.
 ========================================================= */
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function renderExperience() {
   const root = $("#experienceList");
+  if (!root) return;
   root.innerHTML = portfolioData.experience.map(item => `
     <article class="timeline-item reveal">
       <div class="timeline-dot"></div>
@@ -56,10 +58,12 @@ function renderExperience() {
       </div>
     </article>
   `).join("");
+  observeNewReveals();
 }
 
 function renderExpertise() {
   const root = $("#expertiseGrid");
+  if (!root) return;
   root.innerHTML = portfolioData.expertise.map(item => `
     <article class="expertise-card reveal">
       <div class="expertise-icon">${item.icon}</div>
@@ -67,10 +71,12 @@ function renderExpertise() {
       <p>${escapeHtml(item.text)}</p>
     </article>
   `).join("");
+  observeNewReveals();
 }
 
 function renderProjects(filter = "all") {
   const root = $("#projectsGrid");
+  if (!root) return;
   const items = portfolioData.projects.filter(p => filter === "all" || p.category === filter);
   root.innerHTML = items.map(item => `
     <article class="project-card reveal">
@@ -94,20 +100,25 @@ function renderProjects(filter = "all") {
 
 function renderCertificates(filter = "all") {
   const root = $("#certificatesGrid");
+  if (!root) return;
   const items = portfolioData.certificates.filter(c => filter === "all" || c.category === filter);
-  root.innerHTML = items.map((item, index) => `
-    <article class="certificate-card reveal" data-index="${portfolioData.certificates.indexOf(item)}">
-      <div class="certificate-thumb">
-        <img src="${item.image}" alt="${escapeAttr(item.title)}" loading="lazy"
-             onerror="handleImageError(this, 'certificate', '${escapeAttr(item.image)}')">
-      </div>
-      <div class="certificate-body">
-        <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.provider)}</p>
-        <div class="certificate-meta"><span>${escapeHtml(item.year)}</span><span>VIEW ↗</span></div>
-      </div>
-    </article>
-  `).join("");
+  root.innerHTML = items.map((item, index) => {
+    const fallback = escapeAttr(item.image);
+    return `
+      <article class="certificate-card reveal" data-index="${portfolioData.certificates.indexOf(item)}">
+        <div class="certificate-thumb">
+          <img src="${item.image}" alt="${escapeAttr(item.title)}" loading="lazy"
+               data-fallback="${fallback}" onerror="handleImageError(this, 'certificate')">
+        </div>
+        <div class="certificate-body">
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.provider)}</p>
+          <div class="certificate-meta"><span>${escapeHtml(item.year)}</span><span>VIEW ↗</span></div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
   $$(".certificate-card", root).forEach(card => {
     card.addEventListener("click", () => openCertificate(Number(card.dataset.index)));
   });
@@ -116,7 +127,9 @@ function renderCertificates(filter = "all") {
 
 function renderResearch() {
   const r = portfolioData.research;
-  $("#researchContent").innerHTML = `
+  const root = $("#researchContent");
+  if (!root) return;
+  root.innerHTML = `
     <p><strong>${escapeHtml(r.title)}</strong></p>
     <p>${escapeHtml(r.intro)}</p>
     <ul class="research-list">
@@ -129,16 +142,61 @@ function renderResearch() {
 }
 
 function renderSkills() {
-  $("#skillBars").innerHTML = portfolioData.skills.map(s => `
-    <div class="skill-row reveal">
-      <div class="skill-head"><span>${escapeHtml(s.name)}</span><span>${s.value}%</span></div>
-      <div class="skill-bar"><div class="skill-fill" data-value="${s.value}"></div></div>
+  const barsRoot = $("#skillBars");
+  if (barsRoot) {
+    barsRoot.innerHTML = portfolioData.skills.map(s => `
+      <div class="skill-row reveal">
+        <div class="skill-head"><span>${escapeHtml(s.name)}</span><span>${s.value}%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-value="${s.value}"></div></div>
+      </div>
+    `).join("");
+  }
+
+  const toolsRoot = $("#toolCloud");
+  if (toolsRoot) {
+    toolsRoot.innerHTML = portfolioData.tools
+      .map(t => `<span class="tool">${escapeHtml(t)}</span>`)
+      .join("");
+  }
+  observeNewReveals();
+}
+
+function renderMachinery(filter = "all") {
+  const root = document.getElementById("machineryGrid");
+  if (!root) return;
+
+  const machinery = portfolioData.machinery || [];
+  const items = machinery.filter(m => filter === "all" || m.category === filter);
+
+  root.innerHTML = items.map(item => `
+    <div class="machinery-card reveal">
+      <span class="machinery-icon">${getMachineryIcon(item.category)}</span>
+      <div class="machinery-name">${escapeHtml(item.name)}</div>
+      <div class="machinery-family">${escapeHtml(item.family)}</div>
     </div>
   `).join("");
 
-  $("#toolCloud").innerHTML = portfolioData.tools
-    .map(t => `<span class="tool">${escapeHtml(t)}</span>`)
-    .join("");
+  observeNewReveals();
+}
+
+function renderOverhaul() {
+  const root = document.getElementById("overhaulTimeline");
+  if (!root) return;
+
+  const overhaul = portfolioData.majorOverhaul || [];
+  root.innerHTML = overhaul.map((phase, index) => `
+    <div class="overhaul-item reveal">
+      <div class="overhaul-phase">
+        <span class="phase-number">${String(index + 1).padStart(2, "0")}</span>
+        <h3>${escapeHtml(phase.phase)}</h3>
+      </div>
+      <ul class="overhaul-activities">
+        ${phase.activities.map(act => `<li>${escapeHtml(act)}</li>`).join("")}
+      </ul>
+    </div>
+  `).join("");
+
+  observeNewReveals();
 }
 
 /* ---------- Theme ---------- */
@@ -178,8 +236,9 @@ function setupTheme() {
 function setupNavigation() {
   const menuButton = $("#menuButton");
   const mobileNav = $("#mobileNav");
+  if (!menuButton || !mobileNav) return;
 
-  menuButton?.addEventListener("click", () => {
+  menuButton.addEventListener("click", () => {
     const isOpen = menuButton.getAttribute("aria-expanded") === "true";
     menuButton.setAttribute("aria-expanded", String(!isOpen));
     mobileNav.setAttribute("aria-hidden", String(isOpen));
@@ -218,6 +277,7 @@ function setupActiveNav() {
 /* ---------- Filters ---------- */
 
 function setupFilters() {
+  // Project filters
   $$(".filter[data-filter]").forEach(btn => {
     btn.addEventListener("click", () => {
       $$(".filter[data-filter]").forEach(b => {
@@ -229,20 +289,21 @@ function setupFilters() {
       renderProjects(btn.dataset.filter);
     });
   });
-   
-// Machinery filters
-$$("#machineryFilters .filter").forEach(btn => {
-  btn.addEventListener("click", () => {
-    $$("#machineryFilters .filter").forEach(b => {
-      b.classList.remove("active");
-      b.setAttribute("aria-pressed", "false");
+
+  // Machinery filters
+  $$("#machineryFilters .filter").forEach(btn => {
+    btn.addEventListener("click", () => {
+      $$("#machineryFilters .filter").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
+      renderMachinery(btn.dataset.machineryFilter);
     });
-    btn.classList.add("active");
-    btn.setAttribute("aria-pressed", "true");
-    renderMachinery(btn.dataset.machineryFilter);
   });
-});
-   
+
+  // Certificate filters
   $$(".filter[data-cert-filter]").forEach(btn => {
     btn.addEventListener("click", () => {
       $$(".filter[data-cert-filter]").forEach(b => {
@@ -261,8 +322,9 @@ $$("#machineryFilters .filter").forEach(btn => {
 function setupModal() {
   const modal = $("#certificateModal");
   const close = $("#modalClose");
+  if (!modal) return;
   close?.addEventListener("click", () => modal.close());
-  modal?.addEventListener("click", (event) => {
+  modal.addEventListener("click", (event) => {
     const rect = modal.getBoundingClientRect();
     const inside = event.clientX >= rect.left && event.clientX <= rect.right &&
                    event.clientY >= rect.top && event.clientY <= rect.bottom;
@@ -284,13 +346,14 @@ function openCertificate(index) {
 
 /* ---------- Image Fallback ---------- */
 
-window.handleImageError = function(img, type, fallbackText = "") {
+window.handleImageError = function(img, type) {
   const parent = img.parentElement;
+  const fallback = type === 'certificate' ? escapeHtml(img.dataset.fallback || '') : '';
   img.remove();
   if (type === "project") {
     parent.insertAdjacentHTML("beforeend", '<div class="placeholder">Add project image in assets/images/projects/</div>');
   } else if (type === "certificate") {
-    parent.insertAdjacentHTML("beforeend", `<div class="placeholder">Add certificate image:<br>${fallbackText}</div>`);
+    parent.insertAdjacentHTML("beforeend", `<div class="placeholder">${fallback || 'Certificate image unavailable'}</div>`);
   }
 };
 
@@ -355,7 +418,8 @@ function setupCursorGlow() {
 /* ---------- Footer Year ---------- */
 
 function setupYear() {
-  $("#currentYear").textContent = new Date().getFullYear();
+  const el = $("#currentYear");
+  if (el) el.textContent = new Date().getFullYear();
 }
 
 /* ---------- Animated Stats ---------- */
@@ -402,14 +466,14 @@ function setupStats() {
     });
   }, { threshold: 0.5 });
 
-  observer.observe($(".mini-stats"));
+  const statsContainer = $(".mini-stats");
+  if (statsContainer) observer.observe(statsContainer);
 }
 
 /* ---------- Toast System ---------- */
 
 function setupToast() {
-  // The toastWrap element should be present in HTML
-  // No setup needed; functions are global
+  // No setup needed; toast function is global
 }
 
 function toast(message, type = 'ok', duration = 3000) {
@@ -426,7 +490,7 @@ function toast(message, type = 'ok', duration = 3000) {
 /* ---------- Copy Email ---------- */
 
 function setupCopyEmail() {
-  // Buttons with onclick="copyEmail()" are already bound; no setup needed
+  // No setup needed; copyEmail is bound via HTML onclick
 }
 
 function copyEmail() {
@@ -463,9 +527,11 @@ function closeSearchModal() {
 }
 
 function performGlobalSearch() {
-  const query = document.getElementById('globalSearchInput')?.value.toLowerCase().trim();
+  const input = document.getElementById('globalSearchInput');
   const resultsContainer = document.getElementById('globalSearchResults');
-  if (!resultsContainer) return;
+  if (!input || !resultsContainer) return;
+
+  const query = input.value.toLowerCase().trim();
   if (!query) {
     resultsContainer.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px;font-size:.85rem;">Start typing to search...</p>';
     return;
@@ -480,13 +546,20 @@ function performGlobalSearch() {
   const skillMatches = portfolioData.skills.filter(s => s.name.toLowerCase().includes(query));
   const toolMatches = portfolioData.tools.filter(t => t.toLowerCase().includes(query));
 
+  const machineryMatches = (portfolioData.machinery || []).filter(m =>
+    m.name.toLowerCase().includes(query) || m.family.toLowerCase().includes(query)
+  );
+  const overhaulMatches = (portfolioData.majorOverhaul || []).filter(phase =>
+    phase.phase.toLowerCase().includes(query) || phase.activities.some(a => a.toLowerCase().includes(query))
+  );
+
   let html = '';
   if (projectMatches.length) {
     html += `<div class="sr-label">Projects (${projectMatches.length})</div>`;
     projectMatches.forEach(p => {
       html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('projects').scrollIntoView({behavior:'smooth'});">
-        <div class="ti-body"><div class="ti-title">${p.title}</div>
-        <div class="ti-meta"><span class="project-tag">${p.tag}</span><span>${p.description}</span></div></div>
+        <div class="ti-body"><div class="ti-title">${escapeHtml(p.title)}</div>
+        <div class="ti-meta"><span class="project-tag">${escapeHtml(p.tag)}</span><span>${escapeHtml(p.description)}</span></div></div>
       </div>`;
     });
   }
@@ -494,23 +567,40 @@ function performGlobalSearch() {
     html += `<div class="sr-label" style="margin-top:16px;">Certificates (${certMatches.length})</div>`;
     certMatches.forEach(c => {
       html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('certificates').scrollIntoView({behavior:'smooth'});">
-        <div class="ti-body"><div class="ti-title">${c.title}</div>
-        <div class="ti-meta"><span>${c.provider} · ${c.year}</span></div></div>
+        <div class="ti-body"><div class="ti-title">${escapeHtml(c.title)}</div>
+        <div class="ti-meta"><span>${escapeHtml(c.provider)} · ${escapeHtml(c.year)}</span></div></div>
+      </div>`;
+    });
+  }
+  if (machineryMatches.length) {
+    html += `<div class="sr-label" style="margin-top:16px;">Machinery (${machineryMatches.length})</div>`;
+    machineryMatches.forEach(m => {
+      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('machinery').scrollIntoView({behavior:'smooth'});">
+        <div class="ti-body"><div class="ti-title">${escapeHtml(m.name)}</div>
+        <div class="ti-meta"><span>${escapeHtml(m.family)}</span></div></div>
+      </div>`;
+    });
+  }
+  if (overhaulMatches.length) {
+    html += `<div class="sr-label" style="margin-top:16px;">Overhaul Phases (${overhaulMatches.length})</div>`;
+    overhaulMatches.forEach(phase => {
+      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('overhaul').scrollIntoView({behavior:'smooth'});">
+        <div class="ti-body"><div class="ti-title">${escapeHtml(phase.phase)}</div></div>
       </div>`;
     });
   }
   if (skillMatches.length || toolMatches.length) {
     html += `<div class="sr-label" style="margin-top:16px;">Skills & Tools</div>`;
     skillMatches.forEach(s => {
-      html += `<div class="task-item"><div class="ti-body"><div class="ti-title">${s.name} (${s.value}%)</div></div></div>`;
+      html += `<div class="task-item"><div class="ti-body"><div class="ti-title">${escapeHtml(s.name)} (${s.value}%)</div></div></div>`;
     });
     toolMatches.forEach(t => {
-      html += `<div class="task-item"><div class="ti-body"><div class="ti-title">${t}</div></div></div>`;
+      html += `<div class="task-item"><div class="ti-body"><div class="ti-title">${escapeHtml(t)}</div></div></div>`;
     });
   }
 
   if (!html) {
-    html = `<div class="empty-state"><div class="es-icon">🔍</div><h3>No results</h3><p>Nothing found for "${query}"</p></div>`;
+    html = `<div class="empty-state"><div class="es-icon">🔍</div><h3>No results</h3><p>Nothing found for "${escapeHtml(query)}"</p></div>`;
   }
   resultsContainer.innerHTML = html;
 }
@@ -522,18 +612,26 @@ function setupContactForm() {
 }
 
 function openContactModal() {
-  document.getElementById('moContact').classList.add('open');
+  const modal = document.getElementById('moContact');
+  if (modal) modal.classList.add('open');
 }
 
 function closeContactModal() {
-  document.getElementById('moContact').classList.remove('open');
+  const modal = document.getElementById('moContact');
+  if (modal) modal.classList.remove('open');
 }
 
 function submitContactForm() {
-  const name = document.getElementById('contactName').value.trim();
-  const email = document.getElementById('contactEmail').value.trim();
-  const subject = document.getElementById('contactSubject').value.trim();
-  const message = document.getElementById('contactMessage').value.trim();
+  const nameEl = document.getElementById('contactName');
+  const emailEl = document.getElementById('contactEmail');
+  const subjectEl = document.getElementById('contactSubject');
+  const messageEl = document.getElementById('contactMessage');
+  if (!nameEl || !emailEl || !messageEl) return;
+
+  const name = nameEl.value.trim();
+  const email = emailEl.value.trim();
+  const subject = subjectEl ? subjectEl.value.trim() : '';
+  const message = messageEl.value.trim();
 
   if (!name || !email || !message) {
     toast('Please fill in name, email, and message', 'err');
@@ -549,12 +647,16 @@ function submitContactForm() {
 /* ---------- Chart.js Visualizations ---------- */
 
 function setupCharts() {
-  // Wait for DOM and Chart.js to be ready
   if (typeof Chart === 'undefined') return;
   setTimeout(initCharts, 300);
 }
 
 function initCharts() {
+  // Helper to get CSS variable value
+  const getCssVar = (name) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  };
+
   // Skills Radar Chart
   const radarCtx = document.getElementById('skillsRadarChart');
   if (radarCtx && window.Chart && portfolioData.skills) {
@@ -583,7 +685,10 @@ function initCharts() {
             ticks: { display: false },
             grid: { color: 'rgba(0,0,0,0.05)' },
             angleLines: { color: 'rgba(0,0,0,0.05)' },
-            pointLabels: { color: 'var(--text)', font: { size: 10 } }
+            pointLabels: {
+              color: getCssVar('--text') || '#0f172a',
+              font: { size: 10 }
+            }
           }
         },
         plugins: { legend: { display: false } }
@@ -626,42 +731,7 @@ function initCharts() {
   }
 }
 
-function renderMachinery(filter = "all") {
-  const root = document.getElementById("machineryGrid");
-  if (!root) return;
-
-  const items = portfolioData.machinery.filter(m => filter === "all" || m.category === filter);
-
-  root.innerHTML = items.map(item => `
-    <div class="machinery-card reveal">
-      <span class="machinery-icon">${getMachineryIcon(item.category)}</span>
-      <div class="machinery-name">${escapeHtml(item.name)}</div>
-      <div class="machinery-family">${escapeHtml(item.family)}</div>
-    </div>
-  `).join("");
-
-  observeNewReveals();
-}
-function renderOverhaul() {
-  const root = document.getElementById("overhaulTimeline");
-  if (!root) return;
-
-  root.innerHTML = portfolioData.majorOverhaul.map((phase, index) => `
-    <div class="overhaul-item reveal">
-      <div class="overhaul-phase">
-        <span class="phase-number">${String(index + 1).padStart(2, "0")}</span>
-        <h3>${escapeHtml(phase.phase)}</h3>
-      </div>
-      <ul class="overhaul-activities">
-        ${phase.activities.map(act => `<li>${escapeHtml(act)}</li>`).join("")}
-      </ul>
-    </div>
-  `).join("");
-
-  observeNewReveals();
-}
-
-
+/* ---------- Machinery Icon Helper ---------- */
 
 function getMachineryIcon(category) {
   const icons = {
@@ -673,7 +743,6 @@ function getMachineryIcon(category) {
   };
   return icons[category] || "🔩";
 }
-
 
 /* ---------- Keyboard Shortcuts ---------- */
 
@@ -696,4 +765,7 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
-function escapeAttr(value) { return escapeHtml(value); }
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
