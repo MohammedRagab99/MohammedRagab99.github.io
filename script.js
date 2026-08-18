@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCertificates("all");
   renderResearch();
   renderSkills();
+  renderMachinery("all");
+  renderOverhaul();
 
   // Setup UI features
   setupTheme();
@@ -227,7 +229,20 @@ function setupFilters() {
       renderProjects(btn.dataset.filter);
     });
   });
-
+   
+// Machinery filters
+$$("#machineryFilters .filter").forEach(btn => {
+  btn.addEventListener("click", () => {
+    $$("#machineryFilters .filter").forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-pressed", "false");
+    });
+    btn.classList.add("active");
+    btn.setAttribute("aria-pressed", "true");
+    renderMachinery(btn.dataset.machineryFilter);
+  });
+});
+   
   $$(".filter[data-cert-filter]").forEach(btn => {
     btn.addEventListener("click", () => {
       $$(".filter[data-cert-filter]").forEach(b => {
@@ -610,6 +625,55 @@ function initCharts() {
     });
   }
 }
+
+function renderMachinery(filter = "all") {
+  const root = document.getElementById("machineryGrid");
+  if (!root) return;
+
+  const items = portfolioData.machinery.filter(m => filter === "all" || m.category === filter);
+
+  root.innerHTML = items.map(item => `
+    <div class="machinery-card reveal">
+      <span class="machinery-icon">${getMachineryIcon(item.category)}</span>
+      <div class="machinery-name">${escapeHtml(item.name)}</div>
+      <div class="machinery-family">${escapeHtml(item.family)}</div>
+    </div>
+  `).join("");
+
+  observeNewReveals();
+}
+function renderOverhaul() {
+  const root = document.getElementById("overhaulTimeline");
+  if (!root) return;
+
+  root.innerHTML = portfolioData.majorOverhaul.map((phase, index) => `
+    <div class="overhaul-item reveal">
+      <div class="overhaul-phase">
+        <span class="phase-number">${String(index + 1).padStart(2, "0")}</span>
+        <h3>${escapeHtml(phase.phase)}</h3>
+      </div>
+      <ul class="overhaul-activities">
+        ${phase.activities.map(act => `<li>${escapeHtml(act)}</li>`).join("")}
+      </ul>
+    </div>
+  `).join("");
+
+  observeNewReveals();
+}
+
+
+
+function getMachineryIcon(category) {
+  const icons = {
+    "pumps": "⚙️",
+    "compressors": "🔧",
+    "fans-blowers": "🌀",
+    "turbines-drivers": "⚡",
+    "specialty-auxiliary": "🛠️"
+  };
+  return icons[category] || "🔩";
+}
+
 
 /* ---------- Keyboard Shortcuts ---------- */
 
