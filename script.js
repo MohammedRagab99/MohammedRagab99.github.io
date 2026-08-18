@@ -984,6 +984,115 @@ function setupKeyboardShortcuts() {
 }
 
 
+
+/* ---------- Interactive RagabVerse Radar ---------- */
+
+function initEnergyStream() {
+  const canvas = document.getElementById('energyCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  // Anchor Coordinates for Nodes
+  const nodes = {
+    top: { x: 210, y: 120, color: '#34c759' },
+    left: { x: 100, y: 240, color: '#ff3b30' },
+    right: { x: 320, y: 240, color: '#007aff' },
+    bottom: { x: 210, y: 380, color: '#ffffff' }
+  };
+
+  let step = 0;
+
+  function drawStream(start, end, color, waveOffset, speed, amplitude) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 12;
+
+    const points = 50;
+    for (let i = 0; i <= points; i++) {
+      const t = i / points;
+      const x = start.x + (end.x - start.x) * t;
+      const y = start.y + (end.y - start.y) * t;
+
+      const dx = end.x - start.x;
+      const dy = end.y - start.y;
+      const len = Math.sqrt(dx * dx + dy * dy) || 1;
+      const normalX = -dy / len;
+      const normalY = dx / len;
+
+      const wave = Math.sin(t * Math.PI * 4 + waveOffset + step * speed) * amplitude * Math.sin(t * Math.PI);
+
+      const finalX = x + normalX * wave;
+      const finalY = y + normalY * wave;
+
+      if (i === 0) ctx.moveTo(finalX, finalY);
+      else ctx.lineTo(finalX, finalY);
+    }
+    ctx.stroke();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    step += 0.05;
+
+    drawStream(nodes.top, nodes.bottom, 'rgba(52, 199, 89, 0.85)', 0, 1.2, 8);
+    drawStream(nodes.top, nodes.bottom, 'rgba(52, 199, 89, 0.4)', Math.PI, 0.8, 14);
+
+    drawStream(nodes.left, nodes.bottom, 'rgba(255, 59, 48, 0.85)', 1, 1.5, 10);
+    drawStream(nodes.left, nodes.bottom, 'rgba(255, 59, 48, 0.4)', Math.PI + 1, 1.0, 16);
+
+    drawStream(nodes.right, nodes.bottom, 'rgba(0, 122, 255, 0.85)', 2, 1.3, 10);
+    drawStream(nodes.right, nodes.bottom, 'rgba(0, 122, 255, 0.4)', Math.PI + 2, 0.9, 16);
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
+
+function activateDomain(domain) {
+  const domainInfo = {
+    reliability: { title: 'Reliability', short: 'R', metrics: 'Vibration • RCA • CBM', color: 'var(--rgb-red)' },
+    energy: { title: 'Energy', short: 'G', metrics: 'Thermal • Biomass • Systems', color: 'var(--rgb-green)' },
+    computation: { title: 'Computation', short: 'B', metrics: 'Python • MATLAB • AI', color: 'var(--rgb-blue)' }
+  };
+
+  const info = domainInfo[domain];
+  if (!info) return;
+
+  // Update core text
+  const core = document.querySelector('.hero-card .core');
+  if (core) {
+    core.querySelector('span').textContent = info.short;
+    core.querySelector('small').textContent = info.title.toUpperCase();
+  }
+
+  // Update status line
+  const statusEl = document.querySelector('.engineering-status strong');
+  if (statusEl) statusEl.textContent = info.metrics;
+
+  // Highlight active node
+  document.querySelectorAll('.node[data-domain]').forEach(n => n.classList.remove('active'));
+  const activeNode = document.querySelector(`.node[data-domain="${domain}"]`);
+  if (activeNode) {
+    activeNode.classList.add('active');
+    activeNode.style.color = info.color;
+  }
+
+  // Highlight active domain card
+  document.querySelectorAll('.domain-card').forEach(c => c.style.borderColor = '');
+  const activeCard = document.querySelector(`.domain-card[data-target="${domain}"]`);
+  if (activeCard) activeCard.style.borderColor = info.color;
+}
+
+// Call this after DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  initEnergyStream();
+  // Optionally activate reliability by default
+  activateDomain('reliability');
+});
+
 /* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
