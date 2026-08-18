@@ -978,6 +978,40 @@ function setupKeyboardShortcuts() {
   });
 }
 
+function setupTheme() {
+  const toggle = $("#themeToggle");
+  if (!toggle) return;
+
+  // Apply saved theme on load (default to dark)
+  const savedTheme = localStorage.getItem("ragabverse-theme") || "dark";
+  if (savedTheme === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+    toggle.setAttribute("aria-pressed", "true");
+  } else {
+    document.documentElement.setAttribute("data-theme", "dark");
+    toggle.setAttribute("aria-pressed", "false");
+  }
+  updateThemeIcon();
+
+  toggle.addEventListener("click", () => {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    if (isLight) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("ragabverse-theme", "dark");
+      toggle.setAttribute("aria-pressed", "false");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("ragabverse-theme", "light");
+      toggle.setAttribute("aria-pressed", "true");
+    }
+    updateThemeIcon();
+  });
+
+  function updateThemeIcon() {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    toggle.innerHTML = isLight ? "☀" : "☾";
+  }
+}
 /* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
