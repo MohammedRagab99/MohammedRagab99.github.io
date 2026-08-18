@@ -265,121 +265,114 @@
         <div class="hero-card reveal delay-2" aria-label="Engineering profile overview">
   <div class="hero-card-top">
     <span>ENGINEERING PROFILE</span>
-    <span class="pill">Intelligence-Driven Reliability</span>
+    <span class="pill">Reliability Focus</span>
   </div>
 
-  <div class="intelligence-dashboard">
-    <div class="blueprint-grid"></div>
+  <!-- Interactive Schematic Dashboard -->
+  <div class="schematic-dashboard">
+    <div class="grid-bg"></div>
 
-    <!-- Diagram Section -->
-    <div class="diagram-section">
-      <!-- Animated Schematic SVG -->
-      <svg class="schematic" viewBox="0 0 520 480" fill="none">
+    <div class="diagram-container">
+      <canvas id="streamCanvas" width="464" height="440"></canvas>
+
+      <svg class="overlay-svg" viewBox="0 0 464 440" fill="none">
+        <!-- defs for glow filters -->
         <defs>
-          <filter id="glow-red-faint" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
-          <filter id="glow-green-faint" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
-          <filter id="glow-blue-faint" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
-          <filter id="glow-white-faint" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="6" result="blur" />
+          <filter id="glow-white" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
 
-        <!-- Technical Blueprint Background -->
-        <g opacity="0.1">
-          <circle cx="260" cy="240" r="130" stroke="#cbd5e1" stroke-dasharray="3 5" stroke-width="1" />
-          <circle cx="260" cy="240" r="160" stroke="#cbd5e1" stroke-dasharray="2 8" stroke-width="0.8" />
-          <line x1="260" y1="30" x2="260" y2="450" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
-          <line x1="60" y1="240" x2="460" y2="240" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
-          <path d="M 260 90 L 120 240 L 260 390 L 400 240 Z" stroke="#cbd5e1" stroke-width="1.2" />
+        <!-- Technical Grid & Compass Lines -->
+        <g opacity="0.4">
+          <circle cx="232" cy="210" r="110" stroke="#cbd5e1" stroke-dasharray="3 5" stroke-width="1" />
+          <circle cx="232" cy="210" r="135" stroke="#cbd5e1" stroke-dasharray="2 8" stroke-width="0.8" />
+          <line x1="232" y1="30" x2="232" y2="390" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
+          <line x1="80" y1="210" x2="384" y2="210" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
+          <path d="M 232 90 L 112 210 L 232 330 L 352 210 Z" stroke="#cbd5e1" stroke-width="1.2" opacity="0.6" />
         </g>
 
-        <!-- Animated Signal Flow Lines -->
-        <g stroke-width="2.5" fill="none">
-          <path class="flow-path flow-green" d="M260 118 C260 150, 260 170, 260 212" />
-          <path class="flow-path flow-red" d="M148 240 C180 300, 220 360, 238 382" />
-          <path class="flow-path flow-blue" d="M372 240 C340 300, 300 360, 282 382" />
-          <path class="flow-path flow-green" d="M260 268 C260 300, 260 340, 260 362" />
-        </g>
+        <!-- Arrows -->
+        <path d="M 232 30 L 242 55 L 232 48 L 222 55 Z" fill="var(--color-green)" filter="url(#glow-green)" />
+        <path d="M 232 390 L 242 365 L 232 372 L 222 365 Z" fill="var(--color-white)" filter="url(#glow-white)" />
 
-        <!-- Nodes -->
-        <!-- Top Node (Green - Sensors) -->
-        <g class="node-group" filter="url(#glow-green-faint)">
-          <circle class="node-ring" cx="260" cy="90" r="28" fill="var(--surface)" stroke="var(--rgb-green)" stroke-width="3" />
-          <circle cx="260" cy="90" r="12" fill="var(--rgb-green)" opacity="0.8" />
-        </g>
+        <!-- Technical Callout Text -->
+        <text x="300" y="115" class="schematic-text">SIGNAL FLOW SCHEMATIC rev. 3</text>
+        <text x="300" y="315" class="schematic-text">INTELLIGENCE LAYER rev. 1</text>
 
-        <!-- Left Node (Red - Vibration) -->
-        <g class="node-group" filter="url(#glow-red-faint)">
-          <circle class="node-ring" cx="120" cy="240" r="28" fill="var(--surface)" stroke="var(--rgb-red)" stroke-width="3" />
-          <circle cx="120" cy="240" r="12" fill="var(--rgb-red)" opacity="0.8" />
+        <!-- Top Node (Green) -->
+        <g class="node-group" data-node="green" filter="url(#glow-green)">
+          <circle cx="232" cy="90" r="24" fill="#ffffff" stroke="var(--color-green)" stroke-width="4" />
+          <circle cx="232" cy="90" r="12" fill="var(--color-green)" opacity="0.8" />
         </g>
+        <text x="268" y="86" class="annotation">PRIMARY INPUT:</text>
+        <text x="268" y="98" class="annotation-sub">Reliability Protocol V4.2</text>
 
-        <!-- Right Node (Blue - Analysis) -->
-        <g class="node-group" filter="url(#glow-blue-faint)">
-          <circle class="node-ring" cx="400" cy="240" r="28" fill="var(--surface)" stroke="var(--rgb-blue)" stroke-width="3" />
-          <circle cx="400" cy="240" r="12" fill="var(--rgb-blue)" opacity="0.8" />
+        <!-- Left Node (Red) -->
+        <g class="node-group" data-node="red" filter="url(#glow-red)">
+          <circle cx="112" cy="210" r="24" fill="#ffffff" stroke="var(--color-red)" stroke-width="4" />
+          <circle cx="112" cy="210" r="12" fill="var(--color-red)" opacity="0.8" />
         </g>
+        <text x="18" y="206" class="annotation" text-anchor="start">DATA ACQUISITION</text>
+        <text x="18" y="218" class="annotation-sub" text-anchor="start">(RED STREAM)</text>
 
-        <!-- Bottom Node (White - Output) -->
-        <g class="node-group" filter="url(#glow-white-faint)">
-          <circle class="node-ring" cx="260" cy="390" r="26" fill="var(--surface)" stroke="var(--text)" stroke-width="3" />
-          <circle cx="260" cy="390" r="12" fill="var(--text)" opacity="0.8" />
+        <!-- Right Node (Blue) -->
+        <g class="node-group" data-node="blue" filter="url(#glow-blue)">
+          <circle cx="352" cy="210" r="24" fill="#ffffff" stroke="var(--color-blue)" stroke-width="4" />
+          <circle cx="352" cy="210" r="12" fill="var(--color-blue)" opacity="0.8" />
         </g>
+        <text x="388" y="206" class="annotation">ANALYSIS</text>
+        <text x="388" y="218" class="annotation-sub">(BLUE STREAM)</text>
 
-        <!-- Center Hub -->
-        <circle cx="260" cy="240" r="20" fill="var(--surface)" stroke="var(--muted)" stroke-width="3" opacity="0.9" />
-        <circle cx="260" cy="240" r="6" fill="var(--muted)" />
+        <!-- Center Synthesis Node -->
+        <circle cx="232" cy="210" r="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+        <circle cx="232" cy="210" r="6" fill="#64748b" />
+        <text x="232" y="184" class="annotation" text-anchor="middle">SYNTHESIS HUB</text>
+
+        <!-- Bottom Output Node (White/Silver) -->
+        <g class="node-group" data-node="white" filter="url(#glow-white)">
+          <circle cx="232" cy="330" r="22" fill="#ffffff" stroke="var(--color-white)" stroke-width="4" />
+          <circle cx="232" cy="330" r="10" fill="var(--color-white)" opacity="0.8" />
+        </g>
+        <text x="268" y="326" class="annotation">SYSTEM OUTPUT:</text>
+        <text x="268" y="338" class="annotation-sub">Optimized Operations</text>
       </svg>
-
-      <!-- Particle Canvas Overlay -->
-      <canvas id="particleCanvas" width="520" height="480"></canvas>
-
-      <!-- HTML Labels (positioned absolutely) -->
-      <div class="diagram-label label-sensors">SENSORS</div>
-      <div class="diagram-label label-data">DATA FEED</div>
-      <div class="diagram-label label-green-flow">RELIABILITY FLOW IN:</div>
-      <div class="diagram-sublabel label-green-sub">CONDITION MONITORING</div>
-      <div class="diagram-label label-red-stream">VIBRATION ACQUISITION</div>
-      <div class="diagram-sublabel label-red-sub">(RED STREAM)</div>
-      <div class="diagram-label label-blue-stream">ANALYSIS</div>
-      <div class="diagram-sublabel label-blue-sub">(BLUE STREAM)</div>
-      <div class="diagram-label label-core">RELIABILITY INTEL HUB</div>
-      <div class="diagram-sublabel label-core-sub">Core Engine</div>
-      <div class="diagram-label label-output">SYSTEM OUTPUT</div>
-      <div class="diagram-sublabel label-output-sub">Optimized Operations</div>
     </div>
 
     <!-- Stats Section -->
     <div class="mini-stats">
       <div>
-        <strong id="statAssets">15+</strong>
-        <span>Rotating Assets Analyzed</span>
+        <strong id="statYears">3+</strong>
+        <span>Years Industry</span>
       </div>
       <div>
-        <strong id="statAvailability">95%+</strong>
-        <span>Equipment Availability Focus</span>
+        <strong id="statProjects">8+</strong>
+        <span>Project Areas</span>
       </div>
       <div>
-        <strong id="statTools">20+</strong>
-        <span>Engineering Tools &amp; Methods</span>
+        <strong id="statSkills">20+</strong>
+        <span>Technical Skills</span>
       </div>
     </div>
 
-    <!-- Engineering Status -->
+    <!-- Engineering status -->
     <div class="engineering-status">
       <span class="status-line"></span>
       <span>SYSTEM STATUS</span>
-      <strong>RELIABILITY MODE: ACTIVE</strong>
+      <strong>ENGINEERING MODE: ACTIVE</strong>
     </div>
   </div>
 </div>
