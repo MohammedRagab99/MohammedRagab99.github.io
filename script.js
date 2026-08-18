@@ -496,6 +496,7 @@ function toast(message, type = 'ok', duration = 3000) {
   setTimeout(() => t.remove(), duration);
 }
 
+
 /* ---------- Copy Email ---------- */
 
 function setupCopyEmail() {
