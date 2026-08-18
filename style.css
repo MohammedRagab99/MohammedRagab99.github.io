@@ -2394,3 +2394,26 @@ dialog.modal .modal-close:hover {
     left: 6px;
   }
 }
+
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --bg-2: #161b27;
+  --bg-3: #1e2435;
+  --bg-4: #252c3f;
+
+  --surface: #161b27;
+  --surface-2: #1e2435;
+  --surface-3: #252c3f;
+
+  --text: #e8eaf0;
+  --text-soft: #d5deea;
+  --muted: #9ba3b8;
+  --muted-2: #6b7494;
+
+  --line: #252c3f;
+  --line-strong: #3a445c;
+
+  --shadow-sm: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 40px rgba(0,0,0,0.6);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.7);
+}
