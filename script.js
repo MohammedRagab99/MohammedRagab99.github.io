@@ -1,3 +1,4 @@
+fix this 
 /* =========================================================
    RAGABVERSE — Consolidated Script
    Handles all dynamic rendering, navigation, theme, filters,
@@ -38,14 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCharts();
   setupCopyEmail();
   setupKeyboardShortcuts();
-
-  // Initialise the schematic dashboard
+     // Initialise the interactive radar and activate default domain
+  initEnergyStream();
+  activateDomain('reliability');
   initSchematicDashboard();
-
-  // Render additional sections if they exist
-  renderAchievements();
-  renderCareerInterests();
-  renderGitHubRepos();
+   renderAchievements();
+   renderCareerInterests();
+   renderGitHubRepos();
 });
 
 /* ---------- Data Rendering ---------- */
@@ -213,6 +213,7 @@ function setupTheme() {
   const toggle = $("#themeToggle");
   if (!toggle) return;
 
+  // Apply saved theme on load (default to dark)
   const savedTheme = localStorage.getItem("ragabverse-theme") || "dark";
   if (savedTheme === "light") {
     document.documentElement.setAttribute("data-theme", "light");
@@ -434,7 +435,7 @@ function setupYear() {
   if (el) el.textContent = new Date().getFullYear();
 }
 
-/* ---------- Animated Stats (Reliability KPIs) ---------- */
+/* ---------- Animated Stats ---------- */
 
 function setupStats() {
   const statAssets = $("#statAssets");
@@ -496,6 +497,7 @@ function toast(message, type = 'ok', duration = 3000) {
   wrap.appendChild(t);
   setTimeout(() => t.remove(), duration);
 }
+
 
 /* ---------- Copy Email ---------- */
 
@@ -665,6 +667,7 @@ async function exportWord() {
   const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } = docx;
   const d = portfolioData;
 
+  // Helper to create a paragraph
   function p(text, options = {}) {
     return new Paragraph({
       children: [new TextRun({ text, ...options })],
@@ -672,6 +675,7 @@ async function exportWord() {
     });
   }
 
+  // Helper to create a heading
   function h(text, level = HeadingLevel.HEADING_1) {
     return new Paragraph({
       text,
@@ -682,6 +686,7 @@ async function exportWord() {
 
   const children = [];
 
+  // Header
   children.push(new Paragraph({
     children: [new TextRun({ text: d.profile?.name || "Mohammed Ragab Al‑Attar", bold: true, size: 56 })],
     alignment: AlignmentType.CENTER,
@@ -704,6 +709,7 @@ async function exportWord() {
     spacing: { after: 200 }
   }));
 
+  // Experience
   children.push(h("Experience"));
   d.experience.forEach(exp => {
     children.push(new Paragraph({
@@ -727,6 +733,7 @@ async function exportWord() {
     });
   });
 
+  // Education
   if (d.education && d.education.length) {
     children.push(h("Education"));
     d.education.forEach(edu => {
@@ -752,6 +759,7 @@ async function exportWord() {
     });
   }
 
+  // Research
   children.push(h("Research"));
   children.push(new Paragraph({
     children: [new TextRun({ text: d.research.title, bold: true, size: 24 })],
@@ -769,6 +777,7 @@ async function exportWord() {
     }));
   });
 
+  // Projects (selected)
   children.push(h("Selected Projects"));
   d.projects.forEach(proj => {
     children.push(new Paragraph({
@@ -784,6 +793,7 @@ async function exportWord() {
     }));
   });
 
+  // Certifications
   if (d.certificates && d.certificates.length) {
     children.push(h("Certifications"));
     d.certificates.forEach(c => {
@@ -799,6 +809,7 @@ async function exportWord() {
     });
   }
 
+  // Skills
   children.push(h("Skills"));
   children.push(new Paragraph({
     children: [new TextRun({ text: "Core Competencies: ", bold: true, size: 22 }), new TextRun({ text: d.skills.map(s => s.name).join(' • '), size: 22 })],
@@ -809,6 +820,7 @@ async function exportWord() {
     spacing: { after: 100 }
   }));
 
+  // Awards
   if (d.awards && d.awards.length) {
     children.push(h("Awards & Honors"));
     d.awards.forEach(a => {
@@ -824,6 +836,7 @@ async function exportWord() {
     });
   }
 
+  // Languages
   if (d.languages && d.languages.length) {
     children.push(h("Languages"));
     d.languages.forEach(l => {
@@ -835,6 +848,7 @@ async function exportWord() {
     });
   }
 
+  // Publications (if any)
   if (d.publications && d.publications.length) {
     children.push(h("Publications"));
     d.publications.forEach(pub => {
@@ -846,6 +860,7 @@ async function exportWord() {
     });
   }
 
+  // Build and download
   const doc = new Document({
     sections: [{ properties: {}, children }]
   });
@@ -872,8 +887,12 @@ function setupCharts() {
 }
 
 function initCharts() {
-  const getCssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  // Helper to get CSS variable value
+  const getCssVar = (name) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  };
 
+  // Skills Radar Chart
   const radarCtx = document.getElementById('skillsRadarChart');
   if (radarCtx && window.Chart && portfolioData.skills) {
     const labels = portfolioData.skills.map(s => s.name.split('(')[0].trim());
@@ -912,6 +931,7 @@ function initCharts() {
     });
   }
 
+  // Projects Bar Chart
   const barCtx = document.getElementById('projectsBarChart');
   if (barCtx && window.Chart && portfolioData.projects) {
     const categories = [...new Set(portfolioData.projects.map(p => p.category))];
@@ -970,8 +990,168 @@ function setupKeyboardShortcuts() {
   });
 }
 
-/* ---------- Interactive Schematic Dashboard ---------- */
 
+
+/* ---------- Interactive RagabVerse Radar (Digital Twin) ---------- */
+
+function initEnergyStream() {
+  const canvas = document.getElementById('energyCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  // Anchor Coordinates for Nodes — match the 424x420 SVG
+  const nodes = {
+    top:    { x: 212, y: 90,  color: '#34c759' },
+    left:   { x: 102, y: 210, color: '#ff3b30' },
+    right:  { x: 322, y: 210, color: '#007aff' },
+    bottom: { x: 212, y: 330, color: '#ffffff' }
+  };
+
+  let step = 0;
+  let activeStream = null;
+
+  // Draw dynamic sine wave streams
+  function drawStream(start, end, color, waveOffset, speed, amplitude) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.2;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 12;
+
+    const points = 60;
+    for (let i = 0; i <= points; i++) {
+      const t = i / points;
+      const x = start.x + (end.x - start.x) * t;
+      const y = start.y + (end.y - start.y) * t;
+
+      const dx = end.x - start.x;
+      const dy = end.y - start.y;
+      const len = Math.sqrt(dx * dx + dy * dy) || 1;
+      const normalX = -dy / len;
+      const normalY = dx / len;
+
+      const wave = Math.sin(t * Math.PI * 4 + waveOffset + step * speed) * amplitude * Math.sin(t * Math.PI);
+
+      const finalX = x + normalX * wave;
+      const finalY = y + normalY * wave;
+
+      if (i === 0) ctx.moveTo(finalX, finalY);
+      else ctx.lineTo(finalX, finalY);
+    }
+    ctx.stroke();
+  }
+
+  // Particle system
+  const particles = [];
+  class Particle {
+    constructor(startNode, color) {
+      this.start = startNode;
+      this.end = nodes.bottom;
+      this.color = color;
+      this.progress = Math.random();
+      this.speed = 0.008 + Math.random() * 0.012;
+      this.amplitude = (Math.random() - 0.5) * 14;
+    }
+    update() {
+      this.progress += this.speed;
+      if (this.progress >= 1) this.progress = 0;
+    }
+    draw() {
+      const t = this.progress;
+      const x = this.start.x + (this.end.x - this.start.x) * t;
+      const y = this.start.y + (this.end.y - this.start.y) * t;
+
+      const dx = this.end.x - this.start.x;
+      const dy = this.end.y - this.start.y;
+      const len = Math.sqrt(dx*dx + dy*dy) || 1;
+      const normX = -dy / len;
+      const normY = dx / len;
+
+      const wave = Math.sin(t * Math.PI * 3 + step * 0.1) * this.amplitude * Math.sin(t * Math.PI);
+
+      ctx.beginPath();
+      ctx.arc(x + normX * wave, y + normY * wave, 2, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+    }
+  }
+
+  // Initialise particles
+  for (let i = 0; i < 20; i++) particles.push(new Particle(nodes.top, nodes.top.color));
+  for (let i = 0; i < 20; i++) particles.push(new Particle(nodes.left, nodes.left.color));
+  for (let i = 0; i < 20; i++) particles.push(new Particle(nodes.right, nodes.right.color));
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    step += 0.04;
+
+    // Green Stream (Top -> Bottom)
+    const gAlpha = (activeStream && activeStream !== 'green') ? 0.2 : 0.85;
+    drawStream(nodes.top, nodes.bottom, 'rgba(52, 199, 89, 0.85)', 0, 1.2, 8);
+    drawStream(nodes.top, nodes.bottom, 'rgba(150, 255, 180, 0.6)', Math.PI, 0.8, 14);
+
+    // Red Stream (Left -> Bottom)
+    const rAlpha = (activeStream && activeStream !== 'red') ? 0.2 : 0.85;
+    drawStream(nodes.left, nodes.bottom, 'rgba(255, 59, 48, 0.85)', 1, 1.5, 10);
+    drawStream(nodes.left, nodes.bottom, 'rgba(255, 150, 150, 0.6)', Math.PI + 1, 1.0, 16);
+
+    // Blue Stream (Right -> Bottom)
+    const bAlpha = (activeStream && activeStream !== 'blue') ? 0.2 : 0.85;
+    drawStream(nodes.right, nodes.bottom, 'rgba(0, 122, 255, 0.85)', 2, 1.3, 10);
+    drawStream(nodes.right, nodes.bottom, 'rgba(150, 200, 255, 0.6)', Math.PI + 2, 0.9, 16);
+
+    // Draw particles
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  // Hover interactivity
+  document.querySelectorAll('.node').forEach(node => {
+    node.addEventListener('mouseenter', () => {
+      activeStream = node.getAttribute('data-stream');
+    });
+    node.addEventListener('mouseleave', () => {
+      activeStream = null;
+    });
+  });
+
+  animate();
+}
+
+function activateDomain(domain) {
+  const domainInfo = {
+    reliability:  { title: 'Reliability', short: 'R', metrics: 'Vibration • RCA • CBM', color: 'var(--rgb-red)' },
+    energy:       { title: 'Energy', short: 'G', metrics: 'Thermal • Biomass • Systems', color: 'var(--rgb-green)' },
+    computation:  { title: 'Computation', short: 'B', metrics: 'Python • MATLAB • AI', color: 'var(--rgb-blue)' }
+  };
+
+  const info = domainInfo[domain];
+  if (!info) return;
+
+  // Update status line
+  const statusEl = document.querySelector('.engineering-status strong');
+  if (statusEl) statusEl.textContent = `${info.title.toUpperCase()} MODE: ACTIVE`;
+
+  // Highlight active node
+  document.querySelectorAll('.node[data-domain]').forEach(n => n.classList.remove('active'));
+  const activeNode = document.querySelector(`.node[data-domain="${domain}"]`);
+  if (activeNode) {
+    activeNode.classList.add('active');
+    activeNode.style.color = info.color;
+  }
+
+  // Highlight active domain card (if feature cards exist)
+  document.querySelectorAll('.domain-card').forEach(c => c.style.borderColor = '');
+  const activeCard = document.querySelector(`.domain-card[data-target="${domain}"]`);
+  if (activeCard) activeCard.style.borderColor = info.color;
+}
+/* ─── Interactive Schematic Dashboard ─── */
 function initSchematicDashboard() {
   const canvas = document.getElementById('streamCanvas');
   if (!canvas) return;
@@ -987,6 +1167,7 @@ function initSchematicDashboard() {
   let frame = 0;
   let activeNode = null;
 
+  // Particle class
   class Particle {
     constructor(startNode, color) {
       this.start = startNode;
@@ -1062,14 +1243,17 @@ function initSchematicDashboard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     frame += 0.04;
 
+    // Green Stream (Top -> Bottom)
     const gAlpha = (!activeNode || activeNode === 'green') ? 0.9 : 0.2;
     drawStream(nodes.top, nodes.bottom, nodes.top.color, gAlpha, 4, 1.2, 8);
     drawStream(nodes.top, nodes.bottom, 'rgba(52, 211, 153, 0.8)', gAlpha * 0.7, 6, -1.5, 12);
 
+    // Red Stream (Left -> Bottom)
     const rAlpha = (!activeNode || activeNode === 'red') ? 0.9 : 0.2;
     drawStream(nodes.left, nodes.bottom, nodes.left.color, rAlpha, 3.5, 1.4, 10);
     drawStream(nodes.left, nodes.bottom, 'rgba(248, 113, 113, 0.8)', rAlpha * 0.7, 5, -1.1, 14);
 
+    // Blue Stream (Right -> Bottom)
     const bAlpha = (!activeNode || activeNode === 'blue') ? 0.9 : 0.2;
     drawStream(nodes.right, nodes.bottom, nodes.right.color, bAlpha, 3.5, 1.3, 10);
     drawStream(nodes.right, nodes.bottom, 'rgba(96, 165, 250, 0.8)', bAlpha * 0.7, 5.5, -1.2, 14);
@@ -1082,6 +1266,7 @@ function initSchematicDashboard() {
     requestAnimationFrame(animate);
   }
 
+  // Node hover interactions
   document.querySelectorAll('.node-group').forEach(node => {
     node.addEventListener('mouseenter', () => {
       activeNode = node.getAttribute('data-node');
@@ -1094,7 +1279,107 @@ function initSchematicDashboard() {
   animate();
 }
 
-/* ---------- Additional Renderers ---------- */
+/* ─── Intelligence-Driven Reliability Dashboard ─── */
+function initIntelligenceDashboard() {
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const nodes = {
+    top:    { x: 260, y: 90,  color: 'rgb(16, 185, 129)' },
+    left:   { x: 120, y: 240, color: 'rgb(239, 68, 68)' },
+    right:  { x: 400, y: 240, color: 'rgb(59, 130, 246)' },
+    bottom: { x: 260, y: 390, color: 'rgb(248, 250, 252)' }
+  };
+
+  let frame = 0;
+
+  class StreamParticle {
+    constructor(startNode, colorHex) {
+      this.start = startNode;
+      this.end = nodes.bottom;
+      this.color = colorHex;
+      this.progress = Math.random();
+      this.speed = 0.005 + Math.random() * 0.005;
+      this.amplitude = (Math.random() - 0.5) * 12;
+      this.offset = Math.random() * Math.PI * 2;
+    }
+    update() {
+      this.progress += this.speed;
+      if (this.progress >= 1) this.progress = 0;
+    }
+    draw() {
+      const t = this.progress;
+      const x = this.start.x + (this.end.x - this.start.x) * t;
+      const y = this.start.y + (this.end.y - this.start.y) * t;
+      const dx = this.end.x - this.start.x;
+      const dy = this.end.y - this.start.y;
+      const len = Math.sqrt(dx*dx + dy*dy);
+      const normX = -dy / len;
+      const normY = dx / len;
+      const wave = Math.sin(t * Math.PI * 4 + this.offset + frame * 0.1) * this.amplitude * Math.sin(t * Math.PI);
+
+      ctx.beginPath();
+      ctx.arc(x + normX * wave, y + normY * wave, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  const particles = [
+    ...Array.from({ length: 12 }, () => new StreamParticle(nodes.top, nodes.top.color)),
+    ...Array.from({ length: 12 }, () => new StreamParticle(nodes.left, nodes.left.color)),
+    ...Array.from({ length: 12 }, () => new StreamParticle(nodes.right, nodes.right.color))
+  ];
+
+  function drawStreamWave(start, end, colorHex, frequency, amplitude, speed, width) {
+    ctx.beginPath();
+    ctx.strokeStyle = colorHex;
+    ctx.lineWidth = width;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = colorHex;
+
+    const points = 60;
+    for (let i = 0; i <= points; i++) {
+      const t = i / points;
+      const x = start.x + (end.x - start.x) * t;
+      const y = start.y + (end.y - start.y) * t;
+      const dx = end.x - start.x;
+      const dy = end.y - start.y;
+      const len = Math.sqrt(dx*dx + dy*dy);
+      const normX = -dy / len;
+      const normY = dx / len;
+      const envelope = Math.sin(t * Math.PI);
+      const wave = Math.sin(t * Math.PI * frequency + frame * speed) * amplitude * envelope;
+      const px = x + normX * wave;
+      const py = y + normY * wave;
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frame += 0.05;
+
+    drawStreamWave(nodes.top, nodes.bottom, nodes.top.color, 4, 10, 1.2, 2.5);
+    drawStreamWave(nodes.top, nodes.bottom, 'rgba(52, 211, 153, 0.4)', 6, -1.5, 0.8, 1.5);
+    drawStreamWave(nodes.left, nodes.bottom, nodes.left.color, 3.5, 12, 1.4, 2.5);
+    drawStreamWave(nodes.left, nodes.bottom, 'rgba(248, 113, 113, 0.4)', 5, -1.1, 0.9, 1.5);
+    drawStreamWave(nodes.right, nodes.bottom, nodes.right.color, 3.5, 12, 1.3, 2.5);
+    drawStreamWave(nodes.right, nodes.bottom, 'rgba(96, 165, 250, 0.4)', 5.5, -1.2, 0.8, 1.5);
+
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
 
 function renderAchievements() {
   const root = document.getElementById('achievementsGrid');
@@ -1138,6 +1423,29 @@ function renderGitHubRepos() {
       const root = document.getElementById('githubRepos');
       if (root) root.innerHTML = '<p style="color:var(--muted)">Unable to load repositories.</p>';
     });
+}
+
+function calcAffinity() {
+  const q1 = parseFloat(document.getElementById('affQ1').value) || 0;
+  const h1 = parseFloat(document.getElementById('affH1').value) || 0;
+  const n1 = parseFloat(document.getElementById('affN1').value) || 1;
+  const n2 = parseFloat(document.getElementById('affN2').value) || 1;
+  const ratio = n2 / n1;
+  const q2 = q1 * ratio;
+  const h2 = h1 * ratio * ratio;
+  const result = document.getElementById('affResult');
+  if (result) result.innerHTML = `New Flow: <strong>${q2.toFixed(2)} m³/h</strong><br>New Head: <strong>${h2.toFixed(2)} m</strong>`;
+}
+
+function calcBearing() {
+  const rpm = parseFloat(document.getElementById('brgSpeed').value) || 0;
+  const bd = parseFloat(document.getElementById('brgBallDia').value) || 0;
+  const pd = parseFloat(document.getElementById('brgPitchDia').value) || 1;
+  const nb = parseFloat(document.getElementById('brgBallCount').value) || 1;
+  const fr = rpm / 60;
+  const bpf = (fr / 2) * nb * (1 - (bd / pd));
+  const result = document.getElementById('brgResult');
+  if (result) result.innerHTML = `BPFO: <strong>${bpf.toFixed(2)} Hz</strong>`;
 }
 
 /* ---------- Utility: Escape HTML ---------- */
