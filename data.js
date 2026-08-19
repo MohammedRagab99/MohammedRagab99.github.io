@@ -427,7 +427,20 @@ const portfolioData = {
       { label: "LinkedIn", url: "https://www.linkedin.com/in/mohamed-ragab-hamad" }
     ]
   },
-
+skillCategories: [
+  {
+    name: "Mechanical & Rotating Equipment",
+    items: ["Pumps", "Compressors", "Bearings", "Maintenance", "Reliability Engineering", "Vibration Analysis", "Condition Monitoring"]
+  },
+  {
+    name: "Software & Programming",
+    items: ["Python", "SQL", "C#", "Git", "HTML", "CSS", "JavaScript"]
+  },
+  {
+    name: "Engineering Software",
+    items: ["AutoCAD", "SolidWorks", "ANSYS"]
+  }
+]
   skills: [
     { name: "Field Engineering (Maintenance & Reliability)", value: 92 },
     { name: "Rotating Equipment", value: 90 },
