@@ -427,6 +427,25 @@ const portfolioData = {
       { label: "LinkedIn", url: "https://www.linkedin.com/in/mohamed-ragab-hamad" }
     ]
   },
+ 
+  achievements: [
+  "Formula Student UK 2021 Recognition",
+  "Egyptian Space Agency First Rank",
+  "CS50x & CS50 AI Certifications",
+  "Vibration Analysis Category II (VCAT II)",
+  "Multiple Industry Certifications"
+],
+
+careerInterests: [
+  "Reliability Engineering",
+  "Condition Monitoring",
+  "Rotating Equipment",
+  "Maintenance Engineering",
+  "Energy Systems",
+  "Data Analytics",
+  "AI Applications in Engineering"
+],
+  
 skillCategories: [
   {
     name: "Mechanical & Rotating Equipment",
@@ -440,7 +459,8 @@ skillCategories: [
     name: "Engineering Software",
     items: ["AutoCAD", "SolidWorks", "ANSYS"]
   }
-]
+],
+  
   skills: [
     { name: "Field Engineering (Maintenance & Reliability)", value: 92 },
     { name: "Rotating Equipment", value: 90 },
