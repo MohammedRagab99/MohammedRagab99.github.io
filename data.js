@@ -428,12 +428,13 @@ const portfolioData = {
     ]
   },
  
-  achievements: [
-  "Formula Student UK 2021 Recognition",
-  "Egyptian Space Agency First Rank",
-  "CS50x & CS50 AI Certifications",
-  "Vibration Analysis Category II (VCAT II)",
-  "Multiple Industry Certifications"
+achievements: [
+  { icon: "🏆", title: "First Rank: Mechanics Teams", issuer: "Egyptian Space Agency", year: "2021" },
+  { icon: "🏎", title: "Best Member Powertrain", issuer: "Formula Student UK", year: "2021" },
+  { icon: "🎓", title: "CS50x & CS50 AI Certifications", issuer: "Harvard University", year: "2020" },
+  { icon: "📊", title: "Vibration Analysis Category II", issuer: "Mobius Institute", year: "2026" },
+  { icon: "⚙️", title: "Reliability Centered Maintenance", issuer: "Enppi", year: "2026" },
+  { icon: "🔩", title: "Multiple Industry Certifications", issuer: "Flowserve, NSK, RES Global", year: "2024-2026" }
 ],
 
 careerInterests: [
@@ -443,8 +444,9 @@ careerInterests: [
   "Maintenance Engineering",
   "Energy Systems",
   "Data Analytics",
-  "AI Applications in Engineering"
-],
+  "AI Applications in Engineering",
+  "Predictive Maintenance"
+]
   
 skillCategories: [
   {
