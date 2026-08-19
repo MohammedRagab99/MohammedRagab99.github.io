@@ -1969,20 +1969,19 @@ dialog.modal .modal-close:hover {
   right: 20px;
   bottom: 20px;
   z-index: 60;
-  width: 43px;
-  height: 43px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  background: rgba(2,8,23,0.88);
+  width: 48px;
+  height: 48px;
+  display: flex;               /* changed from grid to flex */
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 13px;
-  font-size: 16px;
+  border-radius: 50%;
   opacity: 0;
   transform: translateY(15px);
   pointer-events: none;
   box-shadow: var(--shadow-md);
-  transition: opacity var(--transition), transform var(--transition), background var(--transition);
+  transition: opacity var(--transition), transform var(--transition);
 }
 .back-to-top.visible {
   opacity: 1;
@@ -1990,8 +1989,13 @@ dialog.modal .modal-close:hover {
   pointer-events: auto;
 }
 .back-to-top:hover {
-  background: #0f172a;
-  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+.back-to-top__arrow {
+  position: absolute;          /* keep absolute */
+  font-size: 16px;
+  color: var(--text);
+  pointer-events: none;
 }
 
 /* Reveal animations */
@@ -2940,4 +2944,15 @@ dialog.modal .modal-close:hover {
   border: 1px solid rgba(16,185,129,0.25);
   font-size: 14px;
   line-height: 1.5;
+}
+:root {
+  --grid-line: rgba(15, 23, 42, 0.04);
+  --center-hub-bg: #f1f5f9;
+  --center-hub-border: #64748b;
+}
+
+[data-theme="dark"] {
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --center-hub-bg: #1e293b;
+  --center-hub-border: #64748b;
 }
