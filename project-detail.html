@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>... same styles ...</head>
+<body>
+  <div id="projectDetail"></div>
+  <script src="data.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id') || 0;
+    const project = portfolioData.projects[id];
+    document.getElementById('projectDetail').innerHTML = `
+      <h1>${project.title}</h1>
+      <p>${project.tag}</p>
+      <p>${project.description}</p>
+      <a href="${project.repo}" target="_blank">GitHub ↗</a>
+    `;
+  </script>
+</body>
+</html>
