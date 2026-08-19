@@ -2956,3 +2956,24 @@ dialog.modal .modal-close:hover {
   --center-hub-bg: #1e293b;
   --center-hub-border: #64748b;
 }
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+.page-loader.hidden { opacity: 0; pointer-events: none; }
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
