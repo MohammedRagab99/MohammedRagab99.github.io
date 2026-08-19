@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initEnergyStream();
   activateDomain('reliability');
   initSchematicDashboard();
+   renderAchievements();
+   renderCareerInterests();
+   renderGitHubRepos();
 });
 
 /* ---------- Data Rendering ---------- */
@@ -1375,6 +1378,73 @@ function initIntelligenceDashboard() {
   }
 
   animate();
+}
+
+function renderAchievements() {
+  const root = document.getElementById('achievementsGrid');
+  if (!root || !portfolioData.achievements) return;
+  root.innerHTML = portfolioData.achievements.map(a => `
+    <div class="achievement-card reveal">
+      <span class="achievement-icon">${a.icon}</span>
+      <h3>${escapeHtml(a.title)}</h3>
+      <p>${escapeHtml(a.issuer)} • ${escapeHtml(a.year)}</p>
+    </div>
+  `).join("");
+  observeNewReveals();
+}
+
+function renderCareerInterests() {
+  const root = document.getElementById('interestsCloud');
+  if (!root || !portfolioData.careerInterests) return;
+  root.innerHTML = portfolioData.careerInterests.map(i => `
+    <span class="interest-pill">${escapeHtml(i)}</span>
+  `).join("");
+}
+
+function renderGitHubRepos() {
+  fetch('https://api.github.com/users/MohammedRagab99/repos?sort=updated&per_page=6')
+    .then(res => res.json())
+    .then(repos => {
+      const root = document.getElementById('githubRepos');
+      if (!root) return;
+      root.innerHTML = repos.map(repo => `
+        <div class="repo-card reveal">
+          <a href="${repo.html_url}" target="_blank" rel="noopener">
+            <strong>${escapeHtml(repo.name)}</strong>
+          </a>
+          <span class="repo-lang">${repo.language || 'N/A'}</span>
+          <span class="repo-stars">⭐ ${repo.stargazers_count}</span>
+        </div>
+      `).join("");
+      observeNewReveals();
+    })
+    .catch(() => {
+      const root = document.getElementById('githubRepos');
+      if (root) root.innerHTML = '<p style="color:var(--muted)">Unable to load repositories.</p>';
+    });
+}
+
+function calcAffinity() {
+  const q1 = parseFloat(document.getElementById('affQ1').value) || 0;
+  const h1 = parseFloat(document.getElementById('affH1').value) || 0;
+  const n1 = parseFloat(document.getElementById('affN1').value) || 1;
+  const n2 = parseFloat(document.getElementById('affN2').value) || 1;
+  const ratio = n2 / n1;
+  const q2 = q1 * ratio;
+  const h2 = h1 * ratio * ratio;
+  const result = document.getElementById('affResult');
+  if (result) result.innerHTML = `New Flow: <strong>${q2.toFixed(2)} m³/h</strong><br>New Head: <strong>${h2.toFixed(2)} m</strong>`;
+}
+
+function calcBearing() {
+  const rpm = parseFloat(document.getElementById('brgSpeed').value) || 0;
+  const bd = parseFloat(document.getElementById('brgBallDia').value) || 0;
+  const pd = parseFloat(document.getElementById('brgPitchDia').value) || 1;
+  const nb = parseFloat(document.getElementById('brgBallCount').value) || 1;
+  const fr = rpm / 60;
+  const bpf = (fr / 2) * nb * (1 - (bd / pd));
+  const result = document.getElementById('brgResult');
+  if (result) result.innerHTML = `BPFO: <strong>${bpf.toFixed(2)} Hz</strong>`;
 }
 
 /* ---------- Utility: Escape HTML ---------- */
