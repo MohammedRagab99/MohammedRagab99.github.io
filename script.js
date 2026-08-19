@@ -4,7 +4,7 @@
    modal, scroll UI, animations, and enhanced features.
    Fully corrected & improved.
 ========================================================= */
-
+console.log(typeof portfolioData);
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
