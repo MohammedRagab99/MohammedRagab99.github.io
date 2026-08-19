@@ -1,9 +1,3 @@
-/*
-  EDIT THIS FILE to update the portfolio.
-  You can add/edit experience, projects, certificates, research, skills and tools
-  without changing the HTML layout.
-*/
-
 const portfolioData = {
   profile: {
     yearsIndustry: "3+",
@@ -101,7 +95,6 @@ const portfolioData = {
     }
   ],
 
-  // ─── ROTATING MACHINERY ───
   machinery: [
     // Pumps
     { name: "Centrifugal Pump", family: "Pumps", category: "pumps" },
@@ -152,7 +145,6 @@ const portfolioData = {
     { name: "Steam Ejector", family: "Specialty / Auxiliary", category: "specialty-auxiliary" }
   ],
 
-  // ─── MAJOR OVERHAUL / TURNAROUND ───
   majorOverhaul: [
     {
       phase: "Planning",
@@ -211,7 +203,7 @@ const portfolioData = {
   ],
 
   certificates: [
-    // --- Field / Reliability ---
+    // Field / Reliability
     {
       title: "Vibration Analysis Category VCAT II",
       provider: "Mobius Institute",
@@ -261,7 +253,6 @@ const portfolioData = {
       category: "field",
       image: "assets/images/certificates/nsk-bearing.png"
     },
-    // --- Newly added: Istec Sphere Speed Sensor Trainings ---
     {
       title: "Speed Sensors: Hall Effect",
       provider: "Istec Sphere",
@@ -297,8 +288,6 @@ const portfolioData = {
       category: "energy",
       image: "assets/images/certificates/ices-2025-energy-systems-conference.png"
     },
-
-    // --- Oil & Gas ---
     {
       title: "Refinery Fundamentals Program for Postgraduates",
       provider: "EPROM",
@@ -306,8 +295,6 @@ const portfolioData = {
       category: "oil-gas",
       image: "assets/images/certificates/Refinery Fundamentals Program.png"
     },
-
-    // --- Aerospace ---
     {
       title: "Satellite Structure Subsystem",
       provider: "Egyptian Space Agency",
@@ -329,8 +316,6 @@ const portfolioData = {
       category: "aerospace",
       image: "assets/images/certificates/ASU Racing Team - Formula Student UK 2021 Best Member.png"
     },
-
-    // --- Computation & AI ---
     {
       title: "CS50x: Introduction to Computer Science",
       provider: "Harvard University",
@@ -380,8 +365,6 @@ const portfolioData = {
       category: "computation",
       image: "assets/images/certificates/LinkedIn Learning - Programming Foundations Databases.png"
     },
-
-    // --- Design & Management ---
     {
       title: "Project Management Foundations: Teams",
       provider: "LinkedIn Learning",
@@ -427,42 +410,42 @@ const portfolioData = {
       { label: "LinkedIn", url: "https://www.linkedin.com/in/mohamed-ragab-hamad" }
     ]
   },
- 
-achievements: [
-  { icon: "🏆", title: "First Rank: Mechanics Teams", issuer: "Egyptian Space Agency", year: "2021" },
-  { icon: "🏎", title: "Best Member Powertrain", issuer: "Formula Student UK", year: "2021" },
-  { icon: "🎓", title: "CS50x & CS50 AI Certifications", issuer: "Harvard University", year: "2020" },
-  { icon: "📊", title: "Vibration Analysis Category II", issuer: "Mobius Institute", year: "2026" },
-  { icon: "⚙️", title: "Reliability Centered Maintenance", issuer: "Enppi", year: "2026" },
-  { icon: "🔩", title: "Multiple Industry Certifications", issuer: "Flowserve, NSK, RES Global", year: "2024-2026" }
-],
 
-careerInterests: [
-  "Reliability Engineering",
-  "Condition Monitoring",
-  "Rotating Equipment",
-  "Maintenance Engineering",
-  "Energy Systems",
-  "Data Analytics",
-  "AI Applications in Engineering",
-  "Predictive Maintenance"
-]
-  
-skillCategories: [
-  {
-    name: "Mechanical & Rotating Equipment",
-    items: ["Pumps", "Compressors", "Bearings", "Maintenance", "Reliability Engineering", "Vibration Analysis", "Condition Monitoring"]
-  },
-  {
-    name: "Software & Programming",
-    items: ["Python", "SQL", "C#", "Git", "HTML", "CSS", "JavaScript"]
-  },
-  {
-    name: "Engineering Software",
-    items: ["AutoCAD", "SolidWorks", "ANSYS"]
-  }
-],
-  
+  achievements: [
+    { icon: "🏆", title: "First Rank: Mechanics Teams", issuer: "Egyptian Space Agency", year: "2021" },
+    { icon: "🏎", title: "Best Member Powertrain", issuer: "Formula Student UK", year: "2021" },
+    { icon: "🎓", title: "CS50x & CS50 AI Certifications", issuer: "Harvard University", year: "2020" },
+    { icon: "📊", title: "Vibration Analysis Category II", issuer: "Mobius Institute", year: "2026" },
+    { icon: "⚙️", title: "Reliability Centered Maintenance", issuer: "Enppi", year: "2026" },
+    { icon: "🔩", title: "Multiple Industry Certifications", issuer: "Flowserve, NSK, RES Global", year: "2024-2026" }
+  ],
+
+  careerInterests: [
+    "Reliability Engineering",
+    "Condition Monitoring",
+    "Rotating Equipment",
+    "Maintenance Engineering",
+    "Energy Systems",
+    "Data Analytics",
+    "AI Applications in Engineering",
+    "Predictive Maintenance"
+  ],
+
+  skillCategories: [
+    {
+      name: "Mechanical & Rotating Equipment",
+      items: ["Pumps", "Compressors", "Bearings", "Maintenance", "Reliability Engineering", "Vibration Analysis", "Condition Monitoring"]
+    },
+    {
+      name: "Software & Programming",
+      items: ["Python", "SQL", "C#", "Git", "HTML", "CSS", "JavaScript"]
+    },
+    {
+      name: "Engineering Software",
+      items: ["AutoCAD", "SolidWorks", "ANSYS"]
+    }
+  ],
+
   skills: [
     { name: "Field Engineering (Maintenance & Reliability)", value: 92 },
     { name: "Rotating Equipment", value: 90 },
@@ -479,51 +462,49 @@ skillCategories: [
     "LabVIEW", "PLC / Ladder Logic", "Primavera P6", "Excel"
   ],
 
-  // Add to portfolioData object
-education: [
-  {
-    degree: "Master of Engineering (MEng), Mechanical Engineering",
-    institution: "Ain Shams University",
-    start: "2022",
-    end: "2024",
-    location: "Cairo, Egypt",
-    description: "Thesis: Development of a decentralized agricultural waste to solid fuel conversion system."
-  },
-  {
-    degree: "Bachelor of Engineering (BEng), Mechanical Engineering",
-    institution: "Ain Shams University",
-    start: "2017",
-    end: "2022",
-    location: "Cairo, Egypt"
-  }
-],
+  education: [
+    {
+      degree: "Master of Engineering (MEng), Mechanical Engineering",
+      institution: "Ain Shams University",
+      start: "2022",
+      end: "2024",
+      location: "Cairo, Egypt",
+      description: "Thesis: Development of a decentralized agricultural waste to solid fuel conversion system."
+    },
+    {
+      degree: "Bachelor of Engineering (BEng), Mechanical Engineering",
+      institution: "Ain Shams University",
+      start: "2017",
+      end: "2022",
+      location: "Cairo, Egypt"
+    }
+  ],
 
-publications: [
-  {
-    title: "",
-    journal: "",
-    year: "",
-    link: ""
-  }
-],
+  publications: [
+    {
+      title: "",
+      journal: "",
+      year: "",
+      link: ""
+    }
+  ],
 
-awards: [
-  {
-    title: "First Rank: Mechanics Teams",
-    issuer: "Egyptian Space Agency",
-    year: "2021"
-  },
-  {
-    title: "Best Member Powertrain: Formula Student UK'21",
-    issuer: "ASU Racing Team",
-    year: "2021"
-  }
-],
+  awards: [
+    {
+      title: "First Rank: Mechanics Teams",
+      issuer: "Egyptian Space Agency",
+      year: "2021"
+    },
+    {
+      title: "Best Member Powertrain: Formula Student UK'21",
+      issuer: "ASU Racing Team",
+      year: "2021"
+    }
+  ],
 
-languages: [
-  { language: "Arabic", proficiency: "Native" },
-  { language: "English", proficiency: "Fluent" },
-  { language: "French", proficiency: "Basic" }
-]
+  languages: [
+    { language: "Arabic", proficiency: "Native" },
+    { language: "English", proficiency: "Fluent" },
+    { language: "French", proficiency: "Basic" }
+  ]
 };
-
