@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSkills();
   renderMachinery("all");
   renderOverhaul();
+  renderUpwork();
 
   // Setup UI features
   setupTheme();
@@ -1173,6 +1174,51 @@ function calcBearing() {
   const bpfo = (fr / 2) * nb * (1 - (bd / pd));
   const result = document.getElementById('brgResult');
   if (result) result.innerHTML = `BPFO: <strong>${bpfo.toFixed(2)} Hz</strong>`;
+}
+function renderUpwork() {
+  const u = portfolioData.upwork;
+  const root = document.getElementById('upworkContent');
+  if (!u || !root) return;
+
+  root.innerHTML = `
+    <div class="upwork-grid">
+      <div class="upwork-card reveal">
+        <div class="upwork-header">
+          <div>
+            <span class="upwork-verified">✓ ${u.verified ? 'Verified' : 'Unverified'}</span>
+            <span class="upwork-status">● ${u.status}</span>
+          </div>
+          <span class="upwork-rate">${u.hourlyRate}</span>
+        </div>
+        <h3>${u.name}</h3>
+        <p class="upwork-title">${u.title}</p>
+        <p class="upwork-summary">${u.summary}</p>
+        <div class="upwork-stats">
+          <div><strong>${u.totalEarnings}</strong><span>Earnings</span></div>
+          <div><strong>${u.totalJobs}</strong><span>Jobs</span></div>
+          <div><strong>${u.rating}★</strong><span>Rating</span></div>
+        </div>
+      </div>
+
+      <div class="upwork-details reveal delay-1">
+        <div class="upwork-job">
+          <h4>Completed Job</h4>
+          <p>${u.recentJob.title}</p>
+          <span>${u.recentJob.date} • ${u.recentJob.earnings}</span>
+        </div>
+        <div class="upwork-skills">
+          <h4>Top Skills</h4>
+          <div class="upwork-skill-pills">
+            ${u.skills.map(skill => `<span class="upwork-skill">${skill}</span>`).join('')}
+          </div>
+        </div>
+        <a class="button button-primary" href="${u.profileUrl}" target="_blank" rel="noopener">
+          View Upwork Profile →
+        </a>
+      </div>
+    </div>
+  `;
+  observeNewReveals();
 }
 
 /* ---------- Utility: Escape HTML ---------- */
