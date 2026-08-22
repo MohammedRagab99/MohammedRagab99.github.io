@@ -64,6 +64,12 @@
   --transition-fast: 180ms var(--ease);
   --transition: 280ms var(--ease);
   --transition-slow: 700ms var(--ease);
+  
+   /* Color */
+  --color-red: #ef4444;
+  --color-green: #10b981;
+  --color-blue: #3b82f6;
+  --color-white: #ffffff;
 }
 
 /* Dark theme */
