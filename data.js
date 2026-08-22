@@ -300,7 +300,7 @@ const portfolioData = {
       provider: "Nile University",
       year: "2022",
       category: "energy",
-      image: "assets/images/certificates/Desert Reclamation Project Certificate.png"
+      image: "assets/images/certificates/Desert Reclamation Project Certificate.jpg"
     },
     {
       title: "Satellite Structure Subsystem",
