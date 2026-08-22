@@ -299,8 +299,8 @@ const portfolioData = {
       title: "Designing Survival Systems for Desert Reclamation in Egypt",
       provider: "Nile University",
       year: "2022",
-      category: "field",
-      image: "assets/images/certificates/Desert Reclamation Project Certificate.jpg"
+      category: "energy",
+      image: "assets/images/certificates/Desert Reclamation Project Certificate.png"
     },
     {
       title: "Satellite Structure Subsystem",
