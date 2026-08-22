@@ -201,7 +201,34 @@ const portfolioData = {
       ]
     }
   ],
-
+upwork: {
+  name: "Mohammed R.",
+  title: "Mechanical Power & Energy Engineer",
+  hourlyRate: "$40.00/hr",
+  totalEarnings: "$100+",
+  totalJobs: 2,
+  rating: 5.0,
+  reviews: 1,
+  verified: true,
+  status: "Online",
+  location: "Cairo, Egypt",
+  hoursPerWeek: "More than 30 hrs/week",
+  summary: "Energy & Power Mechanical Engineer with expertise in CAD, MEP, field work, R&D, and rotating equipment reliability.",
+  skills: [
+    "Mechanical Engineering", "MATLAB", "SolidWorks", "Autodesk Inventor",
+    "Energy", "Hydropower", "LabVIEW", "Aspen Plus", "Python",
+    "Aspen HYSYS", "Oracle Primavera", "CAD Software", "Data Analysis"
+  ],
+  recentJob: {
+    title: "Engineer Required to Decipher Hydraulic Calculations in Fire Suppression App",
+    rating: 5.0,
+    review: "\"I recently had the pleasure of working with Eng. Mohammed Ragab on a highly specialized project...\"",
+    date: "Aug 2023 - Nov 2023",
+    earnings: "$185.00"
+  },
+  profileUrl: "https://www.upwork.com/freelancers/~014c42cdf6420c6a26"
+},
+  
   certificates: [
     // Field / Reliability
     {
