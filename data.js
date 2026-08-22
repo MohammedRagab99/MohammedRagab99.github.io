@@ -296,6 +296,13 @@ const portfolioData = {
       image: "assets/images/certificates/Refinery Fundamentals Program.png"
     },
     {
+      title: "Designing Survival Systems for Desert Reclamation in Egypt",
+      provider: "Nile University",
+      year: "2022",
+      category: "field",
+      image: "assets/images/certificates/Desert Reclamation Project Certificate.jpg"
+    },
+    {
       title: "Satellite Structure Subsystem",
       provider: "Egyptian Space Agency",
       year: "2021",
