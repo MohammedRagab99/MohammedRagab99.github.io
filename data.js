@@ -61,6 +61,38 @@ const portfolioData = {
       image: "",
       repo: "https://github.com/MohammedRagab99"
     },
+      {
+    title: "Nile Delta Sea-Level Rise & Soil Salinity Risk Assessment",
+    category: "environmental",
+    tag: "CLIMATE / REMOTE SENSING",
+    description: "Machine learning projection of sea-level rise impacts on Nile Delta soil salinity, integrating Sentinel-2, Copernicus DEM, and field ECe data. Includes hybrid groundwater intrusion model, agronomic tiered economic loss, Monte Carlo uncertainty, and SHAP explainability.",
+    image: "",
+    repo: "https://github.com/MohammedRagab99"
+  },
+  {
+    title: "Integrated Assessment of Decentralised Torrefaction Pathways for Industrial Decarbonisation in Egypt",
+    category: "energy",
+    tag: "ENERGY / RESEARCH",
+    description: "Geospatial, reactor engineering, logistics, and techno-economic analysis of mobile autothermal torrefaction units converting Egyptian agricultural residues into a coal substitute for cement kilns. Includes GIS mapping, autothermal reactor design, supply chain optimisation, Monte Carlo uncertainty, and CO₂ abatement.",
+    image: "",
+    repo: ""
+  },
+  {
+    title: "Torrefaction Reactor Control System",
+    category: "energy",
+    tag: "BIOMASS / THERMAL PROCESSING",
+    description: "Arduino-based state machine for biomass torrefaction, implementing stoichiometric startup, PID steady-state control, auger management, and safety fault handling per Kevin S. Kung's thesis (Chapter 7).",
+    image: "",
+    repo: ""
+  },
+  {
+    title: "Rotating Equipment Reliability & Maintenance Performance Dashboard",
+    category: "industrial",
+    tag: "MAINTENANCE / RELIABILITY",
+    description: "Excel VBA-powered executive dashboard integrating PM, CM, work confirmations, notifications, and upcoming work orders. Calculates PM compliance, CM/PM ratio, backlog, MTBF, bad actors, and improved equipment lists. Generates 17+ pivot charts for reliability analysis.",
+    image: "",
+    repo: ""
+  },
     {
       title: "Torrefaction / Biomass Conversion",
       category: "energy",
@@ -490,11 +522,32 @@ upwork: {
   ],
 
   tools: [
-    "Python", "MATLAB", "Octave", "C++ / Java", "VBA", "AI / Machine Learning",
-    "ANSYS", "SolidWorks", "AutoCAD", "Revit MEP", "Inventor",
-    "Aspen Plus", "HOMER Pro", "EnergyPLAN", "WANDA",
-    "LabVIEW", "PLC / Ladder Logic", "Primavera P6", "Excel"
-  ],
+  // Programming & scripting
+  "Python", "MATLAB", "Octave", "C++ / Java", "VBA",
+  "Visual Basic for Applications",
+
+  // AI & data science
+  "AI / Machine Learning", "pandas", "SQL", "ETL", "Data Cleaning",
+  "Data Analysis", "Data Visualization", "Data Modeling",
+  "Microsoft Power BI", "Power Query",
+
+  // Spreadsheet & automation
+  "Microsoft Excel", "Excel", "Excel Macros", "Spreadsheet Automation",
+
+  // Engineering design & CAD
+  "ANSYS", "SolidWorks", "AutoCAD", "Revit MEP", "Inventor",
+
+  // Energy & simulation
+  "Aspen Plus", "HOMER Pro", "EnergyPLAN", "WANDA", "PVSyst",
+  "Energy Simulation", "Energy Modeling Software", "Energy Optimization",
+  "Solar Energy",
+
+  // Control & automation
+  "LabVIEW", "PLC / Ladder Logic",
+
+  // Project management & studies
+  "Primavera P6", "Feasibility Study"
+],
 
   education: [
     {
