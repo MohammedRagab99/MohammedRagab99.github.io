@@ -3,32 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="manifest" href="manifest.json">
 
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Structured Data for SEO -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Mohammed Ragab Al-Attar",
-  "jobTitle": "Reliability & Rotating Equipment Engineer",
-  "email": "mailto:mohammed.ragab.hamad@outlook.com",
-  "telephone": "+20 109 359 7338",
-  "url": "https://mohammedragab99.github.io",
-  "sameAs": [
-    "https://github.com/MohammedRagab99",
-    "https://www.linkedin.com/in/mohamed-ragab-hamad"
-  ]
-}
-</script>
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohammed Ragab Al-Attar",
+    "jobTitle": "Reliability & Rotating Equipment Engineer",
+    "email": "mailto:mohammed.ragab.hamad@outlook.com",
+    "telephone": "+20 109 359 7338",
+    "url": "https://mohammedragab99.github.io",
+    "sameAs": [
+      "https://github.com/MohammedRagab99",
+      "https://www.linkedin.com/in/mohamed-ragab-hamad"
+    ]
+  }
+  </script>
 
-  <meta
-    name="description"
-    content="Mohammed Ragab Al-Attar — Reliability & Rotating Equipment Engineer working across reliability engineering, energy systems, research, MATLAB, Python and data-driven engineering."
-  />
-  <meta
-    name="keywords"
-    content="Mohammed Ragab, Reliability Engineer, Rotating Equipment Engineer, Condition Monitoring, Vibration Analysis, RCA, Predictive Maintenance, Energy Systems, MATLAB, Python, Engineering"
-  />
+  <!-- Meta Tags -->
+  <meta name="description" content="Mohammed Ragab Al-Attar — Reliability & Rotating Equipment Engineer working across reliability engineering, energy systems, research, MATLAB, Python and data-driven engineering." />
+  <meta name="keywords" content="Mohammed Ragab, Reliability Engineer, Rotating Equipment Engineer, Condition Monitoring, Vibration Analysis, RCA, Predictive Maintenance, Energy Systems, MATLAB, Python, Engineering" />
   <meta name="author" content="Mohammed Ragab Al-Attar" />
   <meta name="theme-color" content="#080b12" />
   <meta name="color-scheme" content="dark light" />
@@ -53,10 +51,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -67,10 +62,11 @@
 </head>
 
 <body>
-  
+  <!-- Page Loader -->
   <div class="page-loader" id="pageLoader">
-  <div class="spinner"></div>
+    <div class="spinner"></div>
   </div>
+
   <!-- Toast notifications -->
   <div class="toast-wrap" id="toastWrap"></div>
 
@@ -104,40 +100,27 @@
         <a href="#machinery">Machinery</a>
         <a href="#overhaul">Overhaul</a>
         <a href="#projects">Projects</a>
+        <a href="#github">GitHub</a>
+        <a href="#certificates">Certificates</a>
         <a href="#research">Research</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#skills">Skills</a>
+        <a href="#tools">Tools</a>
+        <a href="#interests">Interests</a>
+        <a href="#upwork">Upwork</a>
+        <a href="#services">Services</a>
+        <a href="#linkedin-posts">LinkedIn</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <div class="nav-actions">
-        <!-- Search button opens search modal -->
-        <button
-          class="icon-button"
-          id="searchButton"
-          type="button"
-          aria-label="Search portfolio"
-          onclick="openSearchModal()"
-        >
+        <button class="icon-button" id="searchButton" type="button" aria-label="Search portfolio" onclick="openSearchModal()">
           <span aria-hidden="true">🔍</span>
         </button>
-
-        <button
-          class="icon-button"
-          id="themeToggle"
-          type="button"
-          aria-label="Toggle color theme"
-          aria-pressed="false"
-        >
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
           <span aria-hidden="true">☾</span>
         </button>
-
-        <button
-          class="menu-button"
-          id="menuButton"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-controls="mobileNav"
-          aria-expanded="false"
-        >
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation menu" aria-controls="mobileNav" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
@@ -146,12 +129,7 @@
     </div>
 
     <!-- Mobile navigation -->
-    <nav
-      class="mobile-nav"
-      id="mobileNav"
-      aria-label="Mobile navigation"
-      aria-hidden="true"
-    >
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
       <div class="mobile-nav-inner">
         <a href="#home"><span>00</span> Home</a>
         <a href="#about"><span>01</span> About</a>
@@ -160,8 +138,17 @@
         <a href="#machinery"><span>04</span> Machinery</a>
         <a href="#overhaul"><span>05</span> Overhaul</a>
         <a href="#projects"><span>06</span> Projects</a>
-        <a href="#research"><span>07</span> Research</a>
-        <a href="#contact"><span>08</span> Contact</a>
+        <a href="#github"><span>07</span> GitHub</a>
+        <a href="#certificates"><span>08</span> Certificates</a>
+        <a href="#research"><span>09</span> Research</a>
+        <a href="#achievements"><span>10</span> Achievements</a>
+        <a href="#skills"><span>11</span> Skills</a>
+        <a href="#tools"><span>12</span> Tools</a>
+        <a href="#interests"><span>13</span> Interests</a>
+        <a href="#upwork"><span>14</span> Upwork</a>
+        <a href="#services"><span>15</span> Services</a>
+        <a href="#linkedin-posts"><span>16</span> LinkedIn</a>
+        <a href="#contact"><span>17</span> Contact</a>
       </div>
     </nav>
   </header>
@@ -216,7 +203,6 @@
                 <span>Machines &amp; Maintenance</span>
               </div>
             </div>
-
             <div class="rgb-item rgb-green">
               <span class="rgb-symbol">G</span>
               <div>
@@ -224,7 +210,6 @@
                 <span>Research &amp; Systems</span>
               </div>
             </div>
-
             <div class="rgb-item rgb-blue">
               <span class="rgb-symbol">B</span>
               <div>
@@ -233,7 +218,8 @@
               </div>
             </div>
           </div>
-         
+
+          <!-- Domain cards -->
           <div class="domain-cards">
             <button class="domain-card" data-target="reliability" onclick="activateDomain('reliability')">
               <span class="domain-icon" style="background: var(--rgb-red);">R</span>
@@ -248,28 +234,17 @@
               <span>Computation</span>
             </button>
           </div>
-          
+
           <!-- Actions -->
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">
               <span>Explore My Work</span>
               <span aria-hidden="true">→</span>
             </a>
-            <a
-              class="button button-secondary"
-              href="assets/documents/Mohammed_Ragab_CV.pdf"
-              target="_blank"
-              rel="noopener"
-            >
+            <a class="button button-secondary" href="assets/documents/Mohammed_Ragab_CV.pdf" target="_blank" rel="noopener">
               View CV
             </a>
-            <a
-              class="button button-ghost"
-              href="https://github.com/MohammedRagab99"
-              target="_blank"
-              rel="noopener"
-              aria-label="Open Mohammed Ragab GitHub profile"
-            >
+            <a class="button button-ghost" href="https://github.com/MohammedRagab99" target="_blank" rel="noopener" aria-label="Open GitHub profile">
               GitHub ↗
             </a>
           </div>
@@ -284,193 +259,150 @@
 
         <!-- Hero visual -->
         <div class="hero-card reveal delay-2" aria-label="Engineering profile overview">
-  <div class="hero-card-top">
-    <span>ENGINEERING PROFILE</span>
-    <span class="pill">Reliability Focus</span>
-  </div>
+          <div class="hero-card-top">
+            <span>ENGINEERING PROFILE</span>
+            <span class="pill">Reliability Focus</span>
+          </div>
 
-  <!-- Interactive Schematic Dashboard -->
-  <div class="schematic-dashboard">
-    <div class="grid-bg"></div>
+          <!-- Interactive Schematic Dashboard -->
+          <div class="schematic-dashboard">
+            <div class="grid-bg"></div>
+            <div class="diagram-container">
+              <canvas id="streamCanvas" width="464" height="440"></canvas>
+              <svg class="overlay-svg" viewBox="0 0 464 440" fill="none">
+                <defs>
+                  <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                  <filter id="glow-white" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+                <g opacity="0.4">
+                  <circle cx="232" cy="210" r="110" stroke="#cbd5e1" stroke-dasharray="3 5" stroke-width="1" />
+                  <circle cx="232" cy="210" r="135" stroke="#cbd5e1" stroke-dasharray="2 8" stroke-width="0.8" />
+                  <line x1="232" y1="30" x2="232" y2="390" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
+                  <line x1="80" y1="210" x2="384" y2="210" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
+                  <path d="M 232 90 L 112 210 L 232 330 L 352 210 Z" stroke="#cbd5e1" stroke-width="1.2" opacity="0.6" />
+                </g>
+                <path d="M 232 30 L 242 55 L 232 48 L 222 55 Z" fill="var(--color-green)" filter="url(#glow-green)" />
+                <path d="M 232 390 L 242 365 L 232 372 L 222 365 Z" fill="var(--color-white)" filter="url(#glow-white)" />
+                <text x="300" y="115" class="schematic-text">SIGNAL FLOW SCHEMATIC rev. 3</text>
+                <text x="300" y="315" class="schematic-text">INTELLIGENCE LAYER rev. 1</text>
+                <g class="node-group" data-node="green" filter="url(#glow-green)">
+                  <circle cx="232" cy="90" r="24" fill="#ffffff" stroke="var(--color-green)" stroke-width="4" />
+                  <circle cx="232" cy="90" r="12" fill="var(--color-green)" opacity="0.8" />
+                </g>
+                <text x="268" y="86" class="annotation">PRIMARY INPUT:</text>
+                <text x="268" y="98" class="annotation-sub">Reliability Protocol V4.2</text>
+                <g class="node-group" data-node="red" filter="url(#glow-red)">
+                  <circle cx="112" cy="210" r="24" fill="#ffffff" stroke="var(--color-red)" stroke-width="4" />
+                  <circle cx="112" cy="210" r="12" fill="var(--color-red)" opacity="0.8" />
+                </g>
+                <text x="18" y="206" class="annotation" text-anchor="start">DATA ACQUISITION</text>
+                <text x="18" y="218" class="annotation-sub" text-anchor="start">(RED STREAM)</text>
+                <g class="node-group" data-node="blue" filter="url(#glow-blue)">
+                  <circle cx="352" cy="210" r="24" fill="#ffffff" stroke="var(--color-blue)" stroke-width="4" />
+                  <circle cx="352" cy="210" r="12" fill="var(--color-blue)" opacity="0.8" />
+                </g>
+                <text x="388" y="206" class="annotation">ANALYSIS</text>
+                <text x="388" y="218" class="annotation-sub">(BLUE STREAM)</text>
+                <circle cx="232" cy="210" r="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+                <circle cx="232" cy="210" r="6" fill="#64748b" />
+                <text x="232" y="184" class="annotation" text-anchor="middle">SYNTHESIS HUB</text>
+                <g class="node-group" data-node="white" filter="url(#glow-white)">
+                  <circle cx="232" cy="330" r="22" fill="#ffffff" stroke="var(--color-white)" stroke-width="4" />
+                  <circle cx="232" cy="330" r="10" fill="var(--color-white)" opacity="0.8" />
+                </g>
+                <text x="268" y="326" class="annotation">SYSTEM OUTPUT:</text>
+                <text x="268" y="338" class="annotation-sub">Optimized Operations</text>
+              </svg>
+            </div>
 
-    <div class="diagram-container">
-      <canvas id="streamCanvas" width="464" height="440"></canvas>
+            <div class="mini-stats">
+              <div>
+                <strong id="statAssets">15+</strong>
+                <span>Rotating Assets Analyzed</span>
+              </div>
+              <div>
+                <strong id="statAvailability">95%+</strong>
+                <span>Equipment Availability Focus</span>
+              </div>
+              <div>
+                <strong id="statTools">20+</strong>
+                <span>Engineering Tools &amp; Methods</span>
+              </div>
+            </div>
 
-      <svg class="overlay-svg" viewBox="0 0 464 440" fill="none">
-        <!-- defs for glow filters -->
-        <defs>
-          <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="glow-white" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-        </defs>
-
-        <!-- Technical Grid & Compass Lines -->
-        <g opacity="0.4">
-          <circle cx="232" cy="210" r="110" stroke="#cbd5e1" stroke-dasharray="3 5" stroke-width="1" />
-          <circle cx="232" cy="210" r="135" stroke="#cbd5e1" stroke-dasharray="2 8" stroke-width="0.8" />
-          <line x1="232" y1="30" x2="232" y2="390" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
-          <line x1="80" y1="210" x2="384" y2="210" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
-          <path d="M 232 90 L 112 210 L 232 330 L 352 210 Z" stroke="#cbd5e1" stroke-width="1.2" opacity="0.6" />
-        </g>
-
-        <!-- Arrows -->
-        <path d="M 232 30 L 242 55 L 232 48 L 222 55 Z" fill="var(--color-green)" filter="url(#glow-green)" />
-        <path d="M 232 390 L 242 365 L 232 372 L 222 365 Z" fill="var(--color-white)" filter="url(#glow-white)" />
-
-        <!-- Technical Callout Text -->
-        <text x="300" y="115" class="schematic-text">SIGNAL FLOW SCHEMATIC rev. 3</text>
-        <text x="300" y="315" class="schematic-text">INTELLIGENCE LAYER rev. 1</text>
-
-        <!-- Top Node (Green) -->
-        <g class="node-group" data-node="green" filter="url(#glow-green)">
-          <circle cx="232" cy="90" r="24" fill="#ffffff" stroke="var(--color-green)" stroke-width="4" />
-          <circle cx="232" cy="90" r="12" fill="var(--color-green)" opacity="0.8" />
-        </g>
-        <text x="268" y="86" class="annotation">PRIMARY INPUT:</text>
-        <text x="268" y="98" class="annotation-sub">Reliability Protocol V4.2</text>
-
-        <!-- Left Node (Red) -->
-        <g class="node-group" data-node="red" filter="url(#glow-red)">
-          <circle cx="112" cy="210" r="24" fill="#ffffff" stroke="var(--color-red)" stroke-width="4" />
-          <circle cx="112" cy="210" r="12" fill="var(--color-red)" opacity="0.8" />
-        </g>
-        <text x="18" y="206" class="annotation" text-anchor="start">DATA ACQUISITION</text>
-        <text x="18" y="218" class="annotation-sub" text-anchor="start">(RED STREAM)</text>
-
-        <!-- Right Node (Blue) -->
-        <g class="node-group" data-node="blue" filter="url(#glow-blue)">
-          <circle cx="352" cy="210" r="24" fill="#ffffff" stroke="var(--color-blue)" stroke-width="4" />
-          <circle cx="352" cy="210" r="12" fill="var(--color-blue)" opacity="0.8" />
-        </g>
-        <text x="388" y="206" class="annotation">ANALYSIS</text>
-        <text x="388" y="218" class="annotation-sub">(BLUE STREAM)</text>
-
-        <!-- Center Synthesis Node -->
-        <circle cx="232" cy="210" r="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
-        <circle cx="232" cy="210" r="6" fill="#64748b" />
-        <text x="232" y="184" class="annotation" text-anchor="middle">SYNTHESIS HUB</text>
-
-        <!-- Bottom Output Node (White/Silver) -->
-        <g class="node-group" data-node="white" filter="url(#glow-white)">
-          <circle cx="232" cy="330" r="22" fill="#ffffff" stroke="var(--color-white)" stroke-width="4" />
-          <circle cx="232" cy="330" r="10" fill="var(--color-white)" opacity="0.8" />
-        </g>
-        <text x="268" y="326" class="annotation">SYSTEM OUTPUT:</text>
-        <text x="268" y="338" class="annotation-sub">Optimized Operations</text>
-      </svg>
-    </div>
-
-    <!-- Stats Section -->
-    <div class="mini-stats">
-      <div>
-        <strong id="statAssets">15+</strong>
-        <span>Rotating Assets Analyzed</span>
+            <div class="engineering-status">
+              <span class="status-line"></span>
+              <span>SYSTEM STATUS</span>
+              <strong>ENGINEERING MODE: ACTIVE</strong>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <strong id="statAvailability">95%+</strong>
-        <span>Equipment Availability Focus</span>
-      </div>
-      <div>
-        <strong id="statTools">20+</strong>
-        <span>Engineering Tools &amp; Methods</span>
-      </div>
-    </div>
 
-    <!-- Engineering status -->
-    <div class="engineering-status">
-      <span class="status-line"></span>
-      <span>SYSTEM STATUS</span>
-      <strong>ENGINEERING MODE: ACTIVE</strong>
-    </div>
-  </div>
-</div>
-
-      <!-- Scroll indicator -->
       <a class="scroll-indicator" href="#about" aria-label="Scroll to About section">
         <span>Scroll to explore</span>
         <span class="scroll-line" aria-hidden="true"></span>
       </a>
     </section>
-<!-- Professional Summary & Skills -->
-<section class="section section-light" id="summary">
-  <div class="container two-col">
-    <div class="section-heading reveal">
-      <div class="eyebrow">01 / PROFILE</div>
-      <h2 id="summary-title">Mechanical <span>engineer</span></h2>
-    </div>
-    <div class="about-copy reveal delay-1">
-      <p>
-        <strong>Mechanical Engineering graduate</strong> with hands‑on experience in
-        <strong>rotating equipment, vibration analysis, refinery operations,</strong> and
-        <strong>Formula Student</strong>. Passionate about reliability engineering,
-        condition monitoring, energy systems, and engineering software development.
-      </p>
-      <p>
-        Skilled in <strong>Python, SQL, C#, data analysis</strong>, and technical problem solving.
-      </p>
-      <div class="quick-links">
-        <a href="#experience">View Experience ↓</a>
-        <a href="#projects">View Projects ↓</a>
-        <a href="cv.html" target="_blank">Download CV</a>
+
+    <!-- Professional Summary -->
+    <section class="section section-light" id="summary">
+      <div class="container two-col">
+        <div class="section-heading reveal">
+          <div class="eyebrow">01 / PROFILE</div>
+          <h2 id="summary-title">Mechanical <span>engineer</span></h2>
+        </div>
+        <div class="about-copy reveal delay-1">
+          <p>
+            <strong>Mechanical Engineering graduate</strong> with hands‑on experience in
+            <strong>rotating equipment, vibration analysis, refinery operations,</strong> and
+            <strong>Formula Student</strong>. Passionate about reliability engineering,
+            condition monitoring, energy systems, and engineering software development.
+          </p>
+          <p>
+            Skilled in <strong>Python, SQL, C#, data analysis</strong>, and technical problem solving.
+          </p>
+          <div class="quick-links">
+            <a href="#experience">View Experience ↓</a>
+            <a href="#projects">View Projects ↓</a>
+            <a href="cv.html" target="_blank">Download CV</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-    
-    <!-- Engineering mindset -->
+    </section>
+
+    <!-- Engineering Mindset -->
     <section class="section mindset-section section-light" id="mindset" aria-labelledby="mindset-title">
       <div class="container">
         <div class="mindset-grid">
           <div class="section-heading reveal">
             <div class="eyebrow">ENGINEERING MINDSET</div>
-            <h2 id="mindset-title">
-              Observe. Understand. <span>Improve.</span>
-            </h2>
+            <h2 id="mindset-title">Observe. Understand. <span>Improve.</span></h2>
           </div>
-
           <div class="mindset-content reveal delay-1">
-            <p class="mindset-statement">
-              Turning engineering problems into
-              <strong>measurable, reliable systems.</strong>
-            </p>
-
+            <p class="mindset-statement">Turning engineering problems into <strong>measurable, reliable systems.</strong></p>
             <div class="process-flow">
-              <div class="process-step">
-                <span>01</span>
-                <strong>Observe</strong>
-                <small>Data &amp; condition</small>
-              </div>
+              <div class="process-step"><span>01</span><strong>Observe</strong><small>Data &amp; condition</small></div>
               <div class="process-arrow" aria-hidden="true">→</div>
-              <div class="process-step">
-                <span>02</span>
-                <strong>Understand</strong>
-                <small>Analysis &amp; RCA</small>
-              </div>
+              <div class="process-step"><span>02</span><strong>Understand</strong><small>Analysis &amp; RCA</small></div>
               <div class="process-arrow" aria-hidden="true">→</div>
-              <div class="process-step">
-                <span>03</span>
-                <strong>Model</strong>
-                <small>Engineering tools</small>
-              </div>
+              <div class="process-step"><span>03</span><strong>Model</strong><small>Engineering tools</small></div>
               <div class="process-arrow" aria-hidden="true">→</div>
-              <div class="process-step">
-                <span>04</span>
-                <strong>Improve</strong>
-                <small>Reliability &amp; impact</small>
-              </div>
+              <div class="process-step"><span>04</span><strong>Improve</strong><small>Reliability &amp; impact</small></div>
             </div>
           </div>
         </div>
@@ -481,13 +413,9 @@
     <section class="section section-light" id="about" aria-labelledby="about-title">
       <div class="container two-col">
         <div class="section-heading reveal">
-          <div class="eyebrow">01 / ABOUT</div>
-          <h2 id="about-title">
-            Engineering at the intersection of
-            <span>machines, data and energy.</span>
-          </h2>
+          <div class="eyebrow">02 / ABOUT</div>
+          <h2 id="about-title">Engineering at the intersection of <span>machines, data and energy.</span></h2>
         </div>
-
         <div class="about-copy reveal delay-1">
           <p>
             I am a Mechanical Engineer specializing in
@@ -504,25 +432,11 @@
             I also use <strong>Python, MATLAB and engineering data analysis</strong>
             to develop practical and repeatable workflows for engineering problems.
           </p>
-
           <div class="about-highlights">
-            <div>
-              <span class="highlight-number">01</span>
-              <strong>Reliability</strong>
-              <span>Condition monitoring &amp; asset health</span>
-            </div>
-            <div>
-              <span class="highlight-number">02</span>
-              <strong>Energy</strong>
-              <span>Thermal systems &amp; biomass research</span>
-            </div>
-            <div>
-              <span class="highlight-number">03</span>
-              <strong>Computation</strong>
-              <span>MATLAB, Python &amp; data analysis</span>
-            </div>
+            <div><span class="highlight-number">01</span><strong>Reliability</strong><span>Condition monitoring &amp; asset health</span></div>
+            <div><span class="highlight-number">02</span><strong>Energy</strong><span>Thermal systems &amp; biomass research</span></div>
+            <div><span class="highlight-number">03</span><strong>Computation</strong><span>MATLAB, Python &amp; data analysis</span></div>
           </div>
-
           <div class="quick-links">
             <a href="mailto:mohammed.ragab.hamad@outlook.com">Email me →</a>
             <a href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub profile →</a>
@@ -536,7 +450,7 @@
     <section class="section section-dark" id="experience" aria-labelledby="experience-title">
       <div class="container">
         <div class="section-heading centered reveal">
-          <div class="eyebrow">02 / EXPERIENCE</div>
+          <div class="eyebrow">03 / EXPERIENCE</div>
           <h2 id="experience-title">Professional <span>journey</span></h2>
           <p>Industrial reliability, thermal engineering and maintenance experience.</p>
         </div>
@@ -548,23 +462,21 @@
     <section class="section section-light" id="expertise" aria-labelledby="expertise-title">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="eyebrow">03 / EXPERTISE</div>
+          <div class="eyebrow">04 / EXPERTISE</div>
           <h2 id="expertise-title">What I <span>work with</span></h2>
         </div>
         <div class="expertise-grid" id="expertiseGrid"></div>
       </div>
     </section>
 
-    <!-- Rotating Machinery -->
+    <!-- Machinery -->
     <section class="section section-light" id="machinery" aria-labelledby="machinery-title">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="eyebrow">04 / MACHINERY</div>
+          <div class="eyebrow">05 / MACHINERY</div>
           <h2 id="machinery-title">Rotating <span>equipment</span></h2>
           <p>Hands‑on experience with critical rotating and auxiliary equipment families.</p>
         </div>
-
-        <!-- Filter buttons -->
         <div class="filter-row reveal" id="machineryFilters" role="group" aria-label="Filter machinery">
           <button class="filter active" data-machinery-filter="all" type="button" aria-pressed="true">All</button>
           <button class="filter" data-machinery-filter="pumps" type="button" aria-pressed="false">Pumps</button>
@@ -573,20 +485,18 @@
           <button class="filter" data-machinery-filter="turbines-drivers" type="button" aria-pressed="false">Turbines &amp; Drivers</button>
           <button class="filter" data-machinery-filter="specialty-auxiliary" type="button" aria-pressed="false">Specialty / Auxiliary</button>
         </div>
-
         <div class="machinery-grid" id="machineryGrid"></div>
       </div>
     </section>
 
-    <!-- Major Overhaul / Turnaround -->
+    <!-- Overhaul -->
     <section class="section section-dark" id="overhaul" aria-labelledby="overhaul-title">
       <div class="container">
         <div class="section-heading centered reveal">
-          <div class="eyebrow">05 / MAJOR OVERHAUL</div>
+          <div class="eyebrow">06 / MAJOR OVERHAUL</div>
           <h2 id="overhaul-title">Overhaul &amp; <span>turnaround</span></h2>
           <p>Structured approach to major equipment overhaul and return‑to‑service.</p>
         </div>
-
         <div class="overhaul-timeline" id="overhaulTimeline"></div>
       </div>
     </section>
@@ -595,57 +505,45 @@
     <section class="section section-dark projects-section" id="projects" aria-labelledby="projects-title">
       <div class="container">
         <div class="section-heading centered reveal">
-          <div class="eyebrow">06 / PROJECTS</div>
+          <div class="eyebrow">07 / PROJECTS</div>
           <h2 id="projects-title">Selected <span>engineering work</span></h2>
           <p>Engineering projects across reliability, energy, programming and applied design.</p>
         </div>
-
         <div class="filter-row reveal" role="group" aria-label="Filter projects">
           <button class="filter active" data-filter="all" type="button" aria-pressed="true">All</button>
-          <button class="filter" data-filter="field" type="button" aria-pressed="false">
-            <span class="filter-rgb red"></span> Field Engineering (R)
-          </button>
-          <button class="filter" data-filter="energy" type="button" aria-pressed="false">
-            <span class="filter-rgb green"></span> Energy (G)
-          </button>
-          <button class="filter" data-filter="computation" type="button" aria-pressed="false">
-            <span class="filter-rgb blue"></span> Computation &amp; AI (B)
-          </button>
+          <button class="filter" data-filter="field" type="button" aria-pressed="false"><span class="filter-rgb red"></span> Field Engineering (R)</button>
+          <button class="filter" data-filter="energy" type="button" aria-pressed="false"><span class="filter-rgb green"></span> Energy (G)</button>
+          <button class="filter" data-filter="computation" type="button" aria-pressed="false"><span class="filter-rgb blue"></span> Computation &amp; AI (B)</button>
           <button class="filter" data-filter="design" type="button" aria-pressed="false">Design</button>
           <button class="filter" data-filter="aerospace" type="button" aria-pressed="false">Aerospace</button>
         </div>
-
         <div class="card-grid" id="projectsGrid"></div>
-
-        <!-- Project category bar chart -->
         <div class="card chart-card" style="margin-top:40px;">
           <h4 style="font-weight:700;font-size:.9rem;margin-bottom:16px;">📁 Projects by Domain</h4>
-          <div class="chart-wrap" style="height:250px;">
-            <canvas id="projectsBarChart"></canvas>
-          </div>
+          <div class="chart-wrap" style="height:250px;"><canvas id="projectsBarChart"></canvas></div>
         </div>
       </div>
     </section>
+
     <!-- GitHub -->
-<section class="section section-light" id="github">
-  <div class="container">
-    <div class="section-heading reveal">
-      <div class="eyebrow">OPEN SOURCE</div>
-      <h2>GitHub <span>repositories</span></h2>
-    </div>
-    <div class="repo-grid" id="githubRepos"></div>
-  </div>
-</section>
+    <section class="section section-light" id="github">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">OPEN SOURCE</div>
+          <h2>GitHub <span>repositories</span></h2>
+        </div>
+        <div class="repo-grid" id="githubRepos"></div>
+      </div>
+    </section>
 
     <!-- Certificates -->
     <section class="section section-light" id="certificates" aria-labelledby="certificates-title">
       <div class="container">
         <div class="section-heading centered reveal">
-          <div class="eyebrow">07 / CERTIFICATES</div>
+          <div class="eyebrow">08 / CERTIFICATES</div>
           <h2 id="certificates-title">Credentials, <span>organized</span></h2>
           <p>Professional learning and technical development, organized by engineering domain.</p>
         </div>
-
         <div class="filter-row light reveal" id="certificateFilters" role="group" aria-label="Filter certificates">
           <button class="filter active" data-cert-filter="all" type="button" aria-pressed="true">All</button>
           <button class="filter" data-cert-filter="field" type="button" aria-pressed="false">Field (R)</button>
@@ -655,7 +553,6 @@
           <button class="filter" data-cert-filter="aerospace" type="button" aria-pressed="false">Aerospace</button>
           <button class="filter" data-cert-filter="design" type="button" aria-pressed="false">Design</button>
         </div>
-
         <div class="certificate-grid" id="certificatesGrid"></div>
       </div>
     </section>
@@ -664,115 +561,98 @@
     <section class="section section-dark" id="research" aria-labelledby="research-title">
       <div class="container two-col research-layout">
         <div class="section-heading reveal">
-          <div class="eyebrow">08 / RESEARCH</div>
+          <div class="eyebrow">09 / RESEARCH</div>
           <h2 id="research-title">From biomass conversion to <span>data-driven engineering.</span></h2>
         </div>
         <div class="research-copy reveal delay-1" id="researchContent"></div>
       </div>
     </section>
+
     <!-- Achievements -->
-<section class="section section-dark" id="achievements">
-  <div class="container">
-    <div class="section-heading centered reveal">
-      <div class="eyebrow">RECOGNITION</div>
-      <h2>Achievements <span>&amp; milestones</span></h2>
-    </div>
-    <div class="achievements-grid" id="achievementsGrid"></div>
-  </div>
-</section>
+    <section class="section section-dark" id="achievements">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">RECOGNITION</div>
+          <h2>Achievements <span>&amp; milestones</span></h2>
+        </div>
+        <div class="achievements-grid" id="achievementsGrid"></div>
+      </div>
+    </section>
 
     <!-- Skills -->
     <section class="section section-light" id="skills" aria-labelledby="skills-title">
       <div class="container">
         <div class="section-heading reveal">
-          <div class="eyebrow">09 / SKILLS</div>
+          <div class="eyebrow">10 / SKILLS</div>
           <h2 id="skills-title">Technical <span>toolkit</span></h2>
         </div>
         <div class="skills-layout">
           <div class="skill-bars" id="skillBars"></div>
           <div class="toolkit-panel">
-            <div class="toolkit-header">
-              <span>TOOLS &amp; TECHNOLOGIES</span>
-              <span class="toolkit-status">ACTIVE</span>
-            </div>
+            <div class="toolkit-header"><span>TOOLS &amp; TECHNOLOGIES</span><span class="toolkit-status">ACTIVE</span></div>
             <div class="tool-cloud" id="toolCloud"></div>
           </div>
         </div>
-
-        <!-- Skills radar chart -->
+        <div class="skill-groups" id="skillGroups"></div>
         <div class="card chart-card" style="margin-top:40px;">
           <h4 style="font-weight:700;font-size:.9rem;margin-bottom:16px;">📊 Domain Proficiency</h4>
-          <div class="chart-wrap" style="height:300px;">
-            <canvas id="skillsRadarChart"></canvas>
+          <div class="chart-wrap" style="height:300px;"><canvas id="skillsRadarChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Tools -->
+    <section class="section section-dark" id="tools">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">ENGINEERING TOOLS</div>
+          <h2>Quick <span>calculators</span></h2>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card reveal">
+            <h3>Pump Affinity Laws</h3>
+            <div class="tool-input"><label>Flow Q1 (m³/h)</label><input type="number" id="affQ1" value="100"></div>
+            <div class="tool-input"><label>Head H1 (m)</label><input type="number" id="affH1" value="20"></div>
+            <div class="tool-input"><label>Speed N1 (RPM)</label><input type="number" id="affN1" value="1500"></div>
+            <div class="tool-input"><label>Speed N2 (RPM)</label><input type="number" id="affN2" value="1800"></div>
+            <button class="button button-primary" onclick="calcAffinity()">Calculate</button>
+            <div id="affResult" class="tool-result"></div>
+          </div>
+          <div class="tool-card reveal delay-1">
+            <h3>Bearing Fault Frequencies</h3>
+            <div class="tool-input"><label>Shaft Speed (RPM)</label><input type="number" id="brgSpeed" value="1500"></div>
+            <div class="tool-input"><label>Ball Diameter (mm)</label><input type="number" id="brgBallDia" value="10"></div>
+            <div class="tool-input"><label>Pitch Diameter (mm)</label><input type="number" id="brgPitchDia" value="50"></div>
+            <div class="tool-input"><label>Number of Balls</label><input type="number" id="brgBallCount" value="9"></div>
+            <button class="button button-primary" onclick="calcBearing()">Calculate</button>
+            <div id="brgResult" class="tool-result"></div>
           </div>
         </div>
       </div>
     </section>
-    <!-- Engineering Tools -->
-<section class="section section-dark" id="tools">
-  <div class="container">
-    <div class="section-heading centered reveal">
-      <div class="eyebrow">ENGINEERING TOOLS</div>
-      <h2>Quick <span>calculators</span></h2>
-    </div>
-    <div class="tools-grid">
-      <div class="tool-card reveal">
-        <h3>Pump Affinity Laws</h3>
-        <div class="tool-input"><label>Flow Q1 (m³/h)</label><input type="number" id="affQ1" value="100"></div>
-        <div class="tool-input"><label>Head H1 (m)</label><input type="number" id="affH1" value="20"></div>
-        <div class="tool-input"><label>Speed N1 (RPM)</label><input type="number" id="affN1" value="1500"></div>
-        <div class="tool-input"><label>Speed N2 (RPM)</label><input type="number" id="affN2" value="1800"></div>
-        <button class="button button-primary" onclick="calcAffinity()">Calculate</button>
-        <div id="affResult" class="tool-result"></div>
-      </div>
 
-      <div class="tool-card reveal delay-1">
-        <h3>Bearing Fault Frequencies</h3>
-        <div class="tool-input"><label>Shaft Speed (RPM)</label><input type="number" id="brgSpeed" value="1500"></div>
-        <div class="tool-input"><label>Ball Diameter (mm)</label><input type="number" id="brgBallDia" value="10"></div>
-        <div class="tool-input"><label>Pitch Diameter (mm)</label><input type="number" id="brgPitchDia" value="50"></div>
-        <div class="tool-input"><label>Number of Balls</label><input type="number" id="brgBallCount" value="9"></div>
-        <button class="button button-primary" onclick="calcBearing()">Calculate</button>
-        <div id="brgResult" class="tool-result"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Engineering snapshot -->
+    <!-- Engineering Snapshot -->
     <section class="section section-dark snapshot-section" aria-labelledby="snapshot-title">
       <div class="container">
         <div class="section-heading centered reveal">
           <div class="eyebrow">ENGINEERING SNAPSHOT</div>
           <h2 id="snapshot-title">Three domains. <span>One engineer.</span></h2>
         </div>
-
         <div class="snapshot-grid">
           <article class="snapshot-card snapshot-red reveal">
-            <div class="snapshot-top">
-              <span class="snapshot-letter">R</span>
-              <span>01</span>
-            </div>
+            <div class="snapshot-top"><span class="snapshot-letter">R</span><span>01</span></div>
             <h3>Reliability</h3>
             <p>Reliability engineering, rotating equipment, condition monitoring, vibration analysis, RCA and predictive maintenance.</p>
             <span class="snapshot-line"></span>
           </article>
-
           <article class="snapshot-card snapshot-green reveal delay-1">
-            <div class="snapshot-top">
-              <span class="snapshot-letter">G</span>
-              <span>02</span>
-            </div>
+            <div class="snapshot-top"><span class="snapshot-letter">G</span><span>02</span></div>
             <h3>Energy</h3>
             <p>Energy systems, biomass conversion, torrefaction, thermal engineering, measurements and control.</p>
             <span class="snapshot-line"></span>
           </article>
-
           <article class="snapshot-card snapshot-blue reveal delay-2">
-            <div class="snapshot-top">
-              <span class="snapshot-letter">B</span>
-              <span>03</span>
-            </div>
+            <div class="snapshot-top"><span class="snapshot-letter">B</span><span>03</span></div>
             <h3>Computation</h3>
             <p>MATLAB, Python, engineering data analysis, modeling, automation and computational workflows.</p>
             <span class="snapshot-line"></span>
@@ -780,79 +660,19 @@
         </div>
       </div>
     </section>
-    <!-- Career Interests -->
-<section class="section section-light" id="interests">
-  <div class="container">
-    <div class="section-heading reveal">
-      <div class="eyebrow">CAREER INTERESTS</div>
-      <h2>Where I <span>add value</span></h2>
-    </div>
-    <div class="interests-cloud" id="interestsCloud"></div>
-  </div>
-</section>
-<!-- Upwork Profile -->
-<section class="section section-light" id="upwork">
-  <div class="container">
-    <div class="section-heading reveal">
-      <div class="eyebrow">FREELANCE</div>
-      <h2>Hire me on <span>Upwork</span></h2>
-      <p>Verified freelancer with real client reviews and a proven track record.</p>
-    </div>
-    <div class="upwork-grid">
-      <!-- Profile Card -->
-      <div class="upwork-card reveal">
-        <div class="upwork-header">
-          <div>
-            <span class="upwork-verified">✓ Verified</span>
-            <span class="upwork-status">● Online</span>
-          </div>
-          <span class="upwork-rate">$40/hr</span>
-        </div>
-        <h3>Mohammed R.</h3>
-        <p class="upwork-title">Mechanical Power &amp; Energy Engineer</p>
-        <p class="upwork-summary">
-          Energy &amp; Power Mechanical Engineer with expertise in CAD, MEP, field work, R&amp;D, and rotating equipment reliability.
-        </p>
-        <div class="upwork-stats">
-          <div><strong>$100+</strong><span>Earnings</span></div>
-          <div><strong>2</strong><span>Jobs</span></div>
-          <div><strong>5.0★</strong><span>Rating</span></div>
-        </div>
-      </div>
 
-          <!-- Recent Job & Skills -->
-          <div class="upwork-details reveal delay-1">
-            <div class="upwork-job">
-              <h4>Completed Job</h4>
-              <p>Engineer Required to Decipher Hydraulic Calculations in Fire Suppression App</p>
-              <span>Aug 2023 - Nov 2023 • $185.00</span>
-            </div>
-            <div class="upwork-skills">
-              <h4>Top Skills</h4>
-              <div class="upwork-skill-pills">
-                <span class="upwork-skill">Mechanical Engineering</span>
-                <span class="upwork-skill">MATLAB</span>
-                <span class="upwork-skill">SolidWorks</span>
-                <span class="upwork-skill">Autodesk Inventor</span>
-                <span class="upwork-skill">Energy</span>
-                <span class="upwork-skill">Hydropower</span>
-                <span class="upwork-skill">LabVIEW</span>
-                <span class="upwork-skill">Aspen Plus</span>
-                <span class="upwork-skill">Python</span>
-                <span class="upwork-skill">Aspen HYSYS</span>
-                <span class="upwork-skill">Oracle Primavera</span>
-                <span class="upwork-skill">CAD Software</span>
-                <span class="upwork-skill">Data Analysis</span>
-              </div>
-            </div>
-            <a class="button button-primary" href="https://www.upwork.com/freelancers/~014c42cdf6420c6a26" target="_blank" rel="noopener">
-              View Upwork Profile →
-            </a>
-          </div>
+    <!-- Career Interests -->
+    <section class="section section-light" id="interests">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">CAREER INTERESTS</div>
+          <h2>Where I <span>add value</span></h2>
         </div>
+        <div class="interests-cloud" id="interestsCloud"></div>
       </div>
     </section>
-        <!-- Upwork Section -->
+
+    <!-- Upwork Profile -->
     <section class="section section-light" id="upwork">
       <div class="container">
         <div class="section-heading reveal">
@@ -863,11 +683,36 @@
         <div id="upworkContent"></div>
       </div>
     </section>
+
+    <!-- Services -->
+    <section class="section section-light" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">FREELANCE SERVICES</div>
+          <h2>Small services. <span>Real results.</span></h2>
+          <p>Clear scope, fast delivery, and fixed prices — no surprises.</p>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <!-- LinkedIn Post Bank -->
+    <section class="section section-light" id="linkedin-posts">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">SOCIAL CONTENT</div>
+          <h2>LinkedIn <span>post bank</span></h2>
+          <p>Ready-to-post captions for each certificate. Copy, schedule, and grow your professional brand.</p>
+        </div>
+        <div class="post-bank-grid" id="postBankGrid"></div>
+      </div>
+    </section>
+
     <!-- Contact CTA -->
     <section class="section cta-section" id="contact" aria-labelledby="contact-title">
       <div class="container cta-inner reveal">
         <div class="cta-copy">
-          <div class="eyebrow">10 / CONTACT</div>
+          <div class="eyebrow">11 / CONTACT</div>
           <h2 id="contact-title">Let's build better <span>engineering systems.</span></h2>
           <p>For reliability, rotating equipment, energy systems, research or engineering collaboration.</p>
           <div class="cta-signature">
@@ -875,23 +720,12 @@
             <span>Mohammed Ragab Al-Attar</span>
           </div>
         </div>
-        
         <div class="cta-actions">
-          <a class="button button-primary" href="mailto:mohammed.ragab.hamad@outlook.com">
-            Start a conversation <span aria-hidden="true">→</span>
-          </a>
-          <button class="button button-secondary" onclick="copyEmail()">
-            📋 Copy Email
-          </button>
-          <a class="button button-secondary" href="cv.html" target="_blank">
-            📄 View Full CV
-          </a>
-          <button class="button button-secondary" onclick="window.open('cv.html','_blank')">
-            🖨 Print / PDF
-          </button>
-          <button class="button button-secondary" onclick="exportWord()">
-            📥 Download Word
-          </button>
+          <a class="button button-primary" href="mailto:mohammed.ragab.hamad@outlook.com">Start a conversation <span aria-hidden="true">→</span></a>
+          <button class="button button-secondary" onclick="copyEmail()">📋 Copy Email</button>
+          <a class="button button-secondary" href="cv.html" target="_blank">📄 View Full CV</a>
+          <button class="button button-secondary" onclick="window.open('cv.html','_blank')">🖨 Print / PDF</button>
+          <button class="button button-secondary" onclick="exportWord()">📥 Download Word</button>
           <a class="button button-ghost" href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub ↗</a>
           <a class="button button-ghost" href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
@@ -900,31 +734,29 @@
   </main>
 
   <!-- Footer -->
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="footer-mark">MR</span>
-      <div>
-        <strong>Mohammed Ragab Al-Attar</strong>
-        <span>Reliability • Rotating Equipment • Energy</span>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-mark">MR</span>
+        <div>
+          <strong>Mohammed Ragab Al-Attar</strong>
+          <span>Reliability • Rotating Equipment • Energy</span>
+        </div>
+      </div>
+      <div class="footer-rgb">
+        <span class="red">R</span>
+        <span class="green">G</span>
+        <span class="blue">B</span>
+        <span>RAGABVERSE</span>
+      </div>
+      <div class="footer-meta">
+        <span>© <span id="currentYear"></span> Mohammed Ragab Al-Attar</span>
+        <a href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://www.upwork.com/freelancers/~014c42cdf6420c6a26" target="_blank" rel="noopener">Upwork ↗</a>
+        <a href="#home">Back to top ↑</a>
       </div>
     </div>
-
-    <div class="footer-rgb">
-      <span class="red">R</span>
-      <span class="green">G</span>
-      <span class="blue">B</span>
-      <span>RAGABVERSE</span>
-    </div>
-
-    <div class="footer-meta">
-      <span>© <span id="currentYear"></span> Mohammed Ragab Al-Attar</span>
-      <a href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://www.upwork.com/freelancers/~014c42cdf6420c6a26" target="_blank" rel="noopener">Upwork ↗</a>
-      <a href="#home">Back to top ↑</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <!-- Certificate modal -->
   <dialog class="modal" id="certificateModal" aria-labelledby="modalTitle">
@@ -991,18 +823,18 @@
 
   <!-- Back to top -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top">
-  <svg class="progress-ring" width="36" height="36">
-    <circle class="progress-ring__bg" cx="18" cy="18" r="16"/>
-    <circle class="progress-ring__fg" cx="18" cy="18" r="16"/>
-  </svg>
-  <span class="back-to-top__arrow">↑</span>
-</button>
- 
+    <svg class="progress-ring" width="36" height="36">
+      <circle class="progress-ring__bg" cx="18" cy="18" r="16"/>
+      <circle class="progress-ring__fg" cx="18" cy="18" r="16"/>
+    </svg>
+    <span class="back-to-top__arrow">↑</span>
+  </button>
+
   <!-- DOCX export library -->
   <script src="https://cdn.jsdelivr.net/npm/docx@7.8.0/build/index.min.js"></script>
   
   <!-- Data & scripts -->
-<script src="data.js" defer></script>
-<script src="script.js" defer></script>
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
