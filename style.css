@@ -3075,3 +3075,74 @@ dialog.modal .modal-close:hover {
 @media (max-width: 760px) {
   .upwork-grid { grid-template-columns: 1fr; }
 }
+
+/* Freelance Services */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+.service-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+}
+.service-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 8px 0;
+}
+.service-desc {
+  font-size: 13px;
+  color: var(--muted);
+  flex: 1;
+}
+.service-meta {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.service-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.service-skill {
+  padding: 4px 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.service-link {
+  margin-top: auto;
+  text-align: center;
+  padding: 10px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background var(--transition-fast);
+}
+.service-link:hover {
+  background: var(--accent-2);
+}
