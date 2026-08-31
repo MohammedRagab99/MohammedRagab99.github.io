@@ -261,6 +261,38 @@ upwork: {
   profileUrl: "https://www.upwork.com/freelancers/~014c42cdf6420c6a26"
 },
   
+  services: [
+  {
+    title: "Excel Data Cleaning & Organization",
+    category: "excel",
+    price: 15,
+    delivery: "1 day",
+    revisions: 1,
+    description: "Clean, organize, and format your messy Excel spreadsheet. Includes basic formulas, pivot table setup, and formatting.",
+    skills: ["Excel", "Data Cleaning", "VBA"],
+    link: "https://www.upwork.com/freelancers/~014c42cdf6420c6a26"
+  },
+  {
+    title: "Python Script for Automation",
+    category: "programming",
+    price: 25,
+    delivery: "2 days",
+    revisions: 2,
+    description: "Custom Python script to automate repetitive tasks, scrape data, or process files. Delivered with clear instructions.",
+    skills: ["Python", "Automation", "Scripting"],
+    link: "https://www.upwork.com/freelancers/~014c42cdf6420c6a26"
+  },
+  {
+    title: "VBA Dashboard for Maintenance KPIs",
+    category: "engineering",
+    price: 50,
+    delivery: "3 days",
+    revisions: 3,
+    description: "Build an Excel VBA dashboard for PM compliance, MTBF, bad actors, and maintenance backlog. Includes interactive charts.",
+    skills: ["VBA", "Reliability", "Data Visualization"],
+    link: "https://www.upwork.com/freelancers/~014c42cdf6420c6a26"
+  }
+],
   certificates: [
     // Field / Reliability
     {
