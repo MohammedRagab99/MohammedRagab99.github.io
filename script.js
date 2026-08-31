@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAchievements();
   renderCareerInterests();
   renderGitHubRepos();
+  renderServices();
 });
 
 /* ---------- Data Rendering ---------- */
@@ -1220,7 +1221,28 @@ function renderUpwork() {
   `;
   observeNewReveals();
 }
+function renderServices() {
+  const root = document.getElementById('servicesGrid');
+  if (!root || !portfolioData.services) return;
 
+  root.innerHTML = portfolioData.services.map(service => `
+    <article class="service-card reveal">
+      <div class="service-price">$${service.price}</div>
+      <h3 class="service-title">${escapeHtml(service.title)}</h3>
+      <p class="service-desc">${escapeHtml(service.description)}</p>
+      <div class="service-meta">
+        <span>🕒 ${escapeHtml(service.delivery)}</span>
+        <span>🔁 ${service.revisions} revision${service.revisions > 1 ? 's' : ''}</span>
+      </div>
+      <div class="service-skills">
+        ${service.skills.map(skill => `<span class="service-skill">${escapeHtml(skill)}</span>`).join('')}
+      </div>
+      <a class="service-link" href="${service.link}" target="_blank" rel="noopener">Order on Upwork →</a>
+    </article>
+  `).join("");
+
+  observeNewReveals();
+}
 /* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
