@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RagabVerse Studio | Mohammed Ragab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Meta Tags -->
+  <meta name="description" content="Four voices and the Building RagabVerse episode archive." />
+  <meta name="keywords" content="Mohammed Ragab, Reliability Engineer, Rotating Equipment Engineer, Condition Monitoring, Vibration Analysis, RCA, Predictive Maintenance, Energy Systems, MATLAB, Python, Engineering" />
+  <meta name="author" content="Mohammed Ragab Al-Attar" />
+  <meta name="theme-color" content="#080b12" />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="RagabVerse Studio | Mohammed Ragab" />
+  <meta property="og:description" content="Four voices and the Building RagabVerse episode archive." />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="RagabVerse Studio | Mohammed Ragab" />
+  <meta name="twitter:description" content="Four voices and the Building RagabVerse episode archive." />
+
+  <link rel="canonical" href="https://mohammedragab99.github.io/studio.html" />
+  <meta property="og:url" content="https://mohammedragab99.github.io/studio.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <!-- Accessibility skip link -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Background noise overlay -->
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="RagabVerse home">
+        <span class="brand-mark" aria-hidden="true">MR</span>
+        <span class="brand-content">
+          <span class="brand-text">Mohammed Ragab</span>
+          <span class="brand-subtitle">RAGABVERSE</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="research.html">Research</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="studio.html" aria-current="page" class="active">Studio</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="searchButton" type="button" aria-label="Search portfolio" onclick="openSearchModal()">
+          <span aria-hidden="true">🔍</span>
+        </button>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+          <span aria-hidden="true">☾</span>
+        </button>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation menu" aria-controls="mobileNav" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile navigation -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="research.html">Research</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="studio.html" aria-current="page" class="active">Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="section section-dark" id="ragabverse" aria-labelledby="ragabverse-title">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">RAGABVERSE</div>
+          <h1 id="ragabverse-title">One Engineer. Three Minds. <span>One Journey.</span></h1>
+          <p class="rv-tagline">The world where engineering thinking becomes a dialogue between four voices.</p>
+          <nav class="page-jump" aria-label="Studio sections">
+            <a href="#characters">Characters</a>
+            <a href="#episodes">Episodes</a>
+            <a href="#pillars">Content pillars</a>
+          </nav>
+        </div>
+
+        <h2 class="studio-subheading" id="characters">Meet the characters</h2>
+        <div class="rv-characters" id="rvCharacters" role="list" aria-label="RagabVerse characters"></div>
+
+        <h2 class="studio-subheading" id="episodes">Episode archive</h2>
+        <div class="rv-episodes">
+          <div class="rv-filters" id="rvFilters" role="group" aria-label="Filter episodes"></div>
+          <div class="rv-episode-grid" id="rvEpisodeGrid" role="list" aria-label="Episodes"></div>
+        </div>
+
+        <h2 class="studio-subheading" id="pillars">Content pillars</h2>
+        <div class="rv-pillars" id="rvPillars" role="list" aria-label="Content pillars"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-mark">MR</span>
+        <div>
+          <strong>Mohammed Ragab Al-Attar</strong>
+          <span>Reliability • Rotating Equipment • Energy</span>
+        </div>
+      </div>
+      <div class="footer-rgb">
+        <span class="red">R</span>
+        <span class="green">G</span>
+        <span class="blue">B</span>
+        <span>RAGABVERSE</span>
+      </div>
+      <div class="footer-meta">
+        <span>© <span id="currentYear"></span> Mohammed Ragab Al-Attar</span>
+        <a href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://www.upwork.com/freelancers/~014c42cdf6420c6a26" target="_blank" rel="noopener">Upwork ↗</a>
+        <a href="#main-content">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Search Modal -->
+  <div class="modal-ov" id="moSearch" onclick="if(event.target===this)closeSearchModal()">
+    <div class="modal wide">
+      <div class="modal-hd" style="padding:12px 16px;">
+        <div class="search-bar" style="flex:1;">
+          <span class="s-icon">🔍</span>
+          <input id="globalSearchInput" placeholder="Search projects, certificates, skills..." oninput="performGlobalSearch()" autofocus>
+        </div>
+        <button class="modal-close" onclick="closeSearchModal()">✕</button>
+      </div>
+      <div class="modal-body" id="globalSearchResults" style="min-height:200px;max-height:60vh;overflow-y:auto;">
+        <p style="text-align:center;color:var(--muted);padding:24px;font-size:.85rem;">Start typing to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg class="progress-ring" width="36" height="36">
+      <circle class="progress-ring__bg" cx="18" cy="18" r="16"/>
+      <circle class="progress-ring__fg" cx="18" cy="18" r="16"/>
+    </svg>
+    <span class="back-to-top__arrow">↑</span>
+  </button>
+
+  <!-- Data & scripts -->
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

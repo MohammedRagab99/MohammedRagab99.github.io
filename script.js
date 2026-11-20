@@ -4,11 +4,12 @@
    modal, scroll UI, animations, and enhanced features.
    Fully corrected & improved.
 ========================================================= */
-console.log(typeof portfolioData);
+
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (redirectLegacySection()) return;
   // Render dynamic content
   renderExperience();
   renderExpertise();
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCharts();
   setupCopyEmail();
   setupKeyboardShortcuts();
+  setupMoreMenu();
 
   // Initialise the interactive schematic dashboard
   initSchematicDashboard();
@@ -48,7 +50,31 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCareerInterests();
   renderGitHubRepos();
   renderServices();
+
+  // Render RagabVerse sections
+  renderRVCharacters();
+  renderRVFilters();
+  renderRVEpisodes();
+  renderRVPillars();
+  loadEpisodeFeed();
 });
+
+function redirectLegacySection() {
+  if (!/\/(?:index\.html)?$/.test(location.pathname) || !location.hash) return false;
+  const sections = {
+    work: ["projects", "github"],
+    experience: ["summary", "about", "mindset", "experience", "expertise", "machinery", "overhaul"],
+    tools: ["skills", "tools", "interests", "upwork", "services"],
+    credentials: ["certificates", "achievements", "linkedin-posts"],
+    research: ["research"],
+    studio: ["ragabverse"],
+    contact: ["contact"]
+  };
+  const page = Object.keys(sections).find(name => sections[name].includes(location.hash.slice(1)));
+  if (!page) return false;
+  location.replace(`${page}.html${location.hash}`);
+  return true;
+}
 
 /* ---------- Data Rendering ---------- */
 
@@ -90,17 +116,14 @@ function renderProjects(filter = "all") {
   const items = portfolioData.projects.filter(p => filter === "all" || p.category === filter);
   root.innerHTML = items.map(item => `
     <article class="project-card reveal">
-      <div class="project-image">
-        ${item.image
-          ? `<img src="${item.image}" alt="${escapeAttr(item.title)}" loading="lazy" onerror="handleImageError(this, 'project')">`
-          : `<div class="placeholder">Add project image in assets/images/projects/</div>`}
-      </div>
+      ${item.image ? `<div class="project-image"><img src="${escapeAttr(item.image)}" alt="" loading="lazy"></div>` : ""}
       <div class="project-body">
         <div class="project-tag">${escapeHtml(item.tag)}</div>
         <h3>${escapeHtml(item.title)}</h3>
         <p>${escapeHtml(item.description)}</p>
         <div class="project-links">
-          ${item.repo ? `<a href="${item.repo}" target="_blank" rel="noopener">Open repository ↗</a>` : ""}
+          <a href="project-detail.html?id=${portfolioData.projects.indexOf(item)}">Project details</a>
+          ${item.repo ? `<a href="${item.repo}" target="_blank" rel="noopener">${item.repo.endsWith("/MohammedRagab99") ? "GitHub profile" : "Open repository"} ↗</a>` : ""}
         </div>
       </div>
     </article>
@@ -271,6 +294,7 @@ function setupNavigation() {
 /* ---------- Active Navigation Highlighting ---------- */
 
 function setupActiveNav() {
+  if ($(".desktop-nav [aria-current='page']")) return;
   const sections = $$("main section[id]");
   const navLinks = $$(".desktop-nav a");
   if (!sections.length || !navLinks.length || !("IntersectionObserver" in window)) return;
@@ -579,36 +603,36 @@ function performGlobalSearch() {
   if (projectMatches.length) {
     html += `<div class="sr-label">Projects (${projectMatches.length})</div>`;
     projectMatches.forEach(p => {
-      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('projects').scrollIntoView({behavior:'smooth'});">
+      html += `<a class="task-item" href="project-detail.html?id=${portfolioData.projects.indexOf(p)}">
         <div class="ti-body"><div class="ti-title">${escapeHtml(p.title)}</div>
         <div class="ti-meta"><span class="project-tag">${escapeHtml(p.tag)}</span><span>${escapeHtml(p.description)}</span></div></div>
-      </div>`;
+      </a>`;
     });
   }
   if (certMatches.length) {
     html += `<div class="sr-label" style="margin-top:16px;">Certificates (${certMatches.length})</div>`;
     certMatches.forEach(c => {
-      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('certificates').scrollIntoView({behavior:'smooth'});">
+      html += `<a class="task-item" href="credentials.html#certificates" onclick="closeSearchModal()">
         <div class="ti-body"><div class="ti-title">${escapeHtml(c.title)}</div>
         <div class="ti-meta"><span>${escapeHtml(c.provider)} · ${escapeHtml(c.year)}</span></div></div>
-      </div>`;
+      </a>`;
     });
   }
   if (machineryMatches.length) {
     html += `<div class="sr-label" style="margin-top:16px;">Machinery (${machineryMatches.length})</div>`;
     machineryMatches.forEach(m => {
-      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('machinery').scrollIntoView({behavior:'smooth'});">
+      html += `<a class="task-item" href="experience.html#machinery" onclick="closeSearchModal()">
         <div class="ti-body"><div class="ti-title">${escapeHtml(m.name)}</div>
         <div class="ti-meta"><span>${escapeHtml(m.family)}</span></div></div>
-      </div>`;
+      </a>`;
     });
   }
   if (overhaulMatches.length) {
     html += `<div class="sr-label" style="margin-top:16px;">Overhaul Phases (${overhaulMatches.length})</div>`;
     overhaulMatches.forEach(phase => {
-      html += `<div class="task-item" onclick="closeSearchModal(); document.getElementById('overhaul').scrollIntoView({behavior:'smooth'});">
+      html += `<a class="task-item" href="experience.html#overhaul" onclick="closeSearchModal()">
         <div class="ti-body"><div class="ti-title">${escapeHtml(phase.phase)}</div></div>
-      </div>`;
+      </a>`;
     });
   }
   if (skillMatches.length || toolMatches.length) {
@@ -657,6 +681,10 @@ function submitContactForm() {
 
   if (!name || !email || !message) {
     toast('Please fill in name, email, and message', 'err');
+    return;
+  }
+  if (!emailEl.checkValidity()) {
+    emailEl.reportValidity();
     return;
   }
 
@@ -879,8 +907,7 @@ async function exportWord() {
 /* ---------- Chart.js Visualizations ---------- */
 
 function setupCharts() {
-  if (typeof Chart === 'undefined') return;
-  setTimeout(initCharts, 300);
+  if (window.Chart) initCharts();
 }
 
 function initCharts() {
@@ -973,9 +1000,41 @@ function getMachineryIcon(category) {
 
 /* ---------- Keyboard Shortcuts ---------- */
 
+function setupMoreMenu() {
+
+  const btn = document.getElementById('navMoreBtn');
+  const panel = document.getElementById('navMorePanel');
+
+  function setMore(open) {
+    if (!btn || !panel) return;
+    btn.setAttribute('aria-expanded', String(open));
+    panel.hidden = !open;
+  }
+
+  if (btn && panel) {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      setMore(panel.hidden);
+    });
+    panel.addEventListener('click', e => { if (e.target.closest('a')) setMore(false); });
+    document.addEventListener('click', e => { if (!e.target.closest('#navMore')) setMore(false); });
+
+    // Highlight "More" when one of its sections is the active one
+    const syncActive = () => btn.classList.toggle('has-active', !!panel.querySelector('a.active'));
+    new MutationObserver(syncActive).observe(panel, { subtree: true, attributes: true, attributeFilter: ['class'] });
+    syncActive();
+  }
+
+    document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !panel.hidden) { setMore(false); btn.focus(); }
+  });
+}
+
 function setupKeyboardShortcuts() {
   document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.key === 'k') {
+    if (e.key === 'Escape') closeSearchModal();
+    const typing = e.target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
+    if (((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') || (e.key === '/' && !typing)) {
       e.preventDefault();
       openSearchModal();
     }
@@ -988,6 +1047,8 @@ function initSchematicDashboard() {
   const canvas = document.getElementById('streamCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const nodes = {
     top:    { x: 232, y: 90,  color: 'rgb(16, 185, 129)' },
@@ -998,6 +1059,9 @@ function initSchematicDashboard() {
 
   let frame = 0;
   let activeNode = null;
+  let animationId = null;
+  let inViewport = false;
+  let pageActive = true;
 
   class Particle {
     constructor(startNode, color) {
@@ -1091,10 +1155,49 @@ function initSchematicDashboard() {
       p.draw();
     });
 
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
   }
 
-  document.querySelectorAll('.node-group').forEach(node => {
+  function updateAnimation() {
+    const shouldAnimate = pageActive && inViewport && !document.hidden && !motionPreference.matches;
+    if (shouldAnimate && animationId === null) {
+      animationId = requestAnimationFrame(animate);
+    } else if (!shouldAnimate && animationId !== null) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  }
+
+  function measureViewport() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    inViewport = rect.bottom > 0 && rect.top < window.innerHeight;
+    updateAnimation();
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      inViewport = entry.isIntersecting;
+      updateAnimation();
+    });
+    observer.observe(canvas.parentElement);
+  } else {
+    window.addEventListener('scroll', measureViewport, { passive: true });
+    window.addEventListener('resize', measureViewport);
+    measureViewport();
+  }
+
+  document.addEventListener('visibilitychange', updateAnimation);
+  motionPreference.addEventListener('change', updateAnimation);
+  window.addEventListener('pagehide', () => {
+    pageActive = false;
+    updateAnimation();
+  });
+  window.addEventListener('pageshow', () => {
+    pageActive = true;
+    measureViewport();
+  });
+
+  canvas.parentElement.querySelectorAll('.node-group').forEach(node => {
     node.addEventListener('mouseenter', () => {
       activeNode = node.getAttribute('data-node');
     });
@@ -1103,7 +1206,6 @@ function initSchematicDashboard() {
     });
   });
 
-  animate();
 }
 
 /* ---------- Additional Renderers ---------- */
@@ -1129,27 +1231,35 @@ function renderCareerInterests() {
   `).join("");
 }
 
-function renderGitHubRepos() {
-  fetch('https://api.github.com/users/MohammedRagab99/repos?sort=updated&per_page=6')
-    .then(res => res.json())
-    .then(repos => {
-      const root = document.getElementById('githubRepos');
-      if (!root) return;
-      root.innerHTML = repos.map(repo => `
+async function renderGitHubRepos() {
+  const root = document.getElementById('githubRepos');
+  if (!root) return;
+
+  const profileLink = '<a href="https://github.com/MohammedRagab99">View GitHub profile</a>.';
+  try {
+    const response = await fetch('https://api.github.com/users/MohammedRagab99/repos?sort=updated&per_page=6');
+    if (!response.ok) {
+      const hasRateLimit = response.status === 429 || response.headers.get('x-ratelimit-remaining') === '0';
+      const message = hasRateLimit ? 'GitHub has temporarily limited requests.' : 'Repositories are unavailable.';
+      root.innerHTML = `<p>${message} ${profileLink}</p>`;
+      return;
+    }
+    const repos = await response.json();
+    const publicRepos = repos.filter(repo => typeof repo.html_url === 'string'
+      && repo.html_url.startsWith('https://github.com/MohammedRagab99/'));
+    root.innerHTML = publicRepos.length ? publicRepos.map(repo => `
         <div class="repo-card reveal">
-          <a href="${repo.html_url}" target="_blank" rel="noopener">
+          <a href="${escapeAttr(repo.html_url)}" target="_blank" rel="noopener">
             <strong>${escapeHtml(repo.name)}</strong>
           </a>
-          <span class="repo-lang">${repo.language || 'N/A'}</span>
-          <span class="repo-stars">⭐ ${repo.stargazers_count}</span>
+          <span class="repo-lang">${escapeHtml(repo.language || 'N/A')}</span>
+          <span class="repo-stars">⭐ ${escapeHtml(repo.stargazers_count)}</span>
         </div>
-      `).join("");
-      observeNewReveals();
-    })
-    .catch(() => {
-      const root = document.getElementById('githubRepos');
-      if (root) root.innerHTML = '<p style="color:var(--muted)">Unable to load repositories.</p>';
-    });
+      `).join("") : `<p>${profileLink}</p>`;
+    observeNewReveals();
+  } catch {
+    root.innerHTML = `<p>Repositories are unavailable. ${profileLink}</p>`;
+  }
 }
 
 /* ---------- Engineering Calculators ---------- */
@@ -1243,6 +1353,158 @@ function renderServices() {
 
   observeNewReveals();
 }
+/* ---------- RagabVerse Renderers ---------- */
+
+function renderRVCharacters() {
+  const root = $("#rvCharacters");
+  if (!root || !portfolioData.ragabverse) return;
+  const chars = portfolioData.ragabverse.characters;
+  root.innerHTML = chars.map(c => `
+    <article class="rv-character-card reveal" role="listitem" data-character="${c.id}">
+      <div class="rv-character-color" style="background: ${c.color};"></div>
+      <div class="rv-character-content">
+        <div class="rv-character-header">
+          <h3>${escapeHtml(c.name)} <span class="rv-character-name-ar">(${escapeHtml(c.nameAr)})</span></h3>
+          <span class="rv-character-role">${escapeHtml(c.role)}</span>
+        </div>
+        <p class="rv-character-archetype">${escapeHtml(c.archetype)}</p>
+        <div class="rv-character-traits">
+          <span class="rv-trait strength">${escapeHtml(c.strengths[0])}</span>
+          <span class="rv-trait strength">${escapeHtml(c.strengths[1])}</span>
+          <span class="rv-trait weakness">${escapeHtml(c.weakness)}</span>
+        </div>
+        <div class="rv-character-appears">
+          <small>Appears: ${escapeHtml(c.appears.join(", "))}</small>
+        </div>
+      </div>
+    </article>
+  `).join("");
+  observeNewReveals();
+}
+
+function renderRVFilters() {
+  const root = $("#rvFilters");
+  if (!root || !portfolioData.ragabverse) return;
+  const episodes = portfolioData.ragabverse.episodes;
+  const pillars = portfolioData.ragabverse.contentPillars;
+
+  // Build unique seasons from episodes
+  const seasons = [...new Set(episodes.map(e => `Season ${Math.ceil(e.ep / 12)}`))];
+
+  const episodePillars = new Set(episodes.map(episode => episode.category));
+
+  const allFilters = [
+    { id: 'all', label: 'All Episodes' },
+    { id: 'published', label: 'Published' },
+    ...seasons.map(s => ({ id: s.toLowerCase().replace(' ', '-'), label: s })),
+    ...pillars.filter(p => episodePillars.has(p.id)).map(p => ({ id: p.id, label: p.name }))
+  ];
+
+  root.innerHTML = allFilters.map((f, i) => `
+    <button class="filter${i === 0 ? ' active' : ''}" data-rv-filter="${f.id}" type="button" aria-pressed="${i === 0}">${escapeHtml(f.label)}</button>
+  `).join("");
+
+  $$("#rvFilters .filter").forEach(btn => {
+    btn.addEventListener("click", () => {
+      $$("#rvFilters .filter").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
+      renderRVEpisodes(btn.dataset.rvFilter);
+    });
+  });
+}
+
+function renderRVEpisodes(filter = "all") {
+  const root = $("#rvEpisodeGrid");
+  if (!root || !portfolioData.ragabverse) return;
+  const episodes = portfolioData.ragabverse.episodes;
+  const pillarColors = new Map(portfolioData.ragabverse.contentPillars.map(pillar => [pillar.id, pillar.color]));
+
+  let filtered = episodes;
+  if (filter !== "all") {
+    if (filter === "published") {
+      filtered = episodes.filter(e => e.status === "published");
+    } else if (filter.startsWith("season")) {
+      const seasonNum = parseInt(filter.replace("season-", ""));
+      const start = (seasonNum - 1) * 12 + 1;
+      const end = seasonNum * 12;
+      filtered = episodes.filter(e => e.ep >= start && e.ep <= end);
+    } else {
+      filtered = episodes.filter(episode => episode.category === filter);
+    }
+  }
+
+  root.innerHTML = filtered.length ? filtered.map(ep => {
+    const statusClass = ep.status === 'published' ? 'published' : ep.status === 'filming' ? 'filming' : 'planned';
+    const statusLabel = ep.status === 'published' ? 'Published' : ep.status === 'filming' ? 'Filming' : 'Planned';
+    return `
+      <article class="rv-episode-card reveal ${statusClass}" role="listitem" data-ep="${ep.ep}">
+        <div class="rv-ep-thumbnail">
+          ${ep.thumbnail ? `<img src="${escapeAttr(ep.thumbnail)}" alt="" loading="lazy">` : `<div class="rv-ep-placeholder" style="background: ${pillarColors.get(ep.category) || '#94A3B8'};">EP${String(ep.ep).padStart(2, '0')}</div>`}
+          <span class="rv-ep-status ${statusClass}">${statusLabel}</span>
+        </div>
+        <div class="rv-ep-body">
+          <div class="rv-ep-meta">
+            <span class="rv-ep-number">EP${String(ep.ep).padStart(2, '0')}</span>
+            ${/^\d{4}-\d{2}-\d{2}$/.test(ep.date) ? `<time class="rv-ep-date" datetime="${ep.date}">${ep.date}</time>` : ""}
+          </div>
+          <h3 class="rv-ep-title">${escapeHtml(ep.title)}</h3>
+          <p class="rv-ep-title-ar">${escapeHtml(ep.titleAr)}</p>
+          <p class="rv-ep-description">${escapeHtml(ep.description)}</p>
+          <div class="rv-ep-links">
+            ${ep.youtubeId ? `<a href="https://youtube.com/watch?v=${ep.youtubeId}" target="_blank" rel="noopener">▶ Watch</a>` : ''}
+            ${ep.linkedinPost ? `<a href="${ep.linkedinPost}" target="_blank" rel="noopener">LinkedIn</a>` : ''}
+            ${ep.githubWriteup ? `<a href="${ep.githubWriteup}" target="_blank" rel="noopener">GitHub</a>` : ''}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("") : '<p class="rv-empty" role="listitem">No episodes match this filter yet.</p>';
+  observeNewReveals();
+}
+
+async function loadEpisodeFeed() {
+  const url = portfolioData.integrations?.episodeFeedUrl;
+  if (!$("#rvEpisodeGrid") || !url || !url.startsWith("https://script.google.com/macros/s/")) return;
+  try {
+    const response = await fetch(url, { credentials: "omit", signal: AbortSignal.timeout(5000) });
+    if (!response.ok) return;
+    const payload = await response.json();
+    if (!Array.isArray(payload.episodes)) return;
+
+    for (const row of payload.episodes) {
+      if (!row || !Number.isInteger(row.ep)) continue;
+      const episode = portfolioData.ragabverse.episodes.find(item => item.ep === row.ep);
+      if (!episode || !["planned", "filming", "published"].includes(row.status)) continue;
+      episode.status = row.status;
+      episode.date = /^\d{4}-\d{2}-\d{2}$/.test(row.date) ? row.date : "";
+      episode.youtubeId = row.status === "published" && /^[\w-]{11}$/.test(row.youtubeId) ? row.youtubeId : "";
+    }
+    renderRVEpisodes($("#rvFilters [aria-pressed='true']")?.dataset.rvFilter || "all");
+  } catch {
+    // The archive is still available when the optional feed is unreachable.
+  }
+}
+
+function renderRVPillars() {
+  const root = $("#rvPillars");
+  if (!root || !portfolioData.ragabverse) return;
+  const pillars = portfolioData.ragabverse.contentPillars;
+  root.innerHTML = pillars.map(p => `
+    <article class="rv-pillar-card reveal" style="border-left-color: ${p.color};">
+      <div class="rv-pillar-icon" style="background: ${p.color};">${p.id.charAt(0).toUpperCase()}</div>
+      <h3>${escapeHtml(p.name)}</h3>
+      <ul>
+        ${p.topics.map(t => `<li>${escapeHtml(t)}</li>`).join("")}
+      </ul>
+    </article>
+  `).join("");
+  observeNewReveals();
+}
+
 /* ---------- Utility: Escape HTML ---------- */
 
 function escapeHtml(value) {
@@ -1260,7 +1522,7 @@ function escapeAttr(value) {
 /* ---------- Service Worker Registration ---------- */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch((err) => {
+    navigator.serviceWorker.register('./sw.js').catch((err) => {
       console.warn('Service worker registration failed:', err);
     });
   });

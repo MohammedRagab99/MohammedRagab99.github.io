@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Engineering tools | Mohammed Ragab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Meta Tags -->
+  <meta name="description" content="Calculators, skills, and collaboration resources." />
+  <meta name="keywords" content="Mohammed Ragab, Reliability Engineer, Rotating Equipment Engineer, Condition Monitoring, Vibration Analysis, RCA, Predictive Maintenance, Energy Systems, MATLAB, Python, Engineering" />
+  <meta name="author" content="Mohammed Ragab Al-Attar" />
+  <meta name="theme-color" content="#080b12" />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Engineering tools | Mohammed Ragab" />
+  <meta property="og:description" content="Calculators, skills, and collaboration resources." />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Engineering tools | Mohammed Ragab" />
+  <meta name="twitter:description" content="Calculators, skills, and collaboration resources." />
+
+  <link rel="canonical" href="https://mohammedragab99.github.io/tools.html" />
+  <meta property="og:url" content="https://mohammedragab99.github.io/tools.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <!-- Accessibility skip link -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Background noise overlay -->
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="RagabVerse home">
+        <span class="brand-mark" aria-hidden="true">MR</span>
+        <span class="brand-content">
+          <span class="brand-text">Mohammed Ragab</span>
+          <span class="brand-subtitle">RAGABVERSE</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="research.html">Research</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="studio.html">Studio</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="searchButton" type="button" aria-label="Search portfolio" onclick="openSearchModal()">
+          <span aria-hidden="true">🔍</span>
+        </button>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+          <span aria-hidden="true">☾</span>
+        </button>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation menu" aria-controls="mobileNav" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile navigation -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="research.html">Research</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="studio.html">Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="section page-intro"><div class="container"><a href="work.html">Engineering work</a><h1>Engineering tools</h1><p>Calculators, skills, and collaboration resources.</p></div></header>
+    <section class="section section-light" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">10 / SKILLS</div>
+          <h2 id="skills-title">Technical <span>toolkit</span></h2>
+        </div>
+        <div class="skills-layout">
+          <div class="skill-bars" id="skillBars"></div>
+          <div class="toolkit-panel">
+            <div class="toolkit-header"><span>TOOLS &amp; TECHNOLOGIES</span><span class="toolkit-status">ACTIVE</span></div>
+            <div class="tool-cloud" id="toolCloud"></div>
+          </div>
+        </div>
+        <div class="skill-groups" id="skillGroups"></div>
+        <div class="card chart-card" style="margin-top:40px;">
+          <h4 style="font-weight:700;font-size:.9rem;margin-bottom:16px;">📊 Domain Proficiency</h4>
+          <div class="chart-wrap" style="height:300px;"><canvas id="skillsRadarChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="tools">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">ENGINEERING TOOLS</div>
+          <h2>Quick <span>calculators</span></h2>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card reveal">
+            <h3>Pump Affinity Laws</h3>
+            <div class="tool-input"><label>Flow Q1 (m³/h)</label><input type="number" id="affQ1" value="100"></div>
+            <div class="tool-input"><label>Head H1 (m)</label><input type="number" id="affH1" value="20"></div>
+            <div class="tool-input"><label>Speed N1 (RPM)</label><input type="number" id="affN1" value="1500"></div>
+            <div class="tool-input"><label>Speed N2 (RPM)</label><input type="number" id="affN2" value="1800"></div>
+            <button class="button button-primary" onclick="calcAffinity()">Calculate</button>
+            <div id="affResult" class="tool-result"></div>
+          </div>
+          <div class="tool-card reveal delay-1">
+            <h3>Bearing Fault Frequencies</h3>
+            <div class="tool-input"><label>Shaft Speed (RPM)</label><input type="number" id="brgSpeed" value="1500"></div>
+            <div class="tool-input"><label>Ball Diameter (mm)</label><input type="number" id="brgBallDia" value="10"></div>
+            <div class="tool-input"><label>Pitch Diameter (mm)</label><input type="number" id="brgPitchDia" value="50"></div>
+            <div class="tool-input"><label>Number of Balls</label><input type="number" id="brgBallCount" value="9"></div>
+            <button class="button button-primary" onclick="calcBearing()">Calculate</button>
+            <div id="brgResult" class="tool-result"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark snapshot-section" aria-labelledby="snapshot-title">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">ENGINEERING SNAPSHOT</div>
+          <h2 id="snapshot-title">Three domains. <span>One engineer.</span></h2>
+        </div>
+        <div class="snapshot-grid">
+          <article class="snapshot-card snapshot-red reveal">
+            <div class="snapshot-top"><span class="snapshot-letter">R</span><span>01</span></div>
+            <h3>Reliability</h3>
+            <p>Reliability engineering, rotating equipment, condition monitoring, vibration analysis, RCA and predictive maintenance.</p>
+            <span class="snapshot-line"></span>
+          </article>
+          <article class="snapshot-card snapshot-green reveal delay-1">
+            <div class="snapshot-top"><span class="snapshot-letter">G</span><span>02</span></div>
+            <h3>Energy</h3>
+            <p>Energy systems, biomass conversion, torrefaction, thermal engineering, measurements and control.</p>
+            <span class="snapshot-line"></span>
+          </article>
+          <article class="snapshot-card snapshot-blue reveal delay-2">
+            <div class="snapshot-top"><span class="snapshot-letter">B</span><span>03</span></div>
+            <h3>Computation</h3>
+            <p>MATLAB, Python, engineering data analysis, modeling, automation and computational workflows.</p>
+            <span class="snapshot-line"></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">FREELANCE SERVICES</div>
+          <h2>Small services. <span>Real results.</span></h2>
+          <p>Clear scope, fast delivery, and fixed prices — no surprises.</p>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="upwork">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">FREELANCE</div>
+          <h2>Hire me on <span>Upwork</span></h2>
+          <p>Verified freelancer with real client reviews and a proven track record.</p>
+        </div>
+        <div id="upworkContent"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="interests">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">CAREER INTERESTS</div>
+          <h2>Where I <span>add value</span></h2>
+        </div>
+        <div class="interests-cloud" id="interestsCloud"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-mark">MR</span>
+        <div>
+          <strong>Mohammed Ragab Al-Attar</strong>
+          <span>Reliability • Rotating Equipment • Energy</span>
+        </div>
+      </div>
+      <div class="footer-rgb">
+        <span class="red">R</span>
+        <span class="green">G</span>
+        <span class="blue">B</span>
+        <span>RAGABVERSE</span>
+      </div>
+      <div class="footer-meta">
+        <span>© <span id="currentYear"></span> Mohammed Ragab Al-Attar</span>
+        <a href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://www.upwork.com/freelancers/~014c42cdf6420c6a26" target="_blank" rel="noopener">Upwork ↗</a>
+        <a href="#main-content">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Search Modal -->
+  <div class="modal-ov" id="moSearch" onclick="if(event.target===this)closeSearchModal()">
+    <div class="modal wide">
+      <div class="modal-hd" style="padding:12px 16px;">
+        <div class="search-bar" style="flex:1;">
+          <span class="s-icon">🔍</span>
+          <input id="globalSearchInput" placeholder="Search projects, certificates, skills..." oninput="performGlobalSearch()" autofocus>
+        </div>
+        <button class="modal-close" onclick="closeSearchModal()">✕</button>
+      </div>
+      <div class="modal-body" id="globalSearchResults" style="min-height:200px;max-height:60vh;overflow-y:auto;">
+        <p style="text-align:center;color:var(--muted);padding:24px;font-size:.85rem;">Start typing to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg class="progress-ring" width="36" height="36">
+      <circle class="progress-ring__bg" cx="18" cy="18" r="16"/>
+      <circle class="progress-ring__fg" cx="18" cy="18" r="16"/>
+    </svg>
+    <span class="back-to-top__arrow">↑</span>
+  </button>
+
+  <!-- Data & scripts -->
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,4 +1,8 @@
 const portfolioData = {
+  integrations: {
+    // Public JSON endpoint for episode metadata. An empty value uses the saved archive.
+    episodeFeedUrl: ""
+  },
   profile: {
     yearsIndustry: "3+",
     projects: "8+",
@@ -599,14 +603,7 @@ upwork: {
     }
   ],
 
-  publications: [
-    {
-      title: "",
-      journal: "",
-      year: "",
-      link: ""
-    }
-  ],
+  publications: [],
 
   awards: [
     {
@@ -625,5 +622,100 @@ upwork: {
     { language: "Arabic", proficiency: "Native" },
     { language: "English", proficiency: "Fluent" },
     { language: "French", proficiency: "Basic" }
-  ]
+  ],
+
+  ragabverse: {
+    characters: [
+      {
+        id: "mohammed",
+        name: "Mohammed",
+        nameAr: "محمد",
+        role: "The Narrator / The Human",
+        color: "#FFFFFF",
+        archetype: "Anchor & Witness",
+        strengths: ["Curiosity", "Practicality"],
+        weakness: "Over-documenting",
+        speechStyle: "Calm measured Arabic/English mix",
+        movementStyle: "Deliberate slow gestures",
+        wardrobe: "Neutral linen/cotton earth tones",
+        voice: "own",
+        appears: ["Intros", "Research", "Takeaways & lessons"],
+        entryStyle: "Walks in from side settling at desk",
+        exitStyle: "Fades or walks out with closing thought"
+      },
+      {
+        id: "raaed",
+        name: "Raaed",
+        nameAr: "رائد",
+        role: "The Executor / Red Voice",
+        color: "#FF2B2B",
+        archetype: "Catalyst",
+        strengths: ["Speed", "Decisiveness"],
+        weakness: "Impulsiveness",
+        speechStyle: "Short punchy sentences verbs first",
+        movementStyle: "Fast sharp movements leans forward",
+        wardrobe: "Dark red accent tee black utility pants",
+        voice: "elevenlabs",
+        appears: ["Execution", "Experiments", "Breakdowns", "Prototypes"],
+        entryStyle: "Slams in or bursts onto screen",
+        exitStyle: "Cuts away mid-sentence or jumps to next action"
+      },
+      {
+        id: "gamal",
+        name: "Gamal",
+        nameAr: "جمال",
+        role: "The Planner / Green Voice",
+        color: "#2BFF5C",
+        archetype: "Architect",
+        strengths: ["Structure", "Risk-balance"],
+        weakness: "Analysis paralysis",
+        speechStyle: "Measured asks questions first",
+        movementStyle: "Controlled upright paces slowly",
+        wardrobe: "Olive green shirt rolled sleeves beige chinos",
+        voice: "elevenlabs",
+        appears: ["Planning", "Leadership", "Project management", "Career tradeoffs"],
+        entryStyle: "Enters with clipboard or tablet pauses center",
+        exitStyle: "Exits after nod or next step gesture"
+      },
+      {
+        id: "bob",
+        name: "Bob",
+        nameAr: "بوب",
+        role: "The Analyst / Blue Voice",
+        color: "#2B7BFF",
+        archetype: "Diagnostician",
+        strengths: ["Insight", "Data-rigor"],
+        weakness: "Over-analysis",
+        speechStyle: "Fast when excited equations diagrams",
+        movementStyle: "Still then sudden lean-in hand gestures",
+        wardrobe: "Navy polo jeans tech accessories",
+        voice: "elevenlabs",
+        appears: ["Diagnostics", "Python", "MATLAB", "AI", "Modeling"],
+        entryStyle: "Slides in with hologram or screen appears",
+        exitStyle: "Fades with data visualization dissolving"
+      }
+    ],
+    episodes: [
+      { ep: 1, title: "The Empty Room", titleAr: "الغرفة الفارغة", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Film room as-is: marble, cornice, openings; explain conversion concept.", category: "reliability" },
+      { ep: 2, title: "The Plan", titleAr: "الخطة", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Sketch, measurements, desk/camera/Hero Wall layout.", category: "reliability" },
+      { ep: 3, title: "The Engineering", titleAr: "الهندسة", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Design decisions, constraints, columns, materials, circulation paths.", category: "reliability" },
+      { ep: 4, title: "Electrical Infrastructure", titleAr: "البنية الكهربائية", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Document electrical/data/media/control rough-in.", category: "reliability" },
+      { ep: 5, title: "Hero Wall", titleAr: "جدار البطل", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Charcoal paint, oak slats, shelves, logo, Halo lighting.", category: "energy" },
+      { ep: 6, title: "Lighting", titleAr: "الإضاءة", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "General lighting, face lighting, character color tests.", category: "energy" },
+      { ep: 7, title: "Desk", titleAr: "المكتب", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Desk fabrication, workstation setup, cable management.", category: "energy" },
+      { ep: 8, title: "Camera Setup", titleAr: "إعداد الكاميرا", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Camera/mic positions, audio/framing tests.", category: "energy" },
+      { ep: 9, title: "The Characters", titleAr: "الشخصيات", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Introduce Raaed, Gamal, Bob, Mohammed and interaction style.", category: "career" },
+      { ep: 10, title: "First Video", titleAr: "أول فيديو", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Record and edit first complete video from studio.", category: "programming" },
+      { ep: 11, title: "The Failure", titleAr: "الفشل", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Document real problem during build/production and fix.", category: "programming" },
+      { ep: 12, title: "The Final Studio", titleAr: "الاستوديو النهائي", date: "2026-XX-XX", status: "planned", thumbnail: "", youtubeId: "", shorts: [], linkedinPost: "", githubWriteup: "", description: "Final tour, before/after, first complete frame.", category: "programming" }
+    ],
+    contentPillars: [
+      { id: "reliability", name: "Reliability & Rotating Equipment", color: "#FF2B2B", topics: ["Bearing diagnosis", "Pump vibration", "Misalignment vs Unbalance", "Compressor faults", "RCA", "RCM"] },
+      { id: "energy", name: "Renewable Energy & Biomass", color: "#2BFF5C", topics: ["Torrefaction", "DAEM modeling", "Biomass conversion", "Energy systems"] },
+      { id: "research", name: "Research & Modeling", color: "#2B7BFF", topics: ["Python/MATLAB modeling", "Simulation", "GPR", "Data-driven engineering"] },
+      { id: "programming", name: "Programming & Control", color: "#2B7BFF", topics: ["Arduino", "PLC", "PI control", "Automation", "Home Assistant"] },
+      { id: "career", name: "Career Path", color: "#FFFFFF", topics: ["Engineering growth", "Decisions", "Tradeoffs", "Mentorship"] },
+      { id: "experiments", name: "Experiments & Projects", color: "#FF2B2B", topics: ["Hands-on builds", "Test rigs", "Prototypes", "Field experiments"] }
+    ]
+  }
 };

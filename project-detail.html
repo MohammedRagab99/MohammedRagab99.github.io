@@ -1,19 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>... same styles ...</head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engineering project | RagabVerse</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.svg">
+</head>
 <body>
-  <div id="projectDetail"></div>
+  <main class="project-detail">
+    <a href="work.html#projects">← All projects</a>
+    <p id="tag"></p>
+    <h1 id="title">Project details</h1>
+    <p id="description"></p>
+    <a id="repository" hidden></a>
+  </main>
   <script src="data.js"></script>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id') || 0;
-    const project = portfolioData.projects[id];
-    document.getElementById('projectDetail').innerHTML = `
-      <h1>${project.title}</h1>
-      <p>${project.tag}</p>
-      <p>${project.description}</p>
-      <a href="${project.repo}" target="_blank">GitHub ↗</a>
-    `;
+    const id = new URLSearchParams(location.search).get("id") ?? "0";
+    const project = /^\d+$/.test(id) && portfolioData.projects[Number(id)];
+    document.getElementById("title").textContent = project ? project.title : "Project not found";
+    document.title = document.getElementById("title").textContent + " | RagabVerse";
+    document.getElementById("description").textContent = project ? project.description : "Browse all projects to find the one you were looking for.";
+    if (project) {
+      document.getElementById("tag").textContent = project.tag;
+      if (project.repo) {
+        const link = document.getElementById("repository");
+        link.href = project.repo;
+        link.textContent = project.repo.endsWith("/MohammedRagab99") ? "View GitHub profile" : "View project repository";
+        link.hidden = false;
+      }
+    }
   </script>
 </body>
 </html>

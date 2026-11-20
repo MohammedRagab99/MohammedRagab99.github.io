@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Experience | Mohammed Ragab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Meta Tags -->
+  <meta name="description" content="Engineering experience, machinery and overhaul casework." />
+  <meta name="keywords" content="Mohammed Ragab, Reliability Engineer, Rotating Equipment Engineer, Condition Monitoring, Vibration Analysis, RCA, Predictive Maintenance, Energy Systems, MATLAB, Python, Engineering" />
+  <meta name="author" content="Mohammed Ragab Al-Attar" />
+  <meta name="theme-color" content="#080b12" />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Experience | Mohammed Ragab" />
+  <meta property="og:description" content="Engineering experience, machinery and overhaul casework." />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Experience | Mohammed Ragab" />
+  <meta name="twitter:description" content="Engineering experience, machinery and overhaul casework." />
+
+  <link rel="canonical" href="https://mohammedragab99.github.io/experience.html" />
+  <meta property="og:url" content="https://mohammedragab99.github.io/experience.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <!-- Accessibility skip link -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Background noise overlay -->
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="RagabVerse home">
+        <span class="brand-mark" aria-hidden="true">MR</span>
+        <span class="brand-content">
+          <span class="brand-text">Mohammed Ragab</span>
+          <span class="brand-subtitle">RAGABVERSE</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="research.html">Research</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="studio.html">Studio</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="searchButton" type="button" aria-label="Search portfolio" onclick="openSearchModal()">
+          <span aria-hidden="true">🔍</span>
+        </button>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+          <span aria-hidden="true">☾</span>
+        </button>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation menu" aria-controls="mobileNav" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile navigation -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="active">Work</a>
+        <a href="research.html">Research</a>
+        <a href="credentials.html">Credentials</a>
+        <a href="studio.html">Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="section page-intro"><div class="container"><a href="work.html">Engineering work</a><h1>Experience</h1><p>Engineering experience, machinery and overhaul casework.</p></div></header>
+    <section class="section section-light" id="summary">
+      <div class="container two-col">
+        <div class="section-heading reveal">
+          <div class="eyebrow">01 / PROFILE</div>
+          <h2 id="summary-title">Mechanical <span>engineer</span></h2>
+        </div>
+        <div class="about-copy reveal delay-1">
+          <p>
+            <strong>Mechanical Engineering graduate</strong> with hands‑on experience in
+            <strong>rotating equipment, vibration analysis, refinery operations,</strong> and
+            <strong>Formula Student</strong>. Passionate about reliability engineering,
+            condition monitoring, energy systems, and engineering software development.
+          </p>
+          <p>
+            Skilled in <strong>Python, SQL, C#, data analysis</strong>, and technical problem solving.
+          </p>
+          <div class="quick-links">
+            <a href="#experience">View Experience ↓</a>
+            <a href="work.html#projects">View Projects</a>
+            <a href="assets/documents/Mohammed_Ragab_CV.pdf" download>Download CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">03 / EXPERIENCE</div>
+          <h2 id="experience-title">Professional <span>journey</span></h2>
+          <p>Industrial reliability, thermal engineering and maintenance experience.</p>
+        </div>
+        <div class="timeline" id="experienceList"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="machinery" aria-labelledby="machinery-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">05 / MACHINERY</div>
+          <h2 id="machinery-title">Rotating <span>equipment</span></h2>
+          <p>Hands‑on experience with critical rotating and auxiliary equipment families.</p>
+        </div>
+        <div class="filter-row reveal" id="machineryFilters" role="group" aria-label="Filter machinery">
+          <button class="filter active" data-machinery-filter="all" type="button" aria-pressed="true">All</button>
+          <button class="filter" data-machinery-filter="pumps" type="button" aria-pressed="false">Pumps</button>
+          <button class="filter" data-machinery-filter="compressors" type="button" aria-pressed="false">Compressors</button>
+          <button class="filter" data-machinery-filter="fans-blowers" type="button" aria-pressed="false">Fans &amp; Blowers</button>
+          <button class="filter" data-machinery-filter="turbines-drivers" type="button" aria-pressed="false">Turbines &amp; Drivers</button>
+          <button class="filter" data-machinery-filter="specialty-auxiliary" type="button" aria-pressed="false">Specialty / Auxiliary</button>
+        </div>
+        <div class="machinery-grid" id="machineryGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="overhaul" aria-labelledby="overhaul-title">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow">06 / MAJOR OVERHAUL</div>
+          <h2 id="overhaul-title">Overhaul &amp; <span>turnaround</span></h2>
+          <p>Structured approach to major equipment overhaul and return‑to‑service.</p>
+        </div>
+        <div class="overhaul-timeline" id="overhaulTimeline"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="expertise" aria-labelledby="expertise-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">04 / EXPERTISE</div>
+          <h2 id="expertise-title">What I <span>work with</span></h2>
+        </div>
+        <div class="expertise-grid" id="expertiseGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="about" aria-labelledby="about-title">
+      <div class="container two-col">
+        <div class="section-heading reveal">
+          <div class="eyebrow">02 / ABOUT</div>
+          <h2 id="about-title">Engineering at the intersection of <span>machines, data and energy.</span></h2>
+        </div>
+        <div class="about-copy reveal delay-1">
+          <p>
+            I am a Mechanical Engineer specializing in
+            <strong>Reliability and Rotating Equipment</strong>,
+            with industrial experience in refinery operations and condition monitoring.
+          </p>
+          <p>
+            My work focuses on
+            <strong>vibration analysis, equipment reliability, root cause analysis, predictive maintenance and maintenance strategy</strong>,
+            while my academic background is connected to biomass conversion, energy systems,
+            measurements and control engineering.
+          </p>
+          <p>
+            I also use <strong>Python, MATLAB and engineering data analysis</strong>
+            to develop practical and repeatable workflows for engineering problems.
+          </p>
+          <div class="about-highlights">
+            <div><span class="highlight-number">01</span><strong>Reliability</strong><span>Condition monitoring &amp; asset health</span></div>
+            <div><span class="highlight-number">02</span><strong>Energy</strong><span>Thermal systems &amp; biomass research</span></div>
+            <div><span class="highlight-number">03</span><strong>Computation</strong><span>MATLAB, Python &amp; data analysis</span></div>
+          </div>
+          <div class="quick-links">
+            <a href="mailto:mohammed.ragab.hamad@outlook.com">Email me →</a>
+            <a href="https://github.com/MohammedRagab99" target="_blank" rel="noopener">GitHub profile →</a>
+            <a href="assets/documents/Mohammed_Ragab_CV.pdf" download>Download CV →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section mindset-section section-light" id="mindset" aria-labelledby="mindset-title">
+      <div class="container">
+        <div class="mindset-grid">
+          <div class="section-heading reveal">
+            <div class="eyebrow">ENGINEERING MINDSET</div>
+            <h2 id="mindset-title">Observe. Understand. <span>Improve.</span></h2>
+          </div>
+          <div class="mindset-content reveal delay-1">
+            <p class="mindset-statement">Turning engineering problems into <strong>measurable, reliable systems.</strong></p>
+            <div class="process-flow">
+              <div class="process-step"><span>01</span><strong>Observe</strong><small>Data &amp; condition</small></div>
+              <div class="process-arrow" aria-hidden="true">→</div>
+              <div class="process-step"><span>02</span><strong>Understand</strong><small>Analysis &amp; RCA</small></div>
+              <div class="process-arrow" aria-hidden="true">→</div>
+              <div class="process-step"><span>03</span><strong>Model</strong><small>Engineering tools</small></div>
+              <div class="process-arrow" aria-hidden="true">→</div>
+              <div class="process-step"><span>04</span><strong>Improve</strong><small>Reliability &amp; impact</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-mark">MR</span>
+        <div>
+          <strong>Mohammed Ragab Al-Attar</strong>
+          <span>Reliability • Rotating Equipment • Energy</span>
+        </div>
+      </div>
+      <div class="footer-rgb">
+        <span class="red">R</span>
+        <span class="green">G</span>
+        <span class="blue">B</span>
+        <span>RAGABVERSE</span>
+      </div>
+      <div class="footer-meta">
+        <span>© <span id="currentYear"></span> Mohammed Ragab Al-Attar</span>
+        <a href="https://www.linkedin.com/in/mohamed-ragab-hamad" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://www.upwork.com/freelancers/~014c42cdf6420c6a26" target="_blank" rel="noopener">Upwork ↗</a>
+        <a href="#main-content">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Search Modal -->
+  <div class="modal-ov" id="moSearch" onclick="if(event.target===this)closeSearchModal()">
+    <div class="modal wide">
+      <div class="modal-hd" style="padding:12px 16px;">
+        <div class="search-bar" style="flex:1;">
+          <span class="s-icon">🔍</span>
+          <input id="globalSearchInput" placeholder="Search projects, certificates, skills..." oninput="performGlobalSearch()" autofocus>
+        </div>
+        <button class="modal-close" onclick="closeSearchModal()">✕</button>
+      </div>
+      <div class="modal-body" id="globalSearchResults" style="min-height:200px;max-height:60vh;overflow-y:auto;">
+        <p style="text-align:center;color:var(--muted);padding:24px;font-size:.85rem;">Start typing to search...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg class="progress-ring" width="36" height="36">
+      <circle class="progress-ring__bg" cx="18" cy="18" r="16"/>
+      <circle class="progress-ring__fg" cx="18" cy="18" r="16"/>
+    </svg>
+    <span class="back-to-top__arrow">↑</span>
+  </button>
+
+  <!-- Data & scripts -->
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
