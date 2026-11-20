@@ -48,7 +48,7 @@
   <meta property="og:url" content="https://mohammedragab99.github.io/" />
 
   <!-- Favicon -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.svg?v=rosette" type="image/svg+xml" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -84,7 +84,7 @@
   <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
       <a class="brand" href="index.html" aria-label="RagabVerse home">
-        <span class="brand-mark" aria-hidden="true">MR</span>
+        <img class="brand-mark" src="assets/brand/ragabverse-icon-192.png?v=rosette" width="40" height="40" alt="" />
         <span class="brand-content">
           <span class="brand-text">Mohammed Ragab</span>
           <span class="brand-subtitle">RAGABVERSE</span>
@@ -205,91 +205,126 @@
           </div>
         </div>
 
-        <!-- Hero visual -->
-        <div class="hero-card reveal delay-2" aria-label="Engineering profile overview">
-          <div class="hero-card-top">
-            <span>ENGINEERING PROFILE</span>
-            <span class="pill">Reliability Focus</span>
-          </div>
-
-          <!-- Interactive Schematic Dashboard -->
-          <div class="schematic-dashboard">
-            <div class="grid-bg"></div>
-            <div class="diagram-container">
-              <canvas id="streamCanvas" width="464" height="440"></canvas>
-              <svg class="overlay-svg" viewBox="0 0 464 440" fill="none">
-                <defs>
-                  <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="5" result="blur" />
-                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                  </filter>
-                  <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="5" result="blur" />
-                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                  </filter>
-                  <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="5" result="blur" />
-                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                  </filter>
-                  <filter id="glow-white" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="5" result="blur" />
-                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                  </filter>
-                </defs>
-                <g opacity="0.4">
-                  <circle cx="232" cy="210" r="110" stroke="#cbd5e1" stroke-dasharray="3 5" stroke-width="1" />
-                  <circle cx="232" cy="210" r="135" stroke="#cbd5e1" stroke-dasharray="2 8" stroke-width="0.8" />
-                  <line x1="232" y1="30" x2="232" y2="390" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
-                  <line x1="80" y1="210" x2="384" y2="210" stroke="#cbd5e1" stroke-dasharray="2 4" stroke-width="0.8" />
-                  <path d="M 232 90 L 112 210 L 232 330 L 352 210 Z" stroke="#cbd5e1" stroke-width="1.2" opacity="0.6" />
-                </g>
-                <path d="M 232 30 L 242 55 L 232 48 L 222 55 Z" fill="var(--color-green)" filter="url(#glow-green)" />
-                <path d="M 232 390 L 242 365 L 232 372 L 222 365 Z" fill="var(--color-white)" filter="url(#glow-white)" />
-                <text x="300" y="115" class="schematic-text">SIGNAL FLOW SCHEMATIC rev. 3</text>
-                <text x="300" y="315" class="schematic-text">INTELLIGENCE LAYER rev. 1</text>
-                <g class="node-group" data-node="green" filter="url(#glow-green)">
-                  <circle cx="232" cy="90" r="24" fill="#ffffff" stroke="var(--color-green)" stroke-width="4" />
-                  <circle cx="232" cy="90" r="12" fill="var(--color-green)" opacity="0.8" />
-                </g>
-                <text x="268" y="86" class="annotation">PRIMARY INPUT:</text>
-                <text x="268" y="98" class="annotation-sub">Reliability Protocol V4.2</text>
-                <g class="node-group" data-node="red" filter="url(#glow-red)">
-                  <circle cx="112" cy="210" r="24" fill="#ffffff" stroke="var(--color-red)" stroke-width="4" />
-                  <circle cx="112" cy="210" r="12" fill="var(--color-red)" opacity="0.8" />
-                </g>
-                <text x="18" y="206" class="annotation" text-anchor="start">DATA ACQUISITION</text>
-                <text x="18" y="218" class="annotation-sub" text-anchor="start">(RED STREAM)</text>
-                <g class="node-group" data-node="blue" filter="url(#glow-blue)">
-                  <circle cx="352" cy="210" r="24" fill="#ffffff" stroke="var(--color-blue)" stroke-width="4" />
-                  <circle cx="352" cy="210" r="12" fill="var(--color-blue)" opacity="0.8" />
-                </g>
-                <text x="388" y="206" class="annotation">ANALYSIS</text>
-                <text x="388" y="218" class="annotation-sub">(BLUE STREAM)</text>
-                <circle cx="232" cy="210" r="16" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
-                <circle cx="232" cy="210" r="6" fill="#64748b" />
-                <text x="232" y="184" class="annotation" text-anchor="middle">SYNTHESIS HUB</text>
-                <g class="node-group" data-node="white" filter="url(#glow-white)">
-                  <circle cx="232" cy="330" r="22" fill="#ffffff" stroke="var(--color-white)" stroke-width="4" />
-                  <circle cx="232" cy="330" r="10" fill="var(--color-white)" opacity="0.8" />
-                </g>
-                <text x="268" y="326" class="annotation">SYSTEM OUTPUT:</text>
-                <text x="268" y="338" class="annotation-sub">Optimized Operations</text>
-              </svg>
-            </div>
-
-            <div class="mini-stats">
-              <div><strong id="statAssets">15+</strong><span>Rotating Assets Analyzed</span></div>
-              <div><strong id="statAvailability">95%+</strong><span>Equipment Availability Focus</span></div>
-              <div><strong id="statTools">20+</strong><span>Engineering Tools &amp; Methods</span></div>
-            </div>
-
-            <div class="engineering-status">
-              <span class="status-line"></span>
-              <span>SYSTEM STATUS</span>
-              <strong>ENGINEERING MODE: ACTIVE</strong>
+        <figure class="hero-card engineering-figure" id="engineeringFigure" data-mode="flow">
+          <div class="engineering-figure-header">
+            <h2>Inside a turbomachine</h2>
+            <div class="engineering-modes" role="group" aria-label="Engineering visualization mode" hidden>
+              <button type="button" data-mode="flow" aria-pressed="true">Flow</button>
+              <button type="button" data-mode="thermal" aria-pressed="false">Thermal</button>
+              <button type="button" data-mode="signals" aria-pressed="false">Signals</button>
+              <button type="button" data-mode="power" aria-pressed="false">Power</button>
             </div>
           </div>
-        </div>
+          <svg class="engineering-diagram" viewBox="0 0 520 356" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="field-gradient" cx=".65" cy=".46" r=".8">
+                <stop stop-color="#173246"/><stop offset=".6" stop-color="#0c1c29"/><stop offset="1" stop-color="#0a121b"/>
+              </radialGradient>
+              <radialGradient id="rotor-disc">
+                <stop stop-color="#234456"/><stop offset=".72" stop-color="#142735"/><stop offset="1" stop-color="#0b1622"/>
+              </radialGradient>
+              <linearGradient id="blade-metal" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                <stop stop-color="#e9f5f6"/><stop offset=".48" stop-color="#7baebf"/><stop offset="1" stop-color="#31566c"/>
+              </linearGradient>
+              <linearGradient id="flow-gradient" x2="1" y2="0" gradientUnits="objectBoundingBox">
+                <stop stop-color="#487d95" stop-opacity=".28"/><stop offset=".44" stop-color="#8ce9f6"/><stop offset="1" stop-color="#75e8bd" stop-opacity=".62"/>
+              </linearGradient>
+              <linearGradient id="heat-gradient" x2="1" y2="0" gradientUnits="objectBoundingBox">
+                <stop stop-color="#ffe2a0"/><stop offset="1" stop-color="#fb8e73"/>
+              </linearGradient>
+              <linearGradient id="shaft-gradient" x2="1" y2=".8">
+                <stop stop-color="#f9dda4"/><stop offset=".6" stop-color="#ecb46e"/><stop offset="1" stop-color="#be724e"/>
+              </linearGradient>
+              <pattern id="rosette-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+                <path d="M32 3 61 32 32 61 3 32Z M11 11H53V53H11Z M0 0l11 11m42 0L64 0M0 64l11-11m42 0 11 11" fill="none" stroke="#648396" stroke-opacity=".44" stroke-width=".75"/>
+                <path d="m32 19 13 13-13 13-13-13Z M23 23h18v18H23Z" fill="none" stroke="#bd9d6b" stroke-opacity=".2" stroke-width=".7"/>
+              </pattern>
+              <mask id="texture-fade">
+                <linearGradient id="fade-sides"><stop stop-color="white"/><stop offset=".48" stop-color="#353535"/><stop offset="1" stop-color="white"/></linearGradient>
+                <rect width="520" height="356" fill="url(#fade-sides)"/>
+              </mask>
+              <clipPath id="diagram-clip"><rect x="1" y="1" width="518" height="354" rx="17"/></clipPath>
+              <path id="rotor-blade" d="M252 158c10-21 30-34 53-32l-9 14c-17 3-30 11-36 26z"/>
+              <path id="flow-upper" d="M-6 140 C80 140 132 154 178 112 S247 64 289 70 C340 76 345 112 386 117 S462 104 528 112"/>
+              <path id="flow-shoulder" d="M-6 163 C80 163 144 169 183 134 S237 89 281 92 C325 95 336 130 373 139 S457 127 528 133"/>
+              <path id="flow-lower" d="M-6 200 C95 200 137 196 183 239 S262 276 305 253 C344 232 352 191 396 182 S468 181 528 177"/>
+              <path id="flow-wake" d="M-6 230 C81 223 142 218 175 256 S252 306 312 282 C371 258 369 217 424 211 S485 209 528 198"/>
+            </defs>
+            <g clip-path="url(#diagram-clip)">
+              <rect width="520" height="356" fill="url(#field-gradient)"/>
+              <rect width="520" height="356" fill="url(#rosette-grid)" mask="url(#texture-fade)"/>
+              <g fill="none" stroke="#83a6b8" opacity=".34">
+                <path d="M25 49V26h23m424 0h23v23M25 307v23h23m424 0h23v-23" stroke-width="1.2"/>
+                <path d="M260 25v278M25 176h470" stroke-dasharray="2 6"/>
+                <path d="M260 52 384 176 260 300 136 176Z M172 88h176v176H172Z" opacity=".7"/>
+                <circle cx="260" cy="176" r="113" stroke-dasharray="2 8"/>
+                <circle cx="260" cy="176" r="96"/>
+              </g>
+              <g class="diagram-layer layer-flow" fill="none" stroke="url(#flow-gradient)" stroke-width="1.15">
+                <use href="#flow-upper" transform="translate(0 -25)" opacity=".45"/>
+                <use href="#flow-upper" transform="translate(0 -12)" opacity=".65"/>
+                <use href="#flow-upper"/><use href="#flow-shoulder"/>
+                <use href="#flow-shoulder" transform="translate(0 9)" opacity=".52"/>
+                <use href="#flow-lower"/><use href="#flow-wake"/>
+                <use href="#flow-wake" transform="translate(0 12)" opacity=".54"/>
+                <use href="#flow-wake" transform="translate(0 24)" opacity=".36"/>
+                <g class="diagram-tracer" stroke="#9ffbe0" stroke-width="2.8" stroke-linecap="round">
+                  <use href="#flow-upper"/><use href="#flow-shoulder"/><use href="#flow-lower"/><use href="#flow-wake"/>
+                </g>
+                <path d="m92 144 5 4-5 3m316-29 5 3-5 4m-19 95 4-4 5 2" stroke="#a4f8e4" stroke-width="1.6"/>
+              </g>
+              <g class="diagram-layer layer-thermal" fill="none" stroke="url(#heat-gradient)" stroke-width="1.35">
+                <path class="heat-band" d="M193 105c54-50 134-31 174 7s68 50 155 35m-341-27c49-49 121-38 170 2s83 59 171 39m-322-29c42-36 104-34 144 1s87 57 178 42m-333 50c46 52 130 46 173 10s91-41 160-38m-344 44c49 54 129 57 187 12s89-45 157-43m-334 51c58 54 133 52 191 9s90-48 143-46"/>
+                <path d="M22 151h91l18 17h22m221 68h45l24-24h57" stroke-dasharray="3 6" opacity=".7"/>
+                <path d="M399 74h84M399 81h65" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+              </g>
+              <g class="diagram-layer layer-signals" fill="none" stroke-width="1.3">
+                <path d="M352 111a113 113 0 0 1 1 130m20-146a137 137 0 0 1 0 166m23-182a166 166 0 0 1 0 196m21-215a194 194 0 0 1 0 232" stroke="#78bdff" stroke-dasharray="4 5" opacity=".9"/>
+                <path d="M17 178h39l10-8 11 15 12-30 12 47 12-54 13 42 12-20 11 8h36" stroke="#ff9b85" stroke-width="1.8"/>
+                <path class="signal-sweep" d="M17 178h39l10-8 11 15 12-30 12 47 12-54 13 42 12-20 11 8h36" stroke="#ffe3a6" stroke-width="2.7" stroke-linecap="round"/>
+              </g>
+              <g class="diagram-layer layer-power" fill="none" stroke="url(#shaft-gradient)" stroke-width="1.7">
+                <path d="M260 75a101 101 0 0 1 101 101m-101 101a101 101 0 0 1-101-101" stroke-width="2.4"/>
+                <path d="m354 164 7 13 7-13m-216 24 7-13 7 13" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18 176h157m169 0h154" stroke-dasharray="3 6" opacity=".65"/>
+                <path class="power-sweep" d="M18 176h157m169 0h154" stroke="#fff0c9" stroke-width="3" stroke-linecap="round"/>
+                <path d="m83 169 8 7-8 7m27-14 8 7-8 7m294-14 8 7-8 7m27-14 8 7-8 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <circle cx="260" cy="176" r="81" fill="#0a1722" stroke="#58758a" stroke-width="1.5"/>
+              <circle cx="260" cy="176" r="73" fill="url(#rotor-disc)" stroke="#9dbac7" stroke-opacity=".65" stroke-dasharray="1 6" stroke-width="2"/>
+              <g class="diagram-rotor" fill="url(#blade-metal)" stroke="#d8eaf0" stroke-opacity=".36" stroke-width=".7">
+                <use href="#rotor-blade" transform="rotate(0 260 176)"/>
+                <use href="#rotor-blade" transform="rotate(45 260 176)"/>
+                <use href="#rotor-blade" transform="rotate(90 260 176)"/>
+                <use href="#rotor-blade" transform="rotate(135 260 176)"/>
+                <use href="#rotor-blade" transform="rotate(180 260 176)"/>
+                <use href="#rotor-blade" transform="rotate(225 260 176)"/>
+                <use href="#rotor-blade" transform="rotate(270 260 176)"/>
+                <use href="#rotor-blade" transform="rotate(315 260 176)"/>
+              </g>
+              <circle cx="260" cy="176" r="22" fill="#0d1b28" stroke="#a9c3cf" stroke-width="1.5"/>
+              <circle cx="260" cy="176" r="13" fill="none" stroke="#dfc38f"/>
+              <path d="m260 166 2.6 4 4.5-1.1-1.1 4.5 4 2.6-4 2.6 1.1 4.5-4.5-1.1-2.6 4-2.6-4-4.5 1.1 1.1-4.5-4-2.6 4-2.6-1.1-4.5 4.5 1.1Z" fill="#f2d49a"/>
+              <g class="diagram-node">
+                <circle cx="260" cy="52" r="5" fill="#72e7b8"/>
+                <circle cx="136" cy="176" r="5" fill="#ff8f75"/>
+                <circle cx="384" cy="176" r="5" fill="#72caff"/>
+                <circle cx="260" cy="300" r="5" fill="#f5eddf"/>
+              </g>
+            </g>
+          </svg>
+          <figcaption class="engineering-caption">
+            <p data-diagram-description aria-live="polite">Streamlines trace how fluid passes around the rotor and into the wake.</p>
+            <div class="engineering-caption-footer">
+              <ul class="engineering-legend" aria-label="RagabVerse colors">
+                <li><span class="legend-power"></span>Power</li>
+                <li><span class="legend-wisdom"></span>Wisdom</li>
+                <li><span class="legend-intelligence"></span>Intelligence</li>
+              </ul>
+              <button class="engineering-pause" type="button" data-diagram-pause hidden>Pause motion</button>
+            </div>
+          </figcaption>
+        </figure>
       </div>
 
     </section>
@@ -311,7 +346,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="footer-mark">MR</span>
+        <img class="footer-mark" src="assets/brand/ragabverse-icon-192.png?v=rosette" width="38" height="38" alt="" />
         <div>
           <strong>Mohammed Ragab Al-Attar</strong>
           <span>Reliability • Rotating Equipment • Energy</span>

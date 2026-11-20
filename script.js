@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupKeyboardShortcuts();
   setupMoreMenu();
 
-  // Initialise the interactive schematic dashboard
-  initSchematicDashboard();
+  // Initialise the interactive engineering figure
+  initEngineeringFigure();
 
   // Render additional sections if they exist
   renderAchievements();
@@ -1041,171 +1041,57 @@ function setupKeyboardShortcuts() {
   });
 }
 
-/* ---------- Interactive Schematic Dashboard ---------- */
+/* ---------- Engineering visualization ---------- */
 
-function initSchematicDashboard() {
-  const canvas = document.getElementById('streamCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+function initEngineeringFigure() {
+  const figure = document.getElementById("engineeringFigure");
+  if (!figure) return;
 
-  const nodes = {
-    top:    { x: 232, y: 90,  color: 'rgb(16, 185, 129)' },
-    left:   { x: 112, y: 210, color: 'rgb(239, 68, 68)' },
-    right:  { x: 352, y: 210, color: 'rgb(59, 130, 246)' },
-    bottom: { x: 232, y: 330, color: 'rgb(71, 85, 105)' }
+  const captions = {
+    flow: "Streamlines trace how fluid passes around the rotor and into the wake.",
+    thermal: "Temperature contours illustrate heat transfer from the rotor into the flow.",
+    signals: "A vibration waveform and acoustic wavefronts illustrate machine diagnostics.",
+    power: "Follow shaft rotation and energy transfer between the rotor and the fluid."
   };
+  const controls = figure.querySelector(".engineering-modes");
+  const buttons = [...controls.querySelectorAll("button")];
+  const description = figure.querySelector("[data-diagram-description]");
+  const pause = figure.querySelector("[data-diagram-pause]");
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let inView = false;
+  let paused = false;
 
-  let frame = 0;
-  let activeNode = null;
-  let animationId = null;
-  let inViewport = false;
-  let pageActive = true;
-
-  class Particle {
-    constructor(startNode, color) {
-      this.start = startNode;
-      this.end = nodes.bottom;
-      this.color = color;
-      this.progress = Math.random();
-      this.speed = 0.006 + Math.random() * 0.01;
-      this.amplitude = (Math.random() - 0.5) * 16;
-    }
-    update() {
-      this.progress += this.speed;
-      if (this.progress >= 1) this.progress = 0;
-    }
-    draw() {
-      const t = this.progress;
-      const x = this.start.x + (this.end.x - this.start.x) * t;
-      const y = this.start.y + (this.end.y - this.start.y) * t;
-      const dx = this.end.x - this.start.x;
-      const dy = this.end.y - this.start.y;
-      const len = Math.sqrt(dx * dx + dy * dy) || 1;
-      const normX = -dy / len;
-      const normY = dx / len;
-      const wave = Math.sin(t * Math.PI * 3 + frame * 0.1) * this.amplitude * Math.sin(t * Math.PI);
-
-      ctx.beginPath();
-      ctx.arc(x + normX * wave, y + normY * wave, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.shadowBlur = 6;
-      ctx.shadowColor = this.color;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
+  function updateMotion() {
+    pause.hidden = motionPreference.matches;
+    figure.classList.toggle("is-playing", inView && !paused && !document.hidden && !motionPreference.matches);
   }
 
-  const particles = [
-    ...Array.from({ length: 15 }, () => new Particle(nodes.top, nodes.top.color)),
-    ...Array.from({ length: 15 }, () => new Particle(nodes.left, nodes.left.color)),
-    ...Array.from({ length: 15 }, () => new Particle(nodes.right, nodes.right.color))
-  ];
-
-  function drawStream(start, end, colorHex, opacity, waveFreq, speed, amp) {
-    ctx.beginPath();
-    ctx.strokeStyle = colorHex;
-    ctx.globalAlpha = opacity;
-    ctx.lineWidth = 2.5;
-    ctx.shadowBlur = 8;
-    ctx.shadowColor = colorHex;
-
-    const steps = 60;
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const x = start.x + (end.x - start.x) * t;
-      const y = start.y + (end.y - start.y) * t;
-      const dx = end.x - start.x;
-      const dy = end.y - start.y;
-      const len = Math.sqrt(dx * dx + dy * dy);
-      const normX = -dy / len;
-      const normY = dx / len;
-      const envelope = Math.sin(t * Math.PI);
-      const wave = Math.sin(t * Math.PI * waveFreq + frame * speed) * amp * envelope;
-      const px = x + normX * wave;
-      const py = y + normY * wave;
-
-      if (i === 0) ctx.moveTo(px, py);
-      else ctx.lineTo(px, py);
-    }
-    ctx.stroke();
-    ctx.globalAlpha = 1.0;
-    ctx.shadowBlur = 0;
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    frame += 0.04;
-
-    const gAlpha = (!activeNode || activeNode === 'green') ? 0.9 : 0.2;
-    drawStream(nodes.top, nodes.bottom, nodes.top.color, gAlpha, 4, 1.2, 8);
-    drawStream(nodes.top, nodes.bottom, 'rgba(52, 211, 153, 0.8)', gAlpha * 0.7, 6, -1.5, 12);
-
-    const rAlpha = (!activeNode || activeNode === 'red') ? 0.9 : 0.2;
-    drawStream(nodes.left, nodes.bottom, nodes.left.color, rAlpha, 3.5, 1.4, 10);
-    drawStream(nodes.left, nodes.bottom, 'rgba(248, 113, 113, 0.8)', rAlpha * 0.7, 5, -1.1, 14);
-
-    const bAlpha = (!activeNode || activeNode === 'blue') ? 0.9 : 0.2;
-    drawStream(nodes.right, nodes.bottom, nodes.right.color, bAlpha, 3.5, 1.3, 10);
-    drawStream(nodes.right, nodes.bottom, 'rgba(96, 165, 250, 0.8)', bAlpha * 0.7, 5.5, -1.2, 14);
-
-    particles.forEach(p => {
-      p.update();
-      p.draw();
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const mode = button.dataset.mode;
+      figure.dataset.mode = mode;
+      description.textContent = captions[mode];
+      buttons.forEach(option => option.setAttribute("aria-pressed", String(option === button)));
     });
+  });
 
-    animationId = requestAnimationFrame(animate);
-  }
+  pause.addEventListener("click", () => {
+    paused = !paused;
+    pause.textContent = paused ? "Play motion" : "Pause motion";
+    updateMotion();
+  });
 
-  function updateAnimation() {
-    const shouldAnimate = pageActive && inViewport && !document.hidden && !motionPreference.matches;
-    if (shouldAnimate && animationId === null) {
-      animationId = requestAnimationFrame(animate);
-    } else if (!shouldAnimate && animationId !== null) {
-      cancelAnimationFrame(animationId);
-      animationId = null;
-    }
-  }
-
-  function measureViewport() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    inViewport = rect.bottom > 0 && rect.top < window.innerHeight;
-    updateAnimation();
-  }
-
-  if ('IntersectionObserver' in window) {
+  controls.hidden = false;
+  if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(([entry]) => {
-      inViewport = entry.isIntersecting;
-      updateAnimation();
+      inView = entry.isIntersecting;
+      updateMotion();
     });
-    observer.observe(canvas.parentElement);
-  } else {
-    window.addEventListener('scroll', measureViewport, { passive: true });
-    window.addEventListener('resize', measureViewport);
-    measureViewport();
+    observer.observe(figure);
   }
-
-  document.addEventListener('visibilitychange', updateAnimation);
-  motionPreference.addEventListener('change', updateAnimation);
-  window.addEventListener('pagehide', () => {
-    pageActive = false;
-    updateAnimation();
-  });
-  window.addEventListener('pageshow', () => {
-    pageActive = true;
-    measureViewport();
-  });
-
-  canvas.parentElement.querySelectorAll('.node-group').forEach(node => {
-    node.addEventListener('mouseenter', () => {
-      activeNode = node.getAttribute('data-node');
-    });
-    node.addEventListener('mouseleave', () => {
-      activeNode = null;
-    });
-  });
-
+  document.addEventListener("visibilitychange", updateMotion);
+  motionPreference.addEventListener("change", updateMotion);
+  updateMotion();
 }
 
 /* ---------- Additional Renderers ---------- */
