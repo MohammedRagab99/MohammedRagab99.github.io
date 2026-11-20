@@ -1,8 +1,170 @@
 [
   {
-    "title": "SKF Bearing Reliability",
-    "issuer": "SKF",
-    "date": "2026-08-19",
-    "image": "/assets/certifications/skf-bearing.jpg"
+    "title": "Vibration Analysis Category VCAT II",
+    "issuer": "Mobius Institute",
+    "year": "2026",
+    "image": "assets/images/certificates/vcat-ii-mohamed-ragab.png"
+  },
+  {
+    "title": "Between Bearing Pump Repair and API Plans",
+    "issuer": "Flowserve",
+    "year": "2026",
+    "image": "assets/images/certificates/flowserve-pump.png"
+  },
+  {
+    "title": "Reliability Centered Maintenance (RCM)",
+    "issuer": "Enppi",
+    "year": "2026",
+    "image": "assets/images/certificates/rcm.png"
+  },
+  {
+    "title": "Reliability Centered Maintenance (RCM) - Part 1",
+    "issuer": "Enppi",
+    "year": "2025",
+    "image": "assets/images/certificates/RCM_Part1.png"
+  },
+  {
+    "title": "Compressors Operation and Maintenance",
+    "issuer": "RES Global",
+    "year": "2025",
+    "image": "assets/images/certificates/compressors-res-global-2025.png"
+  },
+  {
+    "title": "RECIP Technical Certificate",
+    "issuer": "EPROM & HOERBIGER",
+    "year": "2025",
+    "image": "assets/images/certificates/recip-compressor.png"
+  },
+  {
+    "title": "Bearing Technology And Service",
+    "issuer": "NSK",
+    "year": "2024",
+    "image": "assets/images/certificates/nsk-bearing.png"
+  },
+  {
+    "title": "Speed Sensors: Hall Effect",
+    "issuer": "Istec Sphere",
+    "year": "2025",
+    "image": "assets/images/certificates/Mohammed-Ragab-Speed-sensors-Hall-effect-Speed-sensing-expert-Istec-Sphere.png"
+  },
+  {
+    "title": "Speed Sensors: Eddy Current",
+    "issuer": "Istec Sphere",
+    "year": "2025",
+    "image": "assets/images/certificates/Mohammed-Ragab-Speed-sensors-eddy-current-Speed-sensing-expert-Istec-Sphere.png"
+  },
+  {
+    "title": "Speed Sensors: Variable Reluctance",
+    "issuer": "Istec Sphere",
+    "year": "2025",
+    "image": "assets/images/certificates/Mohammed-Ragab-Speed-sensors-variable-reluctance-Speed-sensing-expert-Istec-Sphere.png"
+  },
+  {
+    "title": "Vibration Training Category 1 - Final Exam",
+    "issuer": "EPROM / Istec",
+    "year": "2025",
+    "image": "assets/images/certificates/mrhamed@eprom.ercegypt.com-Final-Exam-Vibration-Training-Category-1-Istec-Vibration-Training-Category-1-Istec-Sphere.png"
+  },
+  {
+    "title": "International Conference on Energy Systems (ICES 2025)",
+    "issuer": "Ain Shams University",
+    "year": "2025",
+    "image": "assets/images/certificates/ices-2025-energy-systems-conference.png"
+  },
+  {
+    "title": "Refinery Fundamentals Program for Postgraduates",
+    "issuer": "EPROM",
+    "year": "2023",
+    "image": "assets/images/certificates/Refinery Fundamentals Program.png"
+  },
+  {
+    "title": "Designing Survival Systems for Desert Reclamation in Egypt",
+    "issuer": "Nile University",
+    "year": "2022",
+    "image": "assets/images/certificates/desert-reclamation-project.jpg"
+  },
+  {
+    "title": "Satellite Structure Subsystem",
+    "issuer": "Egyptian Space Agency",
+    "year": "2021",
+    "image": "assets/images/certificates/esa-satellite-structure.png"
+  },
+  {
+    "title": "First Rank: Mechanics Teams",
+    "issuer": "Egyptian Space Agency",
+    "year": "2021",
+    "image": "assets/images/certificates/Egyptian Space Agency - First Rank Mechanics Team.png"
+  },
+  {
+    "title": "Best Member Powertrain: Formula Student UK'21",
+    "issuer": "ASU Racing Team",
+    "year": "2021",
+    "image": "assets/images/certificates/ASU Racing Team - Formula Student UK 2021 Best Member.png"
+  },
+  {
+    "title": "CS50x: Introduction to Computer Science",
+    "issuer": "Harvard University",
+    "year": "2020",
+    "image": "assets/images/certificates/CS50 Harvard - CS50x Introduction to Computer Science.png"
+  },
+  {
+    "title": "CS50's Introduction to Artificial Intelligence with Python",
+    "issuer": "Harvard University",
+    "year": "2020",
+    "image": "assets/images/certificates/CS50 Harvard - Introduction to Artificial Intelligence with Python.png"
+  },
+  {
+    "title": "Become a Software Developer",
+    "issuer": "LinkedIn Learning",
+    "year": "2021",
+    "image": "assets/images/certificates/LinkedIn Learning - Become a Software Developer.png"
+  },
+  {
+    "title": "Learning Python",
+    "issuer": "LinkedIn Learning",
+    "year": "2021",
+    "image": "assets/images/certificates/LinkedIn Learning - Learning Python.png"
+  },
+  {
+    "title": "Learning C#",
+    "issuer": "LinkedIn Learning",
+    "year": "2021",
+    "image": "assets/images/certificates/linkedin-learning-csharp.png"
+  },
+  {
+    "title": "Learning SQL Programming",
+    "issuer": "LinkedIn Learning",
+    "year": "2021",
+    "image": "assets/images/certificates/LinkedIn Learning - Learning SQL Programming (2017).png"
+  },
+  {
+    "title": "Programming Foundations: Databases",
+    "issuer": "LinkedIn Learning",
+    "year": "2021",
+    "image": "assets/images/certificates/LinkedIn Learning - Programming Foundations Databases.png"
+  },
+  {
+    "title": "Project Management Foundations: Teams",
+    "issuer": "LinkedIn Learning",
+    "year": "2021",
+    "image": "assets/images/certificates/LinkedIn Learning - Project Management Foundations Teams.png"
+  },
+  {
+    "title": "Become a Graphic Designer",
+    "issuer": "LinkedIn Learning",
+    "year": "2021",
+    "image": "assets/images/certificates/LinkedIn Learning - Become a Graphic Designer.png"
+  },
+  {
+    "title": "innovegypt Program",
+    "issuer": "ITIDA & TIEC",
+    "year": "2021",
+    "image": "assets/images/certificates/ITIDA TIEC innovegypt - Innovation Training Course.png"
+  },
+  {
+    "title": "Reimagining the Future of Learning",
+    "issuer": "Aspire Learning Space",
+    "year": "2021",
+    "image": "assets/images/certificates/Aspire Learning Space - Reimagining the Future of Learning.png"
   }
 ]

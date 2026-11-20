@@ -40,6 +40,22 @@ Because the GitHub account in the provided screenshot is `MohammedRagab99`, the 
 6. Choose GitHub Actions or the branch/folder source shown by GitHub for your repository.
 7. Visit the published GitHub Pages URL.
 
+## Site structure
+
+- **Home** introduces the portfolio and links to the main pages.
+- **Work**, **Research**, and **Credentials** contain the original engineering content, projects, research and certifications.
+- **Studio** contains the characters, episode filters, and content pillars.
+- **Contact** links to the personal Outlook address and the Ain Shams University Faculty of Engineering site and email. The contact form prepares a draft in the visitor's email client.
+
+## Connect the Studio archive to Google Sheets
+
+1. Create a tab named **Public Episodes** in a Google Sheet. In columns A–D, use the headers `ep`, `status`, `date`, and `youtubeId`. For example, a row can start with `1, planned`. Allowed statuses are `planned`, `filming`, and `published`; dates use `YYYY-MM-DD` and video IDs are 11 characters.
+2. In Google Apps Script, copy the contents of `integrations/episode-feed.gs` into your project. Add the spreadsheet ID as the `EPISODE_SHEET_ID` script property.
+3. Deploy the script as a [web app](https://developers.google.com/apps-script/guides/web) running as the owner with anonymous read access, if the account permits it. Open the deployment's `/exec` URL in a signed-out session to verify it returns JSON.
+4. Set `portfolioData.integrations.episodeFeedUrl` in `data.js` to that URL. The site reads only matching episode statuses, public dates and published video IDs. Episode titles and descriptions remain in `data.js`. The original archive is available if Google is unreachable.
+
+Keep the spreadsheet private. The web app exposes the four fields above publicly, so use this tab for release metadata. Contact messages travel through the visitor's email app.
+
 ## Adding a certificate
 
 Edit `data.js`:
