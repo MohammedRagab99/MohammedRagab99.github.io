@@ -97,6 +97,7 @@
         <a href="research.html">Research</a>
         <a href="credentials.html">Credentials</a>
         <a href="studio.html">Studio</a>
+        <a href="focusflow.html">FocusFlow</a>
         <a href="contact.html">Contact</a>
       </nav>
 
@@ -123,6 +124,7 @@
         <a href="research.html">Research</a>
         <a href="credentials.html">Credentials</a>
         <a href="studio.html">Studio</a>
+        <a href="focusflow.html">FocusFlow</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -340,6 +342,23 @@
         </div>
       </div>
     </section>
+    <section class="section hub-section" id="focusflow" aria-labelledby="focusflow-title">
+      <div class="container focusflow-preview">
+        <div>
+          <h2 id="focusflow-title">FocusFlow</h2>
+          <p>Plan tasks, track focus sessions, and send a daily summary to Google Sheets.</p>
+          <a class="button button-secondary" href="focusflow.html">Open FocusFlow</a>
+        </div>
+        <div data-focusflow-summary hidden>
+          <dl class="focusflow-counts" aria-label="FocusFlow summary on this browser">
+            <div><dt>Open tasks</dt><dd data-count="open"></dd></div>
+            <div><dt>Completed</dt><dd data-count="completed"></dd></div>
+            <div><dt>Focus minutes today</dt><dd data-count="focusMinutes"></dd></div>
+          </dl>
+          <small>From this browser · focus day in UTC</small>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -395,5 +414,6 @@
   <!-- Data & scripts -->
   <script src="data.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="focusflow-summary.js" defer></script>
 </body>
 </html>

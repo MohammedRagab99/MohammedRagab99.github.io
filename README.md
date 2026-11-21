@@ -46,6 +46,16 @@ Because the GitHub account in the provided screenshot is `MohammedRagab99`, the 
 - **Work**, **Research**, and **Credentials** contain the original engineering content, projects, research and certifications.
 - **Studio** contains the characters, episode filters, and content pillars.
 - **Contact** links to the personal Outlook address and the Ain Shams University Faculty of Engineering site and email. The contact form prepares a draft in the visitor's email client.
+- **FocusFlow** is the task, planning, and focus workspace. The homepage shows its counts in the same browser profile and on the same site origin.
+
+## Connect FocusFlow to Google Sheets
+
+1. Choose a spreadsheet you control and create a **separate** Apps Script project from the Studio episode feed. Paste [focusflow-summary.gs](integrations/focusflow-summary.gs) into the new project.
+2. In **Project Settings → Script properties**, set `FOCUSFLOW_SHEET_ID` to the ID from the spreadsheet URL and `FOCUSFLOW_SYNC_KEY` to a random secret with at least 32 characters. Keep the Sheet private and store the secret outside the repository.
+3. [Deploy as a web app](https://developers.google.com/apps-script/guides/web), executing as the owner. Allow **Anyone** at the deployment level if the Google account permits it. The script requires the sync key for every write and exposes no read endpoint.
+4. In **FocusFlow → Settings → Google Sheets summary**, enter the web app's `/exec` URL and the matching sync key. Click **Send summary to Sheets** and verify the confirmation in the UI and the row in the **FocusFlow Summary** tab.
+
+The script updates one row per UTC date with the open and completed task counts, focus minutes for that UTC day, and the time the summary was saved. A second send for the same date updates that row. Task names, notes, and journal entries remain in the browser. FocusFlow keeps the deployment URL after a successful send and clears the sync key. Use **Download summary CSV** to import the numeric summary manually. If you previously used the file from a different origin, use its local JSON export and import the backup from FocusFlow Settings for the records covered by that export.
 
 ## Connect the Studio archive to Google Sheets
 
