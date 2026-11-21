@@ -1,4 +1,4 @@
-const CACHE = 'ragabverse-shell-v8';
+const CACHE = 'ragabverse-shell-v9';
 const files = ['./', './index.html', './work.html', './experience.html', './tools.html', './research.html', './credentials.html', './studio.html', './contact.html', './cv.html', './project-detail.html', './style.css', './data.js', './script.js', './cv.js', './favicon.svg', './manifest.json', './assets/brand/ragabverse-icon-192.png'];
 const shell = new Set(files.map(file => new URL(file, self.registration.scope).href));
 

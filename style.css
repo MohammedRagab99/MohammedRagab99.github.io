@@ -3611,6 +3611,12 @@ a.hub-card:focus-visible {
 }
 
 #ragabverse .page-jump { justify-content: center; }
+.studio-artwork > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
 .studio-subheading { margin: 2.25rem 0 1rem; }
 .rv-empty { grid-column: 1 / -1; color: var(--muted); }
 .contact-resources { margin-top: 28px; }
