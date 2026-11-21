@@ -8,6 +8,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+# CMD can inherit a PowerShell 7 module path. Load the module for this engine.
+Import-Module (Join-Path $PSHOME 'Modules\Microsoft.PowerShell.Security\Microsoft.PowerShell.Security.psd1')
 $origin = 'http://localhost:8768'
 $profilePath = Join-Path $env:LOCALAPPDATA 'RagabVerse\PrivateTracker\profile.dpapi'
 $serverPath = Join-Path $PSScriptRoot 'server.py'
