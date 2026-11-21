@@ -3890,3 +3890,20 @@ img.footer-mark {
 @media (prefers-reduced-motion: reduce) {
   .engineering-figure .diagram-layer { transition: none; }
 }
+.focusflow-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.focusflow-preview p { margin: .4rem 0 1rem; color: var(--muted); }
+.focusflow-preview small { color: var(--muted); }
+.focusflow-counts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .6rem;
+  margin-bottom: .5rem;
+}
+.focusflow-counts dt { color: var(--muted); font-size: .875rem; }
+.focusflow-counts dd { margin: 0; font-weight: 700; font-size: 1.5rem; }
