@@ -2,6 +2,28 @@
 
 Run this folder on an approved private Python host or on your own workstation. It is excluded from the public GitHub Pages build. Keep the workspace's files, SharePoint links, and settings on your workstation or approved host.
 
+## Set up and run from Windows
+
+From the root of the checkout, use one of the following startup commands. Both work in Command Prompt and PowerShell.
+
+```bat
+.\private-tracker\tracker.cmd -Setup
+.\private-tracker\tracker.cmd -RegisterApp
+```
+
+- Use `-Setup` with an approved Entra app registration. Have the tenant ID, client ID, client secret value, and allowed user object ID ready.
+- Use `-RegisterApp` if your organization lets you create app registrations with Azure CLI. Install the CLI with `winget install --exact --id Microsoft.AzureCLI` and reopen the terminal first. The script signs in to the tenant you enter, uses the signed-in account as the allowed user, and creates the app, delegated permission requests, and a client secret. Complete consent through Microsoft when prompted. If the tenant requires admin consent, send the printed app ID to your Microsoft 365 administrator. [Azure CLI sign-in](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-interactively) · [Microsoft Graph permissions in Azure CLI](https://learn.microsoft.com/en-us/cli/azure/ad/app/permission)
+
+Both commands prompt for the workbook links and tracker password, save an encrypted profile under `%LOCALAPPDATA%\RagabVerse\PrivateTracker`, and launch the server. Windows ties the encrypted settings to your user and computer. From then on run `.\private-tracker\tracker.cmd`. Open [the local tracker](http://localhost:8768), enter the tracker password, and sign in with the allowed Microsoft work account. Keep the terminal open while using the tracker. Run `-Setup` again to replace the settings or rotate the client secret.
+
+Use desktop Excel on an approved Windows computer to prepare a local OneDrive-synced copy of the **daily** workbook. Start with a test copy and close it in Excel before running the command. Use the production file only with the owner's edit authorization.
+
+```bat
+powershell.exe -NoProfile -File .\private-tracker\prepare-workbook.ps1 -WorkbookPath "C:\path\to\the\daily workbook.xlsx"
+```
+
+The command adds the table on a new sheet and checks an existing table before deciding whether to make changes. For test setup, supply the SharePoint link for the synced test workbook to the launcher. The command requires Office on Windows. [Excel table API](https://learn.microsoft.com/en-us/office/vba/api/excel.listobjects.add)
+
 ## Workbook roles
 
 - The equipment library reads the visible master-equipment worksheet through a read-only file download. It ignores macros, hidden sheets, and embedded files. Search matches on tag, description, family, type, and location. The server caches the library for ten minutes.
