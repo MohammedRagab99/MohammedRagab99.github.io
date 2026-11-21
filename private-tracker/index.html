@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>RagabVerse Daily Tracker</title>
+  <link rel="stylesheet" href="/tracker.css">
+  <script src="/tracker.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div><span class="brand">RagabVerse</span><h1>Daily Tracker</h1></div>
+    <form action="/logout" method="post"><button class="secondary">Sign out</button></form>
+  </header>
+  <main class="workspace">
+    <div class="workspace-tools">
+      <nav aria-label="Tracker views">
+        <button type="button" aria-pressed="true" data-view="dashboard">Dashboard</button>
+        <button type="button" aria-pressed="false" data-view="entry">Log activity</button>
+        <button type="button" aria-pressed="false" data-view="equipment">Equipment library</button>
+        <button type="button" aria-pressed="false" data-view="history">Activity log</button>
+      </nav>
+      <label class="unit-control">Unit
+        <select id="unit"><option>A01</option><option>A02A</option><option>A02B</option></select>
+      </label>
+    </div>
+    <p id="status" class="status" role="status"></p>
+    <section id="dashboard" aria-labelledby="dashboard-title">
+      <h2 id="dashboard-title">Tracker entries today</h2>
+      <dl class="totals">
+        <div><dt>Activities logged</dt><dd id="activity-count">—</dd></div>
+        <div><dt>Complete</dt><dd id="completed-count">—</dd></div>
+        <div><dt>Hours recorded</dt><dd id="hours-count">—</dd></div>
+      </dl>
+      <h2>Recent activity</h2>
+      <div id="recent" class="activity-list"></div>
+    </section>
+    <section id="entry" aria-labelledby="entry-title" hidden>
+      <h2 id="entry-title">Log activity</h2>
+      <form id="activity-form" class="field-grid">
+        <label>Date <input type="date" name="date" required></label>
+        <label>Equipment tag <input name="tag" list="equipment-options" maxlength="90" required autocomplete="off"></label>
+        <datalist id="equipment-options"></datalist>
+        <label>Work order <input name="order" maxlength="90"></label>
+        <label>EPTW <input name="permit" maxlength="90"></label>
+        <label>Status <select name="status"><option>Open</option><option>In progress</option><option>Complete</option><option>Blocked</option></select></label>
+        <label>Progress (%) <input name="progress" type="number" min="0" max="100" step="1" value="0" required></label>
+        <label>Hours <input name="hours" type="number" min="0" max="24" step="0.25" value="0" required></label>
+        <label class="wide">Activity <textarea name="activity" rows="4" maxlength="1500" required></textarea></label>
+        <label class="wide">Remarks <textarea name="remarks" rows="3" maxlength="1500"></textarea></label>
+        <div class="wide"><button id="save-activity">Save to Excel</button></div>
+      </form>
+    </section>
+    <section id="equipment" aria-labelledby="equipment-title" hidden>
+      <h2 id="equipment-title">Equipment library</h2>
+      <label>Search tag, description, family, or location <input id="equipment-search" type="search" autocomplete="off"></label>
+      <p id="equipment-count" class="status" aria-live="polite"></p>
+      <div id="equipment-results" class="activity-list"></div>
+      <button type="button" class="secondary" id="more-equipment" hidden>Show more equipment</button>
+    </section>
+    <section id="history" aria-labelledby="history-title" hidden>
+      <h2 id="history-title">Activity log</h2>
+      <div class="filters">
+        <label>Find an activity <input id="activity-search" type="search" placeholder="Tag, work order, or activity"></label>
+        <label>Source <select id="activity-source"><option value="all">All sources</option><option value="Tracker">Tracker entries</option><option value="original">Original unit sheet</option></select></label>
+      </div>
+      <div id="history-results" class="activity-list"></div>
+    </section>
+  </main>
+</body>
+</html>
