@@ -2,3 +2,4 @@ theme: jekyll-theme-minimal
 exclude:
   - files.zip
   - private-tracker
+  - private-attendance

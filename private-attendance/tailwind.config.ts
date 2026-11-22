@@ -1,0 +1,82 @@
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  darkMode: 'class',
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: 'hsl(var(--background) / <alpha-value>)',
+        foreground: 'hsl(var(--foreground) / <alpha-value>)',
+        border: 'hsl(var(--border) / <alpha-value>)',
+        input: 'hsl(var(--input) / <alpha-value>)',
+        ring: 'hsl(var(--ring) / <alpha-value>)',
+        card: 'hsl(var(--card) / <alpha-value>)',
+        'card-foreground': 'hsl(var(--card-foreground) / <alpha-value>)',
+        popover: 'hsl(var(--popover) / <alpha-value>)',
+        'popover-foreground': 'hsl(var(--popover-foreground) / <alpha-value>)',
+        muted: 'hsl(var(--muted) / <alpha-value>)',
+        'muted-foreground': 'hsl(var(--muted-foreground) / <alpha-value>)',
+        destructive: 'hsl(var(--destructive) / <alpha-value>)',
+        'destructive-foreground': 'hsl(var(--destructive-foreground) / <alpha-value>)',
+        primary: {
+          DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
+          foreground: 'hsl(var(--primary-foreground) / <alpha-value>)',
+          50: '#E8F5E9',
+          100: '#C8E6C9',
+          200: '#A5D6A7',
+          300: '#81C784',
+          400: '#66BB6A',
+          500: '#4CAF50',
+          600: '#43A047',
+          700: '#388E3C',
+          800: '#2E7D32',
+          900: '#1B5E20',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary) / <alpha-value>)',
+          foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)',
+          50: '#E3F2FD',
+          100: '#BBDEFB',
+          200: '#90CAF9',
+          300: '#64B5F6',
+          400: '#42A5F5',
+          500: '#2196F3',
+          600: '#1E88E5',
+          700: '#1976D2',
+          800: '#1565C0',
+          900: '#0D47A1',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent) / <alpha-value>)',
+          foreground: 'hsl(var(--accent-foreground) / <alpha-value>)',
+          50: '#FFF3E0',
+          100: '#FFE0B2',
+          200: '#FFCC80',
+          300: '#FFB74D',
+          400: '#FFA726',
+          500: '#FF9800',
+          600: '#FB8C00',
+          700: '#F57C00',
+          800: '#EF6C00',
+          900: '#E65100',
+        },
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        arabic: ['var(--font-cairo)', 'system-ui', 'sans-serif'],
+      },
+      direction: {
+        rtl: 'rtl',
+        ltr: 'ltr',
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
