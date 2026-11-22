@@ -1,0 +1,8 @@
+.env*
+!.env.example
+.next/
+next-env.d.ts
+node_modules/
+*.tsbuildinfo
+firebase-debug.log
+firestore-debug.log
